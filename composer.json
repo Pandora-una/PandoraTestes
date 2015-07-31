@@ -1,5 +1,5 @@
 {
-    "name": "pandora/pandora-testes",
+    "name": "pandora-una/pandora-testes",
     "description": "Base da Pandora, com classes abstratas e auxiliares",
     "type": "library",   
     "keywords": [
