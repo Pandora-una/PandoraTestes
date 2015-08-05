@@ -46,8 +46,7 @@ abstract class AbstractFixture implements FixtureInterface
         foreach ($this->_getParams() as $param => $value)
             $this->_applyParam($entity, $param, $value);
         
-        foreach ($this->_getAssociations() as $param => $fixture)
-            $this->_applyAssociations($entity, $param, $fixture);
+        $this->_applyAssociations($entity);
         
         $this->__commit($manager, $entity);
         
@@ -118,16 +117,25 @@ abstract class AbstractFixture implements FixtureInterface
         ));
     }
 
+    protected function _applyAssociations($entity)
+    {
+        foreach ($this->_getAssociations() as $fixture)
+            $this->builder->load($fixture, true);
+        foreach ($this->_getAssociations() as $param => $fixture)
+            $this->_applyAssociation($entity, $param, $fixture);
+    }
+
     /**
      *
      * @param object $entity            
      * @param string $param            
      * @param string $fixture            
      */
-    protected function _applyAssociations($entity, $param, $fixture)
+    protected function _applyAssociation($entity, $param, $fixture)
     {
         $association = $this->builder->load($fixture, true);
         $association = $this->builder->getEntityManager()->merge($association);
+        echo $fixture;
         $this->_applyParam($entity, $param, $association);
     }
 
