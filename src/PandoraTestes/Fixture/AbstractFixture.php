@@ -67,6 +67,9 @@ abstract class AbstractFixture implements FixtureInterface
             throw new \Exception("Trait '$trait' não existe");
         
         $traitParams = $this->traits[$trait];
+        
+        $traitParams = $this->_useTraitAssociations($traitParams);
+        
         foreach ($traitParams as $param => $value)
             $this->_setParam($param, $value);
     }
@@ -167,6 +170,15 @@ abstract class AbstractFixture implements FixtureInterface
         
         return $this->params;
     }
+    
+    protected function _useTraitAssociations(array $traitParams){
+        if (!isset($traitParams['_associations']))
+            return $traitParams;
+        foreach ($traitParams['_associations'] as $param => $fixture)
+            $this->_setAssociation($param, $fixture);
+        unset($traitParams['_associations']);
+        return $traitParams;
+    }
 
     /**
      *
@@ -181,6 +193,16 @@ abstract class AbstractFixture implements FixtureInterface
         
         $this->params[$param] = $value;
     }
+    
+    protected function _setAssociation($param, $value)
+    {
+        if (! property_exists($this, 'associations'))
+            throw new \Exception("É preciso preencher o atributo 'associations' desta fixture");
+    
+            $this->associations[$param] = $value;
+    }
+    
+
 
     /**
      *
