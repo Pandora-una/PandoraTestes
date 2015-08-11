@@ -1,0 +1,6 @@
+#!/bin/bash
+
+echo 'SetEnv APPLICATION_ENV test' >> public/.htaccess;
+vendor/bin/behat "$*";
+
+sed -i '$ d' public/.htaccess;
