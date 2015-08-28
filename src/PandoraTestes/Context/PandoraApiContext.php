@@ -43,9 +43,7 @@ abstract class PandoraApiContext implements Context, MinkAwareContext
      */
     public function iWait()
     {
-        $this->spin(function ($context) {
-            return false;
-        }, 1, false);
+        sleep(1);
     }
 
     /**
