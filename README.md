@@ -1,5 +1,3 @@
-Teste
-
 # pandora-testes
 
 Este repositório contém ferramentas para facilitar a criação de testes de aceitação usando [Behat](https://github.com/Behat/Behat) com [MinkExtension](https://github.com/Behat/MinkExtension) e [WebApiExtension](https://github.com/Behat/WebApiExtension) em aplicações feitas em Zend Framework 2 e Doctrine 2\. As ferramentas são:
