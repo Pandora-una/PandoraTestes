@@ -238,7 +238,7 @@ class FeatureContext extends PandoraApiContext
 
 Para utilizar as fixtures descritas na sessão anterior este repositório tem o seguinte passo de teste:
 ``` feature
- Given exists a "<nome da fizture>"
+ Given exists a "<nome da fixture>"
 ```
 
 Este passo cria as entidades necessárias para o teste, como no exemplo abaixo.
