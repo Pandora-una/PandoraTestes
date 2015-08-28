@@ -22,7 +22,9 @@
         "doctrine/doctrine-module": "0.*",
 		"doctrine/doctrine-orm-module": "0.*",
 		"doctrine/data-fixtures": "1.*",
-		"behat/web-api-extension": "dev-master"
+		"behat/web-api-extension": "dev-master",
+        "behat/mink-extension": "^2.0@dev",
+        "behat/mink-selenium2-driver":  "~1.1"
     },
 	"repositories": [ 
         {
