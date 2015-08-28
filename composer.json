@@ -38,7 +38,7 @@
         "classmap": [
             "./Module.php"
         ]
-    }    
+    },    
     "config": {
         "bin-dir": "bin"
     }
