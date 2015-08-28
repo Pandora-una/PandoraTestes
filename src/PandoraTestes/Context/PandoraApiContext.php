@@ -23,6 +23,8 @@ abstract class PandoraApiContext implements Context, MinkAwareContext
     protected $_fixtureBuilder;
 
     protected $_mink;
+    
+    protected $_minkParameters;
 
     abstract static function initializeZendFramework();
 
@@ -37,22 +39,6 @@ abstract class PandoraApiContext implements Context, MinkAwareContext
     }
 
     /**
-     * @Then /^I wait until I see "([^"]*)"$/
-     */
-    public function iWaitUntilISee($text)
-    {
-        $this->spin($text);
-    }
-    
-    /**
-     * @Then /^I wait until I do not see "([^"]*)"$/
-     */
-    public function iWaitUntilIDoNotSee($text)
-    {
-        $this->spin($text, true);
-    }
-
-    /**
      * @When /^I wait$/
      */
     public function iWait()
@@ -60,6 +46,22 @@ abstract class PandoraApiContext implements Context, MinkAwareContext
         $this->spin(function ($context) {
             return false;
         }, 1, false);
+    }
+
+    /**
+     * @Then /^I wait until I see "([^"]*)"$/
+     */
+    public function iWaitUntilISee($text)
+    {
+        $this->spin($text);
+    }
+
+    /**
+     * @Then /^I wait until I do not see "([^"]*)"$/
+     */
+    public function iWaitUntilIDoNotSee($text)
+    {
+        $this->spin($text, true);
     }
 
     /**
@@ -73,19 +75,6 @@ abstract class PandoraApiContext implements Context, MinkAwareContext
                 ->findById('entipess_popup0') != null;
         }, 3, false);
     }
-    
-    // /**
-    // * Initializes context.
-    // *
-    // * Every scenario gets its own context instance.
-    // * You can also pass arbitrary arguments to the
-    // * context constructor through behat.yml.
-    // */
-    // public function __construct()
-    // {
-    // $this->addHeader('Accept', 'application/json');
-    // $this->addHeader('x-pandora-teste', 1);
-    // }
     
     /**
      * @AfterSuite
@@ -113,7 +102,7 @@ abstract class PandoraApiContext implements Context, MinkAwareContext
     public function takeScreenshotAfterFailedStep($event)
     {
         $result = $event->getTestResult();
-        if (!($result instanceof UndefinedStepResult) && $result->hasException()) {
+        if (! ($result instanceof UndefinedStepResult) && $result->hasException()) {
             $driver = $this->_mink->getSession()->getDriver();
             
             if ($driver instanceof Selenium2Driver) {
@@ -149,13 +138,12 @@ abstract class PandoraApiContext implements Context, MinkAwareContext
     {
         for ($i = 0; $i < $wait; $i += 0.3) {
             try {
-                if($negative)
+                if ($negative)
                     $this->_mink->assertSession()->pageTextNotContains(str_replace('\\"', '"', $text));
                 else
                     $this->_mink->assertSession()->pageTextContains(str_replace('\\"', '"', $text));
                 return true;
-            } catch (\Exception $e) {
-            }
+            } catch (\Exception $e) {}
             usleep(100000);
         }
         
@@ -183,5 +171,45 @@ abstract class PandoraApiContext implements Context, MinkAwareContext
      * @param array $parameters            
      */
     public function setMinkParameters(array $parameters)
-    {}
+    {
+        $this->_minkParameters = $parameters;
+    }
+
+    /**
+     * Locates url, based on provided path.
+     * Override to provide custom routing mechanism.
+     *
+     * @param string $path            
+     *
+     * @return string
+     */
+    protected function locatePath($path)
+    {
+        $startUrl = rtrim($this->_minkParameters['base_url'], '/') . '/';
+        
+        return 0 !== strpos($path, 'http') ? $startUrl . ltrim($path, '/') : $path;
+    }
+    
+    /**
+     * Returns fixed step argument (with \\" replaced back to ").
+     *
+     * @param string $argument
+     *
+     * @return string
+     */
+    protected function fixStepArgument($argument)
+    {
+        return str_replace('\\"', '"', $argument);
+    }
+
+    public function getMink()
+    {
+        return $this->_mink;
+    }
+
+    public function getMinkparameters()
+    {
+        return $this->_minkParameters;
+    }
+ 
 }
