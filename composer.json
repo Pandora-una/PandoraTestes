@@ -41,7 +41,5 @@
             "./Module.php"
         ]
     },
-    "config": {
-        "bin-dir": "bin"
-    }
+    "bin": ["bin/pandora-behat","bin/selenium-server-standalone-2.45.0.jar"]
 }
