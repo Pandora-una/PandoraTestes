@@ -186,7 +186,7 @@ Este repositório contém um contexto de Behat com passos customizados.
 
 ##### Configuração do Behat
 
-Para utilizar os passos da biblioteca é importante declarar o contexto da pandora, assim como o do Mink, caso queira usar os passos relacionados com requisições Ajax. Uma confiiguração exemplo é a seguinte:
+Para utilizar os passos da biblioteca é importante declarar o contexto da pandora, assim como o do Mink, caso queira usar os passos relacionados com requisições Ajax. Uma configuração exemplo é a seguinte:
 ```yml
 
 default:
@@ -210,7 +210,8 @@ default:
       contexts:
         - Behat\MinkExtension\Context\MinkContext
         - FeatureContext
-        - PandoraTestes\Context\PandoraCliContext
+        - PandoraTestes\Context\PandoraCliContext:
+            error_folder: '/home/vinicius/tmp'
 ```
 É importante notar que para usar o contexto deste repoistório a classe FeatureContext tem que extender o contexto da pandora, pois é necessário extender o método estático _initializeZendFramework_ responsável por iniciar a aplicação como no exemplo abaixo:
 ```php

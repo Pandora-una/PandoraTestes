@@ -15,6 +15,12 @@ class PandoraCliContext implements Context, MinkAwareContext
 
     protected $_minkParameters;
 
+    protected $_errorFolder;
+
+    public function __construct($error_folder = null){
+        $this->_errorFolder = $error_folder;
+    }
+
     /**
      * Take screenshot when step fails.
      * Works only with Selenium2Driver.
@@ -27,9 +33,9 @@ class PandoraCliContext implements Context, MinkAwareContext
         if (! ($result instanceof UndefinedStepResult) && $result->hasException()) {
             $driver = $this->_mink->getSession()->getDriver();
 
-            if ($driver instanceof Selenium2Driver) {
-                $fileName = '/tmp/pandora-teste-ultimo-erro.png';
-                echo file_put_contents($fileName, $driver->getScreenshot());
+            if ($driver instanceof Selenium2Driver && $this->_errorFolder) {
+                $fileName = $this->_errorFolder . '/pandora-teste-ultimo-erro.png';
+                file_put_contents($fileName, $driver->getScreenshot());
             }
         }
     }
