@@ -6,7 +6,6 @@ use Behat\MinkExtension\Context\MinkAwareContext;
 use Behat\Mink\Mink;
 use Behat\Mink\Driver\Selenium2Driver;
 
-
 /**
  * Passos
  */
