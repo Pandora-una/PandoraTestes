@@ -4,6 +4,8 @@ namespace PandoraTestes\Context;
 use Behat\Behat\Context\Context;
 use Behat\MinkExtension\Context\MinkAwareContext;
 use Behat\Mink\Mink;
+use Behat\Mink\Driver\Selenium2Driver;
+
 /**
  * Passos
  */
@@ -26,7 +28,7 @@ class PandoraCliContext implements Context, MinkAwareContext
             $driver = $this->_mink->getSession()->getDriver();
 
             if ($driver instanceof Selenium2Driver) {
-                $fileName = '/home/vinicius/tmp/teste.png';
+                $fileName = '/tmp/pandora-teste-ultimo-erro.png';
                 echo file_put_contents($fileName, $driver->getScreenshot());
             }
         }
