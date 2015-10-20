@@ -210,15 +210,16 @@ default:
       contexts:
         - Behat\MinkExtension\Context\MinkContext
         - FeatureContext
+        - PandoraCliContext
 ```
 É importante notar que para usar o contexto deste repoistório a classe FeatureContext tem que extender o contexto da pandora, pois é necessário extender o método estático _initializeZendFramework_ responsável por iniciar a aplicação como no exemplo abaixo:
 ```php
-use PandoraTestes\Context\PandoraApiContext;
+use PandoraTestes\Context\PandoraContext;
 
 /**
  * Defines application features from the specific context.
  */
-class FeatureContext extends PandoraApiContext
+class FeatureContext extends PandoraContext
 {
     /**
      * @BeforeSuite
