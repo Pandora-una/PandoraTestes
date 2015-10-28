@@ -5,6 +5,7 @@ use Behat\Behat\Context\Context;
 use Behat\MinkExtension\Context\MinkAwareContext;
 use Behat\Mink\Mink;
 use Behat\Mink\Driver\Selenium2Driver;
+use Behat\Behat\Tester\Result\UndefinedStepResult;
 
 /**
  * Passos
