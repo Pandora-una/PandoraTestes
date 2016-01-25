@@ -25,7 +25,7 @@ class PandoraSrvContext implements Context
     }
 
     /**
-     * Check if JSON response has fields with specified values (See coduo/php-matcher).
+     * Check if the JSON response has fields with specified values (See coduo/php-matcher).
      *
      * @Then /^(?:the )?response should contain json with this format:$/
      */
@@ -40,6 +40,24 @@ class PandoraSrvContext implements Context
     }
 
     /**
+     * Check if the JSON response has at least the specified fields and the values match (See coduo/php-matcher).
+     *
+     * @Then /^(?:the )?response should contain json with at least this fields:$/
+     */
+    public function theResponseShouldContainJsonWithAtLeastThisFields(PyStringNode $jsonString)
+    {
+        $etalon = json_decode($jsonString->getRaw(), true);
+        if (null === $etalon) {
+            throw new \RuntimeException("Can not convert etalon to json:\n".$jsonString->getRaw());
+        }
+
+        $filteredArray = $this->recursiveArrayIntersectKeys($this->getJsonResponse(), $etalon);
+
+        $matcher = (new SimpleFactory())->createMatcher();
+        Assertions::assertTrue($matcher->match($filteredArray, $etalon), $matcher->getError());
+    }
+
+    /**
      * @return array
      */
     protected function getJsonResponse()
@@ -49,6 +67,21 @@ class PandoraSrvContext implements Context
         $reflectionResponse->setAccessible(true);
 
         return $reflectionResponse->getValue($this->getWebApi())->json();
+    }
+
+    protected function recursiveArrayIntersectKeys(array $array1, $array2)
+    {
+        if (!is_array($array2)) {
+            return $array1;
+        }
+        $array1 = array_intersect_key($array1, $array2);
+        foreach ($array1 as $key => &$value) {
+            if (is_array($value)) {
+                $value = $this->recursiveArrayIntersectKeys($value, $array2[$key]);
+            }
+        }
+
+        return $array1;
     }
 
     /**
