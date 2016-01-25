@@ -2,11 +2,11 @@
 
 namespace PandoraTestes\Context;
 
-use Doctrine\Common\DataFixtures\Purger\ORMPurger;
-use PandoraTestes\Fixture\FixtureBuilder;
 use Behat\Behat\Context\Context;
 use Behat\MinkExtension\Context\MinkAwareContext;
 use Behat\Mink\Mink;
+use Doctrine\Common\DataFixtures\Purger\ORMPurger;
+use PandoraTestes\Fixture\FixtureBuilder;
 
 /**
  * Passos.
