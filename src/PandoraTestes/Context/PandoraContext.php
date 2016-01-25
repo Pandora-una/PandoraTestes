@@ -42,6 +42,21 @@ abstract class PandoraContext implements Context, MinkAwareContext
     }
 
     /**
+     * Click on an element with given CSS.
+     *
+     * @When /^I click the element with css "([^"]*)"$/
+     */
+    public function iClickTheElementWithCss($element)
+    {
+        $cssElement = $this->_mink->getSession()->getPage()->find('css', $element);
+        if ($cssElement) {
+            $cssElement->click();
+        } else {
+            throw new \Exception("Elemento com css '$element' não encontrado.");
+        }
+    }
+
+    /**
      * @Then /^I wait until I see "([^"]*)"$/
      */
     public function iWaitUntilISee($text)
@@ -133,7 +148,8 @@ abstract class PandoraContext implements Context, MinkAwareContext
     /**
      * Sets Mink instance.
      *
-     * @param Mink $mink Mink session manager
+     * @param Mink $mink
+     *                   Mink session manager
      */
     public function setMink(Mink $mink)
     {
