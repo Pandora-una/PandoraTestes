@@ -1,35 +1,30 @@
 <?php
+
 namespace PandoraTestes\Context;
 
-use Behat\WebApiExtension\Context\WebApiContext;
-use Doctrine\Common\DataFixtures\Loader;
 use Doctrine\Common\DataFixtures\Purger\ORMPurger;
-use Doctrine\Common\DataFixtures\Executor\ORMExecutor;
 use PandoraTestes\Fixture\FixtureBuilder;
 use Behat\Behat\Context\Context;
 use Behat\MinkExtension\Context\MinkAwareContext;
 use Behat\Mink\Mink;
-use Behat\Mink\Driver\Selenium2Driver;
-use Behat\Behat\Tester\Result\UndefinedStepResult;
 
 /**
- * Passos
+ * Passos.
  */
 abstract class PandoraContext implements Context, MinkAwareContext
 {
-
     protected static $zendApp;
 
     protected $_fixtureBuilder;
 
     protected $_mink;
-    
+
     protected $_minkParameters;
 
-    abstract static function initializeZendFramework();
+    abstract public static function initializeZendFramework();
 
     /**
-     * Create entity from fixtures
+     * Create entity from fixtures.
      *
      * @Given /^exists an? "([^"]*)"$/
      */
@@ -73,13 +68,13 @@ abstract class PandoraContext implements Context, MinkAwareContext
                 ->findById('entipess_popup0') != null;
         }, 3, false);
     }
-    
+
     /**
      * @AfterSuite
      */
     public static function clean()
     {
-        (new ORMPurger(self::$zendApp->getServiceManager()->get('Doctrine\ORM\EntityManager')))->purge();
+        //(new ORMPurger(self::$zendApp->getServiceManager()->get('Doctrine\ORM\EntityManager')))->purge();
     }
 
     /**
@@ -92,7 +87,6 @@ abstract class PandoraContext implements Context, MinkAwareContext
     }
 
     /**
-     *
      * @return Doctrine\ORM\EntityManager
      */
     protected function _getEntityManager()
@@ -101,15 +95,15 @@ abstract class PandoraContext implements Context, MinkAwareContext
     }
 
     /**
-     *
      * @return FixtureBuilder
      */
     protected function getFixtureBuilder()
     {
-        if (! $this->_fixtureBuilder) {
+        if (!$this->_fixtureBuilder) {
             $this->_fixtureBuilder = self::$zendApp->getServiceManager()->get('PandoraTestes\Fixture\FixtureBuilder');
             $this->_fixtureBuilder->setEntityManager($this->_getEntityManager());
         }
+
         return $this->_fixtureBuilder;
     }
 
@@ -117,27 +111,29 @@ abstract class PandoraContext implements Context, MinkAwareContext
     {
         for ($i = 0; $i < $wait; $i += 0.3) {
             try {
-                if ($negative)
+                if ($negative) {
                     $this->_mink->assertSession()->pageTextNotContains(str_replace('\\"', '"', $text));
-                else
+                } else {
                     $this->_mink->assertSession()->pageTextContains(str_replace('\\"', '"', $text));
+                }
+
                 return true;
-            } catch (\Exception $e) {}
+            } catch (\Exception $e) {
+            }
             usleep(100000);
         }
-        
+
         if ($canFail) {
             $backtrace = debug_backtrace();
-            
-            throw new \Exception("Timeout thrown by " . $backtrace[1]['class'] . "::" . $backtrace[1]['function'] . "()\n" . $backtrace[1]['file'] . ", line " . $backtrace[1]['line']);
+
+            throw new \Exception('Timeout thrown by '.$backtrace[1]['class'].'::'.$backtrace[1]['function']."()\n".$backtrace[1]['file'].', line '.$backtrace[1]['line']);
         }
     }
 
     /**
      * Sets Mink instance.
      *
-     * @param Mink $mink
-     *            Mink session manager
+     * @param Mink $mink Mink session manager
      */
     public function setMink(Mink $mink)
     {
@@ -147,7 +143,7 @@ abstract class PandoraContext implements Context, MinkAwareContext
     /**
      * Sets parameters provided for Mink.
      *
-     * @param array $parameters            
+     * @param array $parameters
      */
     public function setMinkParameters(array $parameters)
     {
@@ -158,17 +154,17 @@ abstract class PandoraContext implements Context, MinkAwareContext
      * Locates url, based on provided path.
      * Override to provide custom routing mechanism.
      *
-     * @param string $path            
+     * @param string $path
      *
      * @return string
      */
     protected function locatePath($path)
     {
-        $startUrl = rtrim($this->_minkParameters['base_url'], '/') . '/';
-        
-        return 0 !== strpos($path, 'http') ? $startUrl . ltrim($path, '/') : $path;
+        $startUrl = rtrim($this->_minkParameters['base_url'], '/').'/';
+
+        return 0 !== strpos($path, 'http') ? $startUrl.ltrim($path, '/') : $path;
     }
-    
+
     /**
      * Returns fixed step argument (with \\" replaced back to ").
      *
@@ -190,5 +186,4 @@ abstract class PandoraContext implements Context, MinkAwareContext
     {
         return $this->_minkParameters;
     }
- 
 }
