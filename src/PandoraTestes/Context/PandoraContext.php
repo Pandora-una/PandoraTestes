@@ -42,50 +42,6 @@ abstract class PandoraContext implements Context, MinkAwareContext
     }
 
     /**
-     * Click on an element with given CSS.
-     *
-     * @When /^I click the element with css "([^"]*)"$/
-     */
-    public function iClickTheElementWithCss($element)
-    {
-        $cssElement = $this->_mink->getSession()->getPage()->find('css', $element);
-        if ($cssElement) {
-            $cssElement->click();
-        } else {
-            throw new \Exception("Elemento com css '$element' não encontrado.");
-        }
-    }
-
-    /**
-     * Checks, that option from select with specified id|name|label|value is selected.
-     *
-     * @Then /^the option "(?P<option>(?:[^"]|\\")*)" from "(?P<select>(?:[^"]|\\")*)" (?:is|should be) selected$/
-     * @Then /^"(?P<option>(?:[^"]|\\")*)" from "(?P<select>(?:[^"]|\\")*)" (?:is|should be) selected$/
-     */
-    public function theOptionFromShouldBeSelected($option, $select)
-    {
-        $selectField = $this->_mink->getSession()
-            ->getPage()
-            ->findField($select);
-        if (null === $selectField) {
-            throw new ElementNotFoundException($this->_mink->getSession(), 'select field', 'id|name|label|value', $select);
-        }
-
-        $optionField = $selectField->find('named', array(
-            'option',
-            $option,
-        ));
-
-        if (null === $optionField) {
-            throw new ElementNotFoundException($this->_mink->getSession(), 'select option field', 'id|name|label|value', $option);
-        }
-
-        if (!$optionField->isSelected()) {
-            throw new ExpectationException('Select option field with value|text "'.$option.'" is not selected in the select "'.$select.'"', $this->getSession());
-        }
-    }
-
-    /**
      * @Then /^I wait until I see "([^"]*)"$/
      */
     public function iWaitUntilISee($text)
