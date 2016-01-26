@@ -1,45 +1,49 @@
 {
-    "name": "pandora-una/pandora-testes",
-    "description": "Base da Pandora, com classes abstratas e auxiliares",
-    "type": "library",   
-    "keywords": [
-        "framework",
-        "zf2",
-        "pandora",
-        "pandoratestes"
-    ],
-    "homepage": "http://www.pandora.com.br/",
-    "authors": [
-        {
-            "name": "Vinícius Nascimento Silva",
-            "email": "vinicius.silva@pandora.com.br",
-            "homepage": "http://www.pandora.com.br/"
-        }
-    ],    
-    "require": {
-        "php": ">=5.3.3",
-        "zendframework/zendframework": ">=2.1.5",
-        "doctrine/doctrine-module": "0.*",
-		"doctrine/doctrine-orm-module": "0.*",
-		"doctrine/data-fixtures": "1.*",
-		"behat/web-api-extension": "dev-master",
-        "behat/mink-extension": "^2.0@dev",
-        "behat/mink-selenium2-driver":  "~1.1"
+  "name": "pandora-una/pandora-testes",
+  "description": "Base da Pandora, com classes abstratas e auxiliares",
+  "type": "library",
+  "keywords": [
+    "framework",
+    "zf2",
+    "pandora",
+    "pandoratestes"
+  ],
+  "homepage": "http://www.pandora.com.br/",
+  "authors": [
+    {
+      "name": "Vinícius Nascimento Silva",
+      "email": "vinicius.silva@pandora.com.br",
+      "homepage": "http://www.pandora.com.br/"
+    }
+  ],
+  "require": {
+    "php": ">=5.3.3",
+    "zendframework/zendframework": ">=2.1.5",
+    "doctrine/doctrine-module": "0.*",
+    "doctrine/doctrine-orm-module": "0.*",
+    "doctrine/data-fixtures": "1.*",
+    "behat/web-api-extension": "dev-master",
+    "behat/mink-extension": "^2.0@dev",
+    "behat/mink-selenium2-driver": "~1.1",
+    // "deminy/behat-rest-testing": "@dev",
+    "coduo/php-matcher": "^1.2@dev"
+  },
+  "repositories": [
+    {
+      "type": "vcs",
+      "url": "https://github.com/Pandora-una/Logger"
+    }
+  ],
+  "autoload": {
+    "psr-0": {
+      "PandoraTestes": "src/"
     },
-	"repositories": [ 
-        {
-            "type": "vcs",
-            "url": "https://github.com/Pandora-una/Logger"
-        }        
-	],    
-    
-    "autoload": {
-        "psr-0": {
-            "PandoraTestes": "src/"
-        },
-        "classmap": [
-            "./Module.php"
-        ]
-    },
-    "bin": ["bin/pandora-behat","bin/selenium-server-standalone-2.45.0.jar"]
+    "classmap": [
+      "./Module.php"
+    ]
+  },
+  "bin": [
+    "bin/pandora-behat",
+    "bin/selenium-server-standalone-2.45.0.jar"
+  ]
 }
