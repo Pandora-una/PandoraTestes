@@ -193,15 +193,14 @@ default:
   extensions:
     Behat\WebApiExtension:
       base_url: 'http://localhost/html/Teste/srv/public/api/'
-    Behat\RestTestingExtension:
     Behat\MinkExtension:
       base_url:  'http://localhost/html/Teste/cli/'
       sessions:
         default:
           selenium2: ~
   suites:
-    api:
-      paths: [ %paths.base%/features/api ]
+    srv:
+      paths: [ %paths.base%/features/srv ]
       contexts:
         - Behat\WebApiExtension\Context\WebApiContext
         - FeatureContext
@@ -255,3 +254,11 @@ Scenario: Desogar no sistema
 ```
 
 Perceba que o parâmetro passado para o passo segue a mesma estrutura de quando referenciamos uma fixture nos aspectos, ou seja, primeiro os aspectos (adjetivos), depois o nome da fixture.
+
+### Passos Adicionais
+
+Além do passo de criação de entidades, essa biblioteca contém outros passos adicionais.
+
+#### Passos de API
+
+
