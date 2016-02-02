@@ -37,6 +37,34 @@ Caso os testes necessitem de Selenium2 rodando em background, o seguinte comando
 $ java -jar vendor/bin/selenium-server-standalone-2.45.0.jar
 ```
 
+### Configurações Opcionais
+
+Abaixo temos um exemplo de uma configuração mais completa:
+
+```php
+'pandora-testes' => array(
+    'fixtures_namespace' => 'Application\Fixture',
+    'entities_namespace' => 'Application\Entity',
+    'fixtures' => array(
+        'base' => array('usuarioWeb')
+        'Usuario' => array(
+            'identifier' => 'id',
+            'entity_name' => 'SASLoginExterno\Entity\Usuario'
+        )
+    )
+)
+```
+
+Os campos acima tem os seguintes efeitos: 
+
+- **fixtures_namespace**: O namespace das fixtures, caso omitido o padrão é *Application\Fixture*.
+- **entities_namespace**: O namespace padrão das entidades, caso omitido o padrão é *Application\Entity*. É importante notar que é possível especificar um namespace para cada entidade dentro da opção *fixtures*.
+- **fixtures**
+    - **Nome de uma entidade**:
+        - **identifier**: Campo que identifica a entidade, caso omitido o padrão é *id*.
+        - **entity_name**: Nome completo da entidade, caso omitido o padrão é o namespace definido em *entities_namespace* junto com o nome simples da entidade.
+    - **base**: Lista com as entidades que serão carregadas sempre que rodar os testes.
+
 ### Doctrine Fixtures
 
 Uma importante função deste repositório é facilitar a criação de entidades na base de teste de forma simples e dinâmica através de fixtures como essa:
