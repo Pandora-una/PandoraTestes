@@ -204,13 +204,14 @@ default:
       contexts:
         - Behat\WebApiExtension\Context\WebApiContext
         - FeatureContext
+        - PandoraTestes\Context\PandoraSrvContext
     cli:
       paths: [ %paths.base%/features/cli ]
       contexts:
         - Behat\MinkExtension\Context\MinkContext
         - FeatureContext
         - PandoraTestes\Context\PandoraCliContext:
-            error_folder: '/home/vinicius/tmp'
+            error_folder: '/home/testes/screenshots'
 ```
 É importante notar que para usar o contexto deste repoistório a classe FeatureContext tem que extender o contexto da pandora, pois é necessário extender o método estático _initializeZendFramework_ responsável por iniciar a aplicação como no exemplo abaixo:
 ```php
