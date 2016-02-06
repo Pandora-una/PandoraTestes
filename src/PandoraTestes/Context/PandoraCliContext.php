@@ -60,6 +60,24 @@ class PandoraCliContext implements Context, MinkAwareContext
     }
 
     /**
+     * Wait until some element with given css is visible.
+     *
+     * @When /^I wait until the element with css "([^"]*)" (is|is not) visible$/
+     */
+    public function iWaitUntilTheElementWithCssIsVisible($css, $negative)
+    {
+
+        $negative = $negative === "is not";
+
+        $callback = function ($css) {
+            $element = $this->_mink->getSession()->getPage()->find('css', $css);
+            return $element && $element->isVisible();
+        };
+
+        $this->spin($css, $callback, $negative);
+    }
+
+    /**
      * Checks, that option from select with specified id|name|label|value is selected.
      *
      * @Then /^the option "(?P<option>(?:[^"]|\\")*)" from "(?P<select>(?:[^"]|\\")*)" (?:is|should be) selected$/
@@ -147,5 +165,30 @@ class PandoraCliContext implements Context, MinkAwareContext
     public function getMinkparameters()
     {
         return $this->_minkParameters;
+    }
+
+    protected function spin($text, $callback, $negative = false, $canFail = true, $wait = 10)
+    {
+        for ($i = 0; $i < $wait; $i += 0.3) {
+            try {
+                if ($negative) {
+                    if (!$callback($text)) {
+                        return true;
+                    }
+                } else {
+                    if ($callback($text)) {
+                        return true;
+                    }
+                }
+            } catch (\Exception $e) {
+            }
+            usleep(300000);
+        }
+
+        if ($canFail) {
+            $backtrace = debug_backtrace();
+
+            throw new \Exception('Timeout thrown by '.$backtrace[1]['class'].'::'.$backtrace[1]['function']."()\n".$backtrace[1]['file'].', line '.$backtrace[1]['line']);
+        }
     }
 }
