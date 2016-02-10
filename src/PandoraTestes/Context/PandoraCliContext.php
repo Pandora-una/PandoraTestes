@@ -78,6 +78,24 @@ class PandoraCliContext implements Context, MinkAwareContext
     }
 
     /**
+     * Wait until some element with given css is visible.
+     *
+     * @When /^I wait until the element with css "([^"]*)" (is|is not) disabled$/
+     */
+    public function iWaitUntilTheElementWithCssIsDisabled($css, $negative)
+    {
+
+        $negative = $negative === "is not";
+
+        $callback = function ($css) {
+            $element = $this->_mink->getSession()->getPage()->find('css', $css);
+            return $element && $element->hasAttribute('disabled');
+        };
+
+        $this->spin($css, $callback, $negative);
+    }
+
+    /**
      * Checks, that option from select with specified id|name|label|value is selected.
      *
      * @Then /^the option "(?P<option>(?:[^"]|\\")*)" from "(?P<select>(?:[^"]|\\")*)" (?:is|should be) selected$/
