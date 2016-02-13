@@ -107,7 +107,7 @@ abstract class PandoraContext implements Context, MinkAwareContext
         return $this->_fixtureBuilder;
     }
 
-    public function spin($text, $negative = false, $canFail = true, $wait = 3)
+    public function spin($text, $negative = false, $canFail = true, $wait = 10)
     {
         for ($i = 0; $i < $wait; $i += 0.3) {
             try {
