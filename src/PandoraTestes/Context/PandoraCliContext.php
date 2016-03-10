@@ -7,6 +7,7 @@ use Behat\Behat\Tester\Result\UndefinedStepResult;
 use Behat\MinkExtension\Context\MinkAwareContext;
 use Behat\Mink\Driver\Selenium2Driver;
 use Behat\Mink\Exception\ElementNotFoundException;
+use Behat\Mink\Exception\ExpectationException;
 use Behat\Mink\Mink;
 
 /**
@@ -66,11 +67,11 @@ class PandoraCliContext implements Context, MinkAwareContext
      */
     public function iWaitUntilTheElementWithCssIsVisible($css, $negative)
     {
-
-        $negative = $negative === "is not";
+        $negative = $negative === 'is not';
 
         $callback = function ($css) {
             $element = $this->_mink->getSession()->getPage()->find('css', $css);
+
             return $element && $element->isVisible();
         };
 
@@ -84,11 +85,11 @@ class PandoraCliContext implements Context, MinkAwareContext
      */
     public function iWaitUntilTheElementWithCssIsDisabled($css, $negative)
     {
-
-        $negative = $negative === "is not";
+        $negative = $negative === 'is not';
 
         $callback = function ($css) {
             $element = $this->_mink->getSession()->getPage()->find('css', $css);
+
             return $element && $element->hasAttribute('disabled');
         };
 
@@ -120,7 +121,7 @@ class PandoraCliContext implements Context, MinkAwareContext
         }
 
         if (!$optionField->isSelected()) {
-            throw new ExpectationException('Select option field with value|text "'.$option.'" is not selected in the select "'.$select.'"', $this->getSession());
+            throw new ExpectationException('Select option field with value|text "'.$option.'" is not selected in the select "'.$select.'"', $this->_mink->getSession());
         }
     }
 
