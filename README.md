@@ -16,7 +16,7 @@ A forma recomendada de instalação é por [composer](https://getcomposer.org/):
     {
         "require-dev": {
             "behat/behat": "3.0.*",
-            "pandora-una/pandora-testes": "dev-master"
+            "pandora-una/pandora-testes": "dev-passos"
         },    
     }
 ```
@@ -107,7 +107,7 @@ class TipoUsuario extends AbstractFixture
 }
 ```
 
-Para criar a associação é preciso instânciar um novo campo de nossa fixture como neste exemplo:
+Para criar a associação é preciso instanciar um novo campo de nossa fixture como neste exemplo:
 ```php
 class Usuario extends AbstractFixture
 {
