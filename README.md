@@ -46,7 +46,7 @@ Abaixo temos um exemplo de uma configuração mais completa:
     'fixtures_namespace' => 'Application\Fixture',
     'entities_namespace' => 'Application\Entity',
     'fixtures' => array(
-        'base' => array('usuarioWeb')
+        'base' => array('usuarioWeb'),
         'Usuario' => array(
             'identifier' => 'id',
             'entity_name' => 'SASLoginExterno\Entity\Usuario'
