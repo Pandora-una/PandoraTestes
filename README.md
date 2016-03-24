@@ -16,7 +16,7 @@ A forma recomendada de instalação é por [composer](https://getcomposer.org/):
     {
         "require-dev": {
             "behat/behat": "3.0.*",
-            "pandora-una/pandora-testes": "dev-master"
+            "pandora-una/pandora-testes": "dev-passos"
         },    
     }
 ```
@@ -46,7 +46,7 @@ Abaixo temos um exemplo de uma configuração mais completa:
     'fixtures_namespace' => 'Application\Fixture',
     'entities_namespace' => 'Application\Entity',
     'fixtures' => array(
-        'base' => array('usuarioWeb')
+        'base' => array('usuarioWeb'),
         'Usuario' => array(
             'identifier' => 'id',
             'entity_name' => 'SASLoginExterno\Entity\Usuario'
@@ -107,7 +107,7 @@ class TipoUsuario extends AbstractFixture
 }
 ```
 
-Para criar a associação é preciso instânciar um novo campo de nossa fixture como neste exemplo:
+Para criar a associação é preciso instanciar um novo campo de nossa fixture como neste exemplo:
 ```php
 class Usuario extends AbstractFixture
 {
