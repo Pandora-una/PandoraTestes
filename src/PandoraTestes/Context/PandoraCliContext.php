@@ -61,6 +61,21 @@ class PandoraCliContext implements Context, MinkAwareContext
     }
 
     /**
+     * Click on an element with given id or name.
+     *
+     * @When /^I click in "([^"]*)"$/
+     */
+    public function iClickIn($name)
+    {
+        $element = $this->_mink->getSession()->getPage()->find('named', array('id_or_name', $name));
+        if ($element) {
+            $element->click();
+        } else {
+            throw new \Exception("Elemento com id|name '$name' não encontrado.");
+        }
+    }
+
+    /**
      * Wait until some element with given css is visible.
      *
      * @When /^I wait until the element with css "([^"]*)" (is|is not) visible$/
