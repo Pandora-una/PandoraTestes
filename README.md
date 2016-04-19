@@ -275,7 +275,7 @@ Para utilizar as fixtures descritas na sessão anterior este repositório tem o 
 
 Este passo cria as entidades necessárias para o teste, como no exemplo abaixo.
 ```feature
-Scenario: Desogar no sistema
+Scenario: Deslogar no sistema
     Given exists a "tipoUsuario" #cria um tipo de usuário no banco de dados.
     Given exists an "administrador usuario" #cria um usuário com o aspecto administrador no banco de dados.
     And I am logged
@@ -292,4 +292,5 @@ Além do passo de criação de entidades, essa biblioteca contém outros passos 
 
 #### Passos de API
 
+Em breve...
 
