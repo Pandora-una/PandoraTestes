@@ -16,8 +16,8 @@ A forma recomendada de instalação é por [composer](https://getcomposer.org/):
     {
         "require-dev": {
             "behat/behat": "3.0.*",
-            "pandora-una/pandora-testes": "dev-passos"
-        },    
+            "pandora-una/pandora-testes": "dev-master"
+        },
     }
 ```
 
@@ -45,6 +45,7 @@ Abaixo temos um exemplo de uma configuração mais completa:
 'pandora-testes' => array(
     'fixtures_namespace' => 'Application\Fixture',
     'entities_namespace' => 'Application\Entity',
+    'clean-after-suite' => false,
     'fixtures' => array(
         'base' => array('usuarioWeb'),
         'Usuario' => array(
@@ -55,7 +56,7 @@ Abaixo temos um exemplo de uma configuração mais completa:
 )
 ```
 
-Os campos acima tem os seguintes efeitos: 
+Os campos acima tem os seguintes efeitos:
 
 - **fixtures_namespace**: O namespace das fixtures, caso omitido o padrão é *Application\Fixture*.
 - **entities_namespace**: O namespace padrão das entidades, caso omitido o padrão é *Application\Entity*. É importante notar que é possível especificar um namespace para cada entidade dentro da opção *fixtures*.
@@ -97,7 +98,7 @@ Por isso, é importante que as chaves sejam as mesmas que os campos da entidade 
 
 ##### Associações
 
-Alguns atributos de nossa fixture farão refererência a outras tabelas, portanto as nossas fixtures deverão fazer referência a outras fixtures. Assumindo que exista uma fixture como essa:  
+Alguns atributos de nossa fixture farão refererência a outras tabelas, portanto as nossas fixtures deverão fazer referência a outras fixtures. Assumindo que exista uma fixture como essa:
 ```php
 class TipoUsuario extends AbstractFixture
 {
@@ -253,7 +254,7 @@ class FeatureContext extends PandoraContext
     /**
      * @BeforeSuite
      */
-    static public function initializeZendFramework()
+    public static function initializeZendFramework()
     {
         if (self::$zendApp === null) {
             putenv("APPLICATION_ENV=test");
@@ -262,6 +263,7 @@ class FeatureContext extends PandoraContext
         }
     }
 }
+
 ```
 
 ##### Criação de Entidades
@@ -274,8 +276,8 @@ Para utilizar as fixtures descritas na sessão anterior este repositório tem o 
 Este passo cria as entidades necessárias para o teste, como no exemplo abaixo.
 ```feature
 Scenario: Desogar no sistema
-    Given exists a "tipoUsuario" #cria um tipo de usuário no banco de dados. 
-    Given exists an "administrador usuario" #cria um usuário com o aspecto administrador no banco de dados. 
+    Given exists a "tipoUsuario" #cria um tipo de usuário no banco de dados.
+    Given exists an "administrador usuario" #cria um usuário com o aspecto administrador no banco de dados.
     And I am logged
     When I go to "/#/page"
     And I press "Sair"

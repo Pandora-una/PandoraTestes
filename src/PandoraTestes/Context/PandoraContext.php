@@ -14,11 +14,10 @@ use PandoraTestes\Fixture\FixtureBuilder;
 abstract class PandoraContext implements Context, MinkAwareContext
 {
     protected static $zendApp;
+    protected static $_cleanAfterSuite;
 
     protected $_fixtureBuilder;
-
     protected $_mink;
-
     protected $_minkParameters;
 
     abstract public static function initializeZendFramework();
@@ -74,7 +73,9 @@ abstract class PandoraContext implements Context, MinkAwareContext
      */
     public static function clean()
     {
-        //(new ORMPurger(self::$zendApp->getServiceManager()->get('Doctrine\ORM\EntityManager')))->purge();
+        if (self::getCleanAfterSuite()) {
+            (new ORMPurger(self::$zendApp->getServiceManager()->get('Doctrine\ORM\EntityManager')))->purge();
+        }
     }
 
     /**
@@ -186,5 +187,19 @@ abstract class PandoraContext implements Context, MinkAwareContext
     public function getMinkparameters()
     {
         return $this->_minkParameters;
+    }
+
+    protected static function getCleanAfterSuite()
+    {
+        if (!self::$_cleanAfterSuite) {
+            $config = self::$zendApp->getServiceManager()->get('config');
+            if (!isset($config['pandora-testes']) || !isset($config['pandora-testes']['clean-after-suite'])) {
+                self::$_cleanAfterSuite = false;
+            } else {
+                self::$_cleanAfterSuite = $config['pandora-testes']['clean-after-suite'];
+            }
+        }
+
+        return self::$_cleanAfterSuite;
     }
 }
