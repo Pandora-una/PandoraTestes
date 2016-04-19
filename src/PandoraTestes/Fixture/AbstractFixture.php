@@ -2,6 +2,7 @@
 
 namespace PandoraTestes\Fixture;
 
+use Application\Entity\Pessoa;
 use Doctrine\Common\DataFixtures\FixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
 use Doctrine\ORM\EntityManagerInterface;
@@ -46,7 +47,6 @@ abstract class AbstractFixture implements FixtureInterface
         $this->_applyAssociations($entity);
 
         $this->__commit($manager, $entity);
-
         $this->_updateIdentifier($entity, $manager);
 
         $this->entity = $entity;
@@ -109,6 +109,12 @@ abstract class AbstractFixture implements FixtureInterface
 
         if (!method_exists($entity, $method)) {
             throw new \Exception("A Entidade $this->entityName não possui o método $method");
+        }
+
+        try {
+            $value = $this->applyCallback($value);
+        } catch (\Exception $e) {
+            throw new \Exception("Erro no callback do parametro $param", 500);
         }
 
         call_user_func_array(array(
@@ -245,5 +251,18 @@ abstract class AbstractFixture implements FixtureInterface
     {
         $manager->persist($entity);
         $manager->flush();
+    }
+
+    protected function applyCallback($value)
+    {
+        if (!is_array($value)) {
+            return $value;
+        }
+
+        if (!isset($value['callback']) || !is_callable($value['callback'])) {
+            throw new \Exception("Callback inválido", 500);
+        }
+
+        return call_user_func($value['callback'], $value['value']);
     }
 }
