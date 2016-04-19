@@ -42,7 +42,7 @@ class PandoraSrvContext implements Context
     /**
      * Check if the JSON response has at least the specified fields and the values match (See coduo/php-matcher).
      *
-     * @Then /^(?:the )?response should contain json with at least this fields:$/
+     * @Then /^(?:the )?response should contain json with at least (?:this|these) fields?:$/
      */
     public function theResponseShouldContainJsonWithAtLeastThisFields(PyStringNode $jsonString)
     {
@@ -65,8 +65,10 @@ class PandoraSrvContext implements Context
         $reflectionWebApi = new \ReflectionClass('Behat\WebApiExtension\Context\WebApiContext');
         $reflectionResponse = $reflectionWebApi->getProperty('response');
         $reflectionResponse->setAccessible(true);
+        $response = $reflectionResponse->getValue($this->getWebApi());
 
-        return $reflectionResponse->getValue($this->getWebApi())->json();
+        // echo get_class($reflectionResponse->getValue($this->getWebApi())) . "\n";die;
+        return json_decode($response->getBody(), true);
     }
 
     protected function recursiveArrayIntersectKeys(array $array1, $array2)
