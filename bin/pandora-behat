@@ -2,5 +2,6 @@
 
 echo 'SetEnv APPLICATION_ENV test' >> public/.htaccess;
 vendor/bin/behat "$*";
+# vendor/bin/behat --format=progress "$*";
 
 sed -i '$ d' public/.htaccess;

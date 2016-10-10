@@ -43,6 +43,6 @@
   },
   "bin": [
     "bin/pandora-behat",
-    "bin/selenium-server-standalone-2.53.0.jar"
+    "bin/selenium-server-standalone-2.45.0.jar"
   ]
 }

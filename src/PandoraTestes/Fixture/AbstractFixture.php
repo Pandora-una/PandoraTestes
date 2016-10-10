@@ -2,7 +2,7 @@
 
 namespace PandoraTestes\Fixture;
 
-use Application\Entity\Pessoa;
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\DataFixtures\FixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
 use Doctrine\ORM\EntityManagerInterface;
@@ -30,6 +30,16 @@ abstract class AbstractFixture implements FixtureInterface
         $this->entityName = $entityName;
         $this->identifier = $identifier;
         $this->builder = $builder;
+    }
+
+    /**
+     * Get the generated entity.
+     *
+     * @return object
+     */
+    public function getCreatedEntity()
+    {
+        return $this->entity;
     }
 
     /*
@@ -75,24 +85,56 @@ abstract class AbstractFixture implements FixtureInterface
     }
 
     /**
-     * Get the generated entity.
-     *
-     * @return object
+     * @param EntityManagerInterface $manager
+     * @param object                 $entity
      */
-    public function getCreatedEntity()
+    protected function __commit(EntityManagerInterface $manager, $entity)
     {
-        return $this->entity;
+        $manager->persist($entity);
+        $manager->flush();
     }
 
     /**
-     * @param unknown                $entity
-     * @param EntityManagerInterface $manager
+     * @param object $entity
+     * @param string $param
+     * @param string $fixture
      */
-    protected function _updateIdentifier($entity, EntityManagerInterface $manager)
+    protected function _applyAssociation($entity, $param, $fixture)
     {
-        if (isset($this->_getParams()[$this->identifier])) {
-            $this->_applyParam($entity, $this->identifier, $this->_getParams()[$this->identifier]);
-            $this->__commit($manager, $entity);
+        if (is_array($fixture)) {
+            $collection = array();
+            foreach ($fixture as $singleFixture) {
+                $collection[] = $this->_loadAssociation($singleFixture);
+            }
+            $this->_applyParam($entity, $param, new ArrayCollection($collection), 'add');
+        } else {
+            if ($fixture) {
+                $association = $this->_loadAssociation($fixture);
+            } else {
+                $association = null;
+            }
+            $this->_applyParam($entity, $param, $association);
+        }
+    }
+
+    /**
+     * @param object $entity
+     */
+    protected function _applyAssociations($entity)
+    {
+        foreach ($this->_getAssociations() as $fixtures) {
+            if (!$fixtures) {
+                continue;
+            }
+            if (!is_array($fixtures)) {
+                $fixtures = array($fixtures);
+            }
+            foreach ($fixtures as $fixture) {
+                $this->builder->load($fixture, true);
+            }
+        }
+        foreach ($this->_getAssociations() as $param => $fixture) {
+            $this->_applyAssociation($entity, $param, $fixture);
         }
     }
 
@@ -103,9 +145,9 @@ abstract class AbstractFixture implements FixtureInterface
      *
      * @throws \Exception
      */
-    protected function _applyParam($entity, $param, $value)
+    protected function _applyParam($entity, $param, $value, $prefix = 'set')
     {
-        $method = 'set'.ucfirst($param);
+        $method = $prefix.ucfirst($param);
 
         if (!method_exists($entity, $method)) {
             throw new \Exception("A Entidade $this->entityName não possui o método $method");
@@ -126,34 +168,49 @@ abstract class AbstractFixture implements FixtureInterface
     }
 
     /**
-     * @param object $entity
+     * @return array
      */
-    protected function _applyAssociations($entity)
+    protected function _getAssociations()
     {
-        foreach ($this->_getAssociations() as $fixture) {
-            if ($fixture) {
-                $this->builder->load($fixture, true);
-            }
+        if (!property_exists($this, 'associations')) {
+            return array();
         }
-        foreach ($this->_getAssociations() as $param => $fixture) {
-            $this->_applyAssociation($entity, $param, $fixture);
-        }
+
+        return $this->associations;
     }
 
     /**
-     * @param object $entity
-     * @param string $param
-     * @param string $fixture
+     * @throws \Exception
+     *
+     * @return array
      */
-    protected function _applyAssociation($entity, $param, $fixture)
+    protected function _getParams()
     {
-        if ($fixture) {
-            $association = $this->builder->load($fixture, true);
-            $association = $this->builder->getEntityManager()->merge($association);
-        } else {
-            $association = null;
+        if (!property_exists($this, 'params')) {
+            throw new \Exception("É preciso preencher o atributo 'params' desta fixture");
         }
-        $this->_applyParam($entity, $param, $association);
+
+        return $this->params;
+    }
+
+    /**
+     * @return array
+     */
+    protected function _getTraits()
+    {
+        return $this->traits;
+    }
+
+    /**
+     * @param string $fixture
+     *
+     * @return AbstractEntity
+     */
+    protected function _loadAssociation($fixture)
+    {
+        $association = $this->builder->load($fixture, true);
+
+        return $this->builder->getEntityManager()->merge($association);
     }
 
     /**
@@ -172,31 +229,13 @@ abstract class AbstractFixture implements FixtureInterface
         return $entityClass->newInstance();
     }
 
-    /**
-     * @throws \Exception
-     *
-     * @return array
-     */
-    protected function _getParams()
+    protected function _setAssociation($param, $value)
     {
-        if (!property_exists($this, 'params')) {
-            throw new \Exception("É preciso preencher o atributo 'params' desta fixture");
+        if (!property_exists($this, 'associations')) {
+            throw new \Exception("É preciso preencher o atributo 'associations' desta fixture");
         }
 
-        return $this->params;
-    }
-
-    protected function _useTraitAssociations(array $traitParams)
-    {
-        if (!isset($traitParams['_associations'])) {
-            return $traitParams;
-        }
-        foreach ($traitParams['_associations'] as $param => $fixture) {
-            $this->_setAssociation($param, $fixture);
-        }
-        unset($traitParams['_associations']);
-
-        return $traitParams;
+        $this->associations[$param] = $value;
     }
 
     /**
@@ -214,53 +253,39 @@ abstract class AbstractFixture implements FixtureInterface
         $this->params[$param] = $value;
     }
 
-    protected function _setAssociation($param, $value)
-    {
-        if (!property_exists($this, 'associations')) {
-            throw new \Exception("É preciso preencher o atributo 'associations' desta fixture");
-        }
-
-        $this->associations[$param] = $value;
-    }
-
     /**
-     * @return array
-     */
-    protected function _getTraits()
-    {
-        return $this->traits;
-    }
-
-    /**
-     * @return array
-     */
-    protected function _getAssociations()
-    {
-        if (!property_exists($this, 'associations')) {
-            return array();
-        }
-
-        return $this->associations;
-    }
-
-    /**
+     * @param unknown                $entity
      * @param EntityManagerInterface $manager
-     * @param object                 $entity
      */
-    protected function __commit(EntityManagerInterface $manager, $entity)
+    protected function _updateIdentifier($entity, EntityManagerInterface $manager)
     {
-        $manager->persist($entity);
-        $manager->flush();
+        if (isset($this->_getParams()[$this->identifier])) {
+            $this->_applyParam($entity, $this->identifier, $this->_getParams()[$this->identifier]);
+            $this->__commit($manager, $entity);
+        }
+    }
+
+    protected function _useTraitAssociations(array $traitParams)
+    {
+        if (!isset($traitParams['_associations'])) {
+            return $traitParams;
+        }
+        foreach ($traitParams['_associations'] as $param => $fixture) {
+            $this->_setAssociation($param, $fixture);
+        }
+        unset($traitParams['_associations']);
+
+        return $traitParams;
     }
 
     protected function applyCallback($value)
     {
-        if (!is_array($value)) {
+        if (!is_array($value) || !isset($value['callback'])) {
             return $value;
         }
 
-        if (!isset($value['callback']) || !is_callable($value['callback'])) {
-            throw new \Exception("Callback inválido", 500);
+        if (!is_callable($value['callback'])) {
+            throw new \Exception('Callback inválido', 500);
         }
 
         return call_user_func($value['callback'], $value['value']);
