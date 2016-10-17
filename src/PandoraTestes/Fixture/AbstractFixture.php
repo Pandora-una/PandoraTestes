@@ -71,17 +71,19 @@ abstract class AbstractFixture implements FixtureInterface
      */
     public function useTrait($trait)
     {
-        if (!isset($this->traits[$trait])) {
+        if (!isset($this->traits[$trait]) && strpos($trait, ':') === false) {
             throw new \Exception("Trait '$trait' não existe");
+        } else if (strpos($trait, ':') !== false) {
+            $alteracao = explode(':', $trait);
+            $this->_setParam($alteracao[0], $alteracao[1]);
+        } else {
+            $traitParams = $this->traits[$trait];
+            $traitParams = $this->_useTraitAssociations($traitParams);
+            foreach ($traitParams as $param => $value) {
+                $this->_setParam($param, $value);
+            }
         }
 
-        $traitParams = $this->traits[$trait];
-
-        $traitParams = $this->_useTraitAssociations($traitParams);
-
-        foreach ($traitParams as $param => $value) {
-            $this->_setParam($param, $value);
-        }
     }
 
     /**
