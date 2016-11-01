@@ -23,7 +23,7 @@ A forma recomendada de instalação é por [composer](https://getcomposer.org/):
 
 ### Binários
 
-_Behat_ já possui um binário para rodar os testes, porém o Zend Framework 2 não suporta a separação entre um ambiente de teste e um de desenvolvimento separados de forma simples. Portanto foi necessário criar um script para facilitar a execução dos testes e para evitar erros. Portanto é necessário apenas o seguinte comando para rodar os testes:
+_Behat_ já possui um binário para rodar os testes, porém o Zend Framework 2 não dá suporte para a separação entre um ambiente de teste e um de desenvolvimento separados de forma simples. Portanto foi necessário criar um script para facilitar a execução dos testes e para evitar erros. É necessário apenas o seguinte comando para rodar os testes:
 ```sh
 $ vendor/bin/pandora-behat
 ```
@@ -34,7 +34,7 @@ $ vendor/bin/pandora-behat --help
 
 Caso os testes necessitem de Selenium2 rodando em background, o seguinte comando tem a função de inicializá-lo:
 ```sh
-$ java -jar vendor/bin/selenium-server-standalone-2.45.0.jar
+$ java -jar vendor/bin/selenium-server-standalone-2.53.0.jar
 ```
 
 ### Configurações Opcionais
@@ -64,7 +64,7 @@ Os campos acima tem os seguintes efeitos:
     - **Nome de uma entidade**:
         - **identifier**: Campo que identifica a entidade, caso omitido o padrão é *id*.
         - **entity_name**: Nome completo da entidade, caso omitido o padrão é o namespace definido em *entities_namespace* junto com o nome simples da entidade.
-    - **base**: Lista com as entidades que serão carregadas sempre que rodar os testes.
+    - **base**: Lista que contém as entidades que serão carregadas sempre que rodar os testes.
 
 ### Doctrine Fixtures
 
@@ -86,7 +86,7 @@ class Usuario extends AbstractFixture
 ```
 ##### Parâmetros
 
-Como pode ser visto no exemplo anterior, Uma fixture deve ter definido seus atributos básicos. Quando esses atributos são valores simples, o lugar para informálos é no campo _params_. Este campo deve conter um hash da qual a chave indica o nome do atributo e o valor indíca o valor do atributo.
+Como pode ser visto no exemplo anterior, uma fixture deve difinir seus atributos básicos. Os atributos com valores simples, ou seja, que não fazem referência à outras entidades devem ser informados no atributo _params_. Este campo deve conter um hash no qual a chave indica o nome do atributo e o valor indica o valor do atributo.
 
 Para o exemplo da nossa fixture de usuário, as chaves do array são pensadas de forma a “casar” com os métodos de acesso do Doctrine, ou seja, durante a criação da entidade a biblioteca executará os seguintes comandos para a criação de um usuário:
 ```php
@@ -96,9 +96,23 @@ $entityUsuario->setSenha('e8d95a51f3af4a3b134bf6bb680a213a');
 
 Por isso, é importante que as chaves sejam as mesmas que os campos da entidade e que os métodos de acesso existam.
 
+Algumas vezes o valor de um atributo não é tão simples quanto apenas um número ou uma string e é necessário fazer algum tratamento para gerar o valor (valores temporais são os mais comuns nessa categoria). Para isso é necessário definir um callback da seguinte forma:
+```php
+class Usuario extends AbstractFixture
+{
+
+    protected $params = array(
+        'email' => 'usuario@email.com',
+        'senha' => array('callback' => 'md5', 'value' => '123456'),
+    );
+
+}
+```
+Assim a factory da fixture vai chamar a função definida na chave _callback_ com o parâmetro definido na chave _value_. o callback aceita tudo que a função nativa "call\_user\_func" aceita no seu primeiro parâmetro.
+
 ##### Associações
 
-Alguns atributos de nossa fixture farão refererência a outras tabelas, portanto as nossas fixtures deverão fazer referência a outras fixtures. Assumindo que exista uma fixture como essa:
+Quando uma fixture faz referência a outra entidade, é possível fazer referência a uma outra fixture. Assumindo que exista uma fixture como essa:
 ```php
 class TipoUsuario extends AbstractFixture
 {
@@ -152,7 +166,7 @@ class Usuario extends AbstractFixture
 }
 ```
 
-As chaves do array do trait se referem aos nomes dos aspectos. É sugerido que sejam utilizados adjetivos para o nome, pois ficará mais claro nos testes de aceitação a diferência entre as duas instâncias. É importante notar que a única diferença entre o “segundo usuário” e o nosso usuário original é o email.
+As chaves do array do atributo trait se referem aos nomes dos aspectos. É sugerido que sejam utilizados adjetivos para o nome, pois ficará mais claro nos testes de aceitação a diferência entre as duas instâncias. É importante notar que a única diferença entre o “segundo usuário” e o nosso usuário original é o email, todos os outros campos são preenchidos com os mesmos valores.
 
 Os aspectos também podem ter associações diferentes da fixture base. Seja a fixture tipoUsuario desta forma:
 ```php
@@ -209,6 +223,9 @@ Caso você queira que o usuário administrador também tenha um email diferente,
     }
 }
 ```
+
+Algumas vezes precisamos de modificações mais simples na fixture original, ou então um grande número de entidades com modificações no mesmo campo. Para simplificar uma trait pode ser escrita da seguinte forma: <nome_do_campo>:<valor_do_campo>. Para dar um exemplo, suponha que em um teste seja necessário criar quatro usuários com emails diferentes, ao invés de declarar quatro traits que alteram apenas o email, as fixtures "usuario", "email:usuario2@email.com usuario", "email:usuario3@email.com usuario", "email:usuario4@email.com usuario" já resolvem o problema.
+
 ### Passos de Testes
 
 Este repositório contém um contexto de Behat com passos customizados.
@@ -242,7 +259,7 @@ default:
         - PandoraTestes\Context\PandoraCliContext:
             error_folder: '/home/testes/screenshots'
 ```
-É importante notar que para usar o contexto deste repoistório a classe FeatureContext tem que extender o contexto da pandora, pois é necessário extender o método estático _initializeZendFramework_ responsável por iniciar a aplicação como no exemplo abaixo:
+Para usar o contexto deste repoistório a classe FeatureContext deve extender a classe PandoraContext, pois é necessário extender o método estático _initializeZendFramework_ responsável por iniciar a aplicação. Segue um exemplo:
 ```php
 use PandoraTestes\Context\PandoraContext;
 
@@ -284,7 +301,7 @@ Scenario: Deslogar no sistema
     Then I should be on "/#/login"
 ```
 
-Perceba que o parâmetro passado para o passo segue a mesma estrutura de quando referenciamos uma fixture nos aspectos, ou seja, primeiro os aspectos (adjetivos), depois o nome da fixture.
+Perceba que o parâmetro do passo segue a mesma estrutura de quando referenciamos uma fixture nos aspectos, ou seja, primeiro os aspectos (adjetivos), depois o nome da fixture.
 
 ### Passos Adicionais
 
