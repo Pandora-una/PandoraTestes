@@ -273,10 +273,19 @@ class FeatureContext extends PandoraContext
      */
     public static function initializeZendFramework()
     {
-        if (self::$zendApp === null) {
-            putenv("APPLICATION_ENV=test");
-            $path = __DIR__ . '/../../config/application.config.php';
-            self::$zendApp = \Zend\Mvc\Application::init(require $path);
+        try {
+            if (self::$zendApp === null) {
+                putenv('APPLICATION_ENV=test');
+                $path          = __DIR__.'/../../config/application.config.php';
+                self::$zendApp = \Zend\Mvc\Application::init(require $path);
+            }
+        } catch (Zend\ServiceManager\Exception\ServiceNotCreatedException $e) {
+            $error_message = "Exception Stack: \n";
+            while ($e->getPrevious()) {
+                $error_message .= $e->getMessage() . ";\n";
+                $e = $e->getPrevious();
+            }
+            throw new \Exception($error_message, 500);
         }
     }
 }
@@ -309,5 +318,20 @@ Além do passo de criação de entidades, essa biblioteca contém outros passos 
 
 #### Passos de API
 
-Em breve...
+*Then the response should contain json with this format:*
 
+*   Recebe um JSON como parâmetro.
+*   Assume que a resposta já foi enviada e está no formato JSON.
+*   Compara cada elemento do JSON da resposta com o JSON informado usando a marcação do [PHPmacher](https://github.com/coduo/php-matcher)
+*   Exemplo:
+```feature
+Then the response should contain json with this format:
+"""
+    {
+        "id": "@integer@",
+        "username": "USUARIO",
+        "email": "@string@.matchRegex('/^[^@]+@[a-z0-9]+[.][a-z0-9]+$/')",
+        "permissoes": "@array@"
+    }
+"""
+```
