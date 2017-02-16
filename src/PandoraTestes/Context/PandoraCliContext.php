@@ -39,7 +39,12 @@ class PandoraCliContext implements Context, MinkAwareContext
             $driver = $this->_mink->getSession()->getDriver();
 
             if ($driver instanceof Selenium2Driver && $this->_errorFolder) {
-                $fileName = $this->_errorFolder.'/pandora-teste-ultimo-erro.png';
+                $file = $event->getFeature()->getFile();
+                $file = explode('/', $file);
+                $file = array_pop($file);
+                $file = str_replace('.feature', '', $file);
+                $line = $event->getStep()->getLine();
+                $fileName = $this->_errorFolder."/pan-erro-$file-$line.png";
                 file_put_contents($fileName, $driver->getScreenshot());
             }
         }

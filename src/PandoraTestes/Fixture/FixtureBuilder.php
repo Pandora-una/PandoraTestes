@@ -21,6 +21,8 @@ class FixtureBuilder
 
     protected $entities;
 
+    protected $mostrou = false;
+
     public function __construct(array $fixtureMetaData, $fixtureNamespace, $entitiesNamespace)
     {
         $this->fixtureMetaData = $fixtureMetaData;
@@ -60,9 +62,14 @@ class FixtureBuilder
         }
 
         $fixture = $this->_createFixture($entity);
-        $this->_executeFixtures(array(
-            $fixture,
-        ), $append);
+        try {
+            $this->_executeFixtures(array(
+                $fixture,
+            ), $append);
+        } catch (\Exception $e) {
+            $message = $this->_criaMensagem($e, $entity);
+            throw new \Exception($message, $e->getCode());
+        }
 
         return $this->entities[$entity] = $fixture->getCreatedEntity();
     }
@@ -156,5 +163,27 @@ class FixtureBuilder
         $purger = new ORMPurger();
         $executor = new ORMExecutor($this->getEntityManager(), $purger);
         $executor->execute($fixtures, $append);
+    }
+
+    /**
+     *
+     * @param  \Exception $e
+     * @param  string     $entity
+     *
+     * @return string
+     */
+    protected function _criaMensagem(\Exception $e, $entity)
+    {
+        $message = "Erro ao gerar a fixture '\033[1m$entity\033[0m\033[31m' devido a\n\n" . $e->getMessage();
+
+        if (!$this->mostrou) {
+            $message .=
+                "\n\n\033[1mAs fixtures geradas previamente foram:\033[0m\033[31m \n\n" .
+                implode("\n", array_keys($this->entities)) .
+                "\n\n";
+            $this->mostrou = true;
+        }
+
+        return $message;
     }
 }

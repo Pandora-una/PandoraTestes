@@ -57,7 +57,6 @@ abstract class AbstractFixture implements FixtureInterface
         $this->_applyAssociations($entity);
 
         $this->__commit($manager, $entity);
-        $this->_updateIdentifier($entity, $manager);
 
         $this->entity = $entity;
     }
@@ -92,6 +91,20 @@ abstract class AbstractFixture implements FixtureInterface
      */
     protected function __commit(EntityManagerInterface $manager, $entity)
     {
+        if (isset($this->_getParams()[$this->identifier])) {
+            $metadata = $manager->getClassMetaData(get_class($entity));
+            $generator = $metadata->idGenerator;
+            $metadata->setIdGenerator(new \Doctrine\ORM\Id\AssignedGenerator());
+            $generatorType = $metadata->generatorType;
+            $metadata->setIdGeneratorType(\Doctrine\ORM\Mapping\ClassMetadata::GENERATOR_TYPE_NONE);
+
+            $manager->persist($entity);
+            $manager->flush();
+
+            $metadata->setIdGeneratorType($generatorType);
+            $metadata->setIdGenerator($generator);
+        }
+
         $manager->persist($entity);
         $manager->flush();
     }
@@ -253,18 +266,6 @@ abstract class AbstractFixture implements FixtureInterface
         }
 
         $this->params[$param] = $value;
-    }
-
-    /**
-     * @param unknown                $entity
-     * @param EntityManagerInterface $manager
-     */
-    protected function _updateIdentifier($entity, EntityManagerInterface $manager)
-    {
-        if (isset($this->_getParams()[$this->identifier])) {
-            $this->_applyParam($entity, $this->identifier, $this->_getParams()[$this->identifier]);
-            $this->__commit($manager, $entity);
-        }
     }
 
     protected function _useTraitAssociations(array $traitParams)
