@@ -5,7 +5,7 @@ namespace PandoraTestes\Context;
 use Behat\Behat\Context\Context;
 use Behat\Behat\Hook\Scope\BeforeScenarioScope;
 use Behat\Gherkin\Node\PyStringNode;
-use Coduo\PHPMatcher\Factory\SimpleFactory;
+use PandoraTestes\Matcher\Factory\PandoraFactory;
 use PHPUnit_Framework_Assert as Assertions;
 
 /**
@@ -35,7 +35,7 @@ class PandoraSrvContext implements Context
         if (null === $etalon) {
             throw new \RuntimeException("Can not convert etalon to json:\n".$jsonString->getRaw());
         }
-        $matcher = (new SimpleFactory())->createMatcher();
+        $matcher = (new PandoraFactory())->createMatcher();
         Assertions::assertTrue($matcher->match($this->getJsonResponse(), $etalon), $matcher->getError());
     }
 
@@ -53,7 +53,7 @@ class PandoraSrvContext implements Context
 
         $filteredArray = $this->recursiveArrayIntersectKeys($this->getJsonResponse(), $etalon);
 
-        $matcher = (new SimpleFactory())->createMatcher();
+        $matcher = (new PandoraFactory())->createMatcher();
         Assertions::assertTrue($matcher->match($filteredArray, $etalon), $matcher->getError());
     }
 
