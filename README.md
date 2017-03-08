@@ -316,7 +316,7 @@ Perceba que o parâmetro do passo segue a mesma estrutura de quando referenciamo
 
 Além do passo de criação de entidades, essa biblioteca contém outros passos adicionais.
 
-#### Passos de API
+##### Passos de API
 
 *Then the response should contain json with this format:*
 
@@ -337,3 +337,32 @@ Then the response should contain json with this format:
 ```
 
 Mais em breve ...
+
+### Expanções do PHPMatcher
+
+##### Count
+
+Verifica se um array contém um certo número de elementos.
+
+**exemplo:**
+
+```feature
+And the response should contain json with at least these fields:
+"""
+{
+  "_embedded": {
+    "turma": [
+      {
+        "alunos": "@array@.count(3)"
+      },
+      {
+        "alunos": "@array@.count(3)"
+      },
+      {
+        "alunos": "@array@.count(2)"
+      }
+    ]
+  }
+}
+"""
+```
