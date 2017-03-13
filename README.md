@@ -338,7 +338,7 @@ Then the response should contain json with this format:
 
 Mais em breve ...
 
-### Expanções do PHPMatcher
+### Expansões do PHPMatcher
 
 ##### Count
 
