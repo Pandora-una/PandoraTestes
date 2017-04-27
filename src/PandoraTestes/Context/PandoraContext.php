@@ -21,6 +21,7 @@ abstract class PandoraContext implements Context, MinkAwareContext
     protected $_mink;
     protected $_minkParameters;
     protected $_webApi;
+    protected $_spin;
 
     abstract public static function initializeZendFramework();
 
@@ -47,7 +48,12 @@ abstract class PandoraContext implements Context, MinkAwareContext
      */
     public function iWaitUntilISee($text)
     {
-        $this->spin($text);
+        $self     = $this;
+        $callback = function ($text) use ($self) {
+            return $self->_mink->assertSession()->pageTextContains($text);
+        };
+
+        $this->spin($text, $callback);
     }
 
     /**
@@ -55,21 +61,13 @@ abstract class PandoraContext implements Context, MinkAwareContext
      */
     public function iWaitUntilIDoNotSee($text)
     {
-        $this->spin($text, true);
-    }
+        $self     = $this;
+        $callback = function ($text) use ($self) {
+            return $self->_mink->assertSession()->pageTextNotContains($text);
+        };
 
-    /**
-     * @Then /^I wait for the suggestion box of entidade to appear, but continues if not$/
-     */
-    public function iWaitForSomethingToAppearButContinues()
-    {
-        $this->spin(function ($context) {
-            return $context->getSession()
-                ->getPage()
-                ->findById('entipess_popup0') != null;
-        }, 3, false);
+        $this->spin($text, $callback);
     }
-
 
     /**
      * Print pretty response.
@@ -115,7 +113,7 @@ abstract class PandoraContext implements Context, MinkAwareContext
     /**
      * @BeforeScenario
      */
-    public function reuneContextos(BeforeScenarioScope $scope)
+    public function loadWebApi(BeforeScenarioScope $scope)
     {
         $environment = $scope->getEnvironment();
         if ($environment->getSuite()->getName() == 'srv') {
@@ -146,25 +144,10 @@ abstract class PandoraContext implements Context, MinkAwareContext
 
     public function spin($text, $negative = false, $canFail = true, $wait = 10)
     {
-        for ($i = 0; $i < $wait; $i += 0.3) {
-            try {
-                if ($negative) {
-                    $this->_mink->assertSession()->pageTextNotContains(str_replace('\\"', '"', $text));
-                } else {
-                    $this->_mink->assertSession()->pageTextContains(str_replace('\\"', '"', $text));
-                }
-
-                return true;
-            } catch (\Exception $e) {
-            }
-            usleep(100000);
+        if (!$this->_spin) {
+            $this->_spin = new Spin();
         }
-
-        if ($canFail) {
-            $backtrace = debug_backtrace();
-
-            throw new \Exception('Timeout thrown by '.$backtrace[1]['class'].'::'.$backtrace[1]['function']."()\n".$backtrace[1]['file'].', line '.$backtrace[1]['line']);
-        }
+        return $this->_spin->__invoke($text, $negative, $canFail, $wait);
     }
 
     /**

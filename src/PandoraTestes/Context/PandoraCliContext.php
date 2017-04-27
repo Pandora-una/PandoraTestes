@@ -24,6 +24,7 @@ class PandoraCliContext implements Context, MinkAwareContext
     public function __construct($error_folder = null)
     {
         $this->_errorFolder = $error_folder;
+        $this->_spinner = new Spin();
     }
 
     /**
@@ -95,7 +96,7 @@ class PandoraCliContext implements Context, MinkAwareContext
             return $element && $element->isVisible();
         };
 
-        $this->spin($css, $callback, $negative);
+        $this->_spin($css, $callback, $negative);
     }
 
     /**
@@ -113,7 +114,7 @@ class PandoraCliContext implements Context, MinkAwareContext
             return $element && $element->hasAttribute('disabled');
         };
 
-        $this->spin($css, $callback, $negative);
+        $this->_spin($css, $callback, $negative);
     }
 
     /**
@@ -206,28 +207,8 @@ class PandoraCliContext implements Context, MinkAwareContext
         return $this->_minkParameters;
     }
 
-    protected function spin($text, $callback, $negative = false, $canFail = true, $wait = 10)
+    protected function _spin($value, $callback, $negative = false, $canFail = true, $wait = 5)
     {
-        for ($i = 0; $i < $wait; $i += 0.3) {
-            try {
-                if ($negative) {
-                    if (!$callback($text)) {
-                        return true;
-                    }
-                } else {
-                    if ($callback($text)) {
-                        return true;
-                    }
-                }
-            } catch (\Exception $e) {
-            }
-            usleep(300000);
-        }
-
-        if ($canFail) {
-            $backtrace = debug_backtrace();
-
-            throw new \Exception('Timeout thrown by '.$backtrace[1]['class'].'::'.$backtrace[1]['function']."()\n");
-        }
+        return $this->_spinner->__invoke($value, $callback, $negative, $canFail, $wait);
     }
 }

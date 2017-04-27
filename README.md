@@ -281,7 +281,7 @@ class FeatureContext extends PandoraContext
             }
         } catch (Zend\ServiceManager\Exception\ServiceNotCreatedException $e) {
             $error_message = "Exception Stack: \n";
-            while ($e->getPrevious()) {
+            while ($e) {
                 $error_message .= $e->getMessage() . ";\n";
                 $e = $e->getPrevious();
             }
