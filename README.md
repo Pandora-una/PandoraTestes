@@ -316,53 +316,7 @@ Perceba que o parâmetro do passo segue a mesma estrutura de quando referenciamo
 
 Além do passo de criação de entidades, essa biblioteca contém outros passos adicionais.
 
-##### Passos de API
+#### Passos de API
 
 *Then the response should contain json with this format:*
 
-*   Recebe um JSON como parâmetro.
-*   Assume que a resposta já foi enviada e está no formato JSON.
-*   Compara cada elemento do JSON da resposta com o JSON informado usando a marcação do [PHPmacher](https://github.com/coduo/php-matcher)
-*   Exemplo:
-```feature
-Then the response should contain json with this format:
-"""
-    {
-        "id": "@integer@",
-        "username": "USUARIO",
-        "email": "@string@.matchRegex('/^[^@]+@[a-z0-9]+[.][a-z0-9]+$/')",
-        "permissoes": "@array@"
-    }
-"""
-```
-
-Mais em breve ...
-
-### Expanções do PHPMatcher
-
-##### Count
-
-Verifica se um array contém um certo número de elementos.
-
-**exemplo:**
-
-```feature
-And the response should contain json with at least these fields:
-"""
-{
-  "_embedded": {
-    "turma": [
-      {
-        "alunos": "@array@.count(3)"
-      },
-      {
-        "alunos": "@array@.count(3)"
-      },
-      {
-        "alunos": "@array@.count(2)"
-      }
-    ]
-  }
-}
-"""
-```
