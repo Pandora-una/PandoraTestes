@@ -3,8 +3,9 @@
 namespace PandoraTestes\Context;
 
 use Behat\Behat\Context\Context;
-use Behat\MinkExtension\Context\MinkAwareContext;
+use Behat\Behat\Hook\Scope\BeforeScenarioScope;
 use Behat\Mink\Mink;
+use Behat\MinkExtension\Context\MinkAwareContext;
 use Doctrine\Common\DataFixtures\Purger\ORMPurger;
 use PandoraTestes\Fixture\FixtureBuilder;
 
@@ -19,6 +20,7 @@ abstract class PandoraContext implements Context, MinkAwareContext
     protected $_fixtureBuilder;
     protected $_mink;
     protected $_minkParameters;
+    protected $_webApi;
 
     abstract public static function initializeZendFramework();
 
@@ -68,6 +70,30 @@ abstract class PandoraContext implements Context, MinkAwareContext
         }, 3, false);
     }
 
+
+    /**
+     * Print pretty response.
+     *
+     * @Then /^print pretty response$/
+     */
+    public function printPrettyResponse()
+    {
+        if (!$this->getResponse()) {
+            return;
+        }
+
+        $json = json_decode((string) $this->getResponse()->getBody());
+
+        if ($json) {
+            $json = json_encode($json, JSON_PRETTY_PRINT);
+            echo $json;
+        } else {
+            $filter = new StripTags();
+            $body   = $this->getResponse()->getBody();
+            echo html_entity_decode($filter->filter((string) $body));
+        }
+    }
+
     /**
      * @AfterSuite
      */
@@ -85,6 +111,17 @@ abstract class PandoraContext implements Context, MinkAwareContext
     {
         $this->getFixtureBuilder()->clean();
         $this->getFixtureBuilder()->loadBaseData();
+    }
+
+    /**
+     * @BeforeScenario
+     */
+    public function reuneContextos(BeforeScenarioScope $scope)
+    {
+        $environment = $scope->getEnvironment();
+        if ($environment->getSuite()->getName() == 'srv') {
+            $this->_webApi = $scope->getEnvironment()->getContext('Behat\WebApiExtension\Context\WebApiContext');
+        }
     }
 
     /**
@@ -201,5 +238,17 @@ abstract class PandoraContext implements Context, MinkAwareContext
         }
 
         return self::$_cleanAfterSuite;
+    }
+
+    /**
+     * @return array
+     */
+    protected function getResponse()
+    {
+        $reflectionWebApi   = new \ReflectionClass('Behat\WebApiExtension\Context\WebApiContext');
+        $reflectionResponse = $reflectionWebApi->getProperty('response');
+        $reflectionResponse->setAccessible(true);
+
+        return $reflectionResponse->getValue($this->_webApi);
     }
 }
