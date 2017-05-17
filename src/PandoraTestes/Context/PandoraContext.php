@@ -97,7 +97,7 @@ abstract class PandoraContext implements Context, MinkAwareContext
     public static function clean()
     {
         if (self::getCleanAfterSuite()) {
-            (new ORMPurger(self::$zendApp->getServiceManager()->get('Doctrine\ORM\EntityManager')))->purge();
+            $this->getFixtureBuilder()->clean();
         }
     }
 

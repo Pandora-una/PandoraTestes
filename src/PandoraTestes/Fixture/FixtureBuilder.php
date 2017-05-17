@@ -79,8 +79,21 @@ class FixtureBuilder
      */
     public function clean()
     {
+        if ($this->_isPostgres()) {
+            $this->getEntityManager()->getConnection()->exec('SET session_replication_role = replica;');
+        }
         $this->entities = array();
-        $this->_executeFixtures(array(), false);
+        try {
+            $this->_executeFixtures(array(), false);
+        } catch (\Exception $e) {
+            if ($this->_isPostgres()) {
+                $this->getEntityManager()->getConnection()->exec('SET session_replication_role = DEFAULT;');
+            }
+            throw $e;
+        }
+        if ($this->_isPostgres()) {
+            $this->getEntityManager()->getConnection()->exec('SET session_replication_role = DEFAULT;');
+        }
     }
 
     /**
@@ -185,5 +198,16 @@ class FixtureBuilder
         }
 
         return $message;
+    }
+
+    /**
+     * Determines if postgres.
+     *
+     * @return     boolean  True if postgres, False otherwise.
+     */
+    protected function _isPostgres()
+    {
+        $driver = $this->getEntityManager()->getConnection()->getDriver();
+        return $driver instanceof \Doctrine\DBAL\Driver\PDOPgSql\Driver;
     }
 }
