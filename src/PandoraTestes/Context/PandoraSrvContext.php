@@ -66,9 +66,11 @@ class PandoraSrvContext implements Context
         $reflectionResponse = $reflectionWebApi->getProperty('response');
         $reflectionResponse->setAccessible(true);
         $response = $reflectionResponse->getValue($this->getWebApi());
-
-        // echo get_class($reflectionResponse->getValue($this->getWebApi())) . "\n";die;
-        return json_decode($response->getBody(), true);
+        $jsonResponse = json_decode($response->getBody(), true);
+        if (!is_array($jsonResponse)) {
+            throw new \Exception("Resposta não contém json", 1);
+        }
+        return $jsonResponse;
     }
 
     protected function recursiveArrayIntersectKeys(array $array1, $array2)
