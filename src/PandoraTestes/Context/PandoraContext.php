@@ -36,6 +36,24 @@ abstract class PandoraContext implements Context, MinkAwareContext
     }
 
     /**
+     * Create entity from fixtures.
+     *
+     * @Given /^the "([^"]*)" of "([^"]*)" is "([^"]*)"$/
+     */
+    public function theFieldOfFixtureIsValue($field, $fixture, $value)
+    {
+        $entity = $this->getFixtureBuilder()->load($fixture, true, $this->_getEntityManager());
+        $method = 'set' . ucfirst($field);
+        if (!method_exists($entity, $method)) {
+            $class = get_class($entity);
+            throw new \Exception("There is no method named $method in class $class", 1);
+        }
+        $entity = $this->_getEntityManager()->merge($entity);
+        $entity->{$method}($value);
+        $this->_getEntityManager()->flush();
+    }
+
+    /**
      * @When /^I wait$/
      */
     public function iWait()
