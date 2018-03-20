@@ -75,6 +75,17 @@ class FixtureBuilder
     }
 
     /**
+     * Register the new version of a fixture
+     *
+     * @param      string  $entity  The name of the fixture
+     * @param      mixed   $object  The new entity
+     */
+    public function update($entity, $object)
+    {
+        $this->entities[$entity] = $object;
+    }
+
+    /**
      * Clean the database.
      */
     public function clean()

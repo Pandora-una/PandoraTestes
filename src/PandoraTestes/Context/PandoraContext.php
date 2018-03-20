@@ -49,8 +49,10 @@ abstract class PandoraContext implements Context, MinkAwareContext
             throw new \Exception("There is no method named $method in class $class", 1);
         }
         $entity = $this->_getEntityManager()->merge($entity);
+        $value = $this->processValue($value);
         $entity->{$method}($value);
-        $this->_getEntityManager()->flush();
+        $this->_getEntityManager()->flush($entity);
+        $this->getFixtureBuilder()->update($fixture, $entity);
     }
 
     /**
@@ -250,5 +252,24 @@ abstract class PandoraContext implements Context, MinkAwareContext
         $reflectionResponse->setAccessible(true);
 
         return $reflectionResponse->getValue($this->_webApi);
+    }
+
+    /**
+     * Trata casos que o valor é false ou null
+     *
+     * @param      string   $value  O valor a ser processado
+     *
+     * @return     mixed|null  O valor processado
+     */
+    protected function processValue($value)
+    {
+        switch ($value) {
+            case 'null':
+                return null;
+            case 'false':
+                return false;
+            default:
+                return $value;
+        }
     }
 }
