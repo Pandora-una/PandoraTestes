@@ -312,6 +312,14 @@ Scenario: Deslogar no sistema
 
 Perceba que o parâmetro do passo segue a mesma estrutura de quando referenciamos uma fixture nos aspectos, ou seja, primeiro os aspectos (adjetivos), depois o nome da fixture.
 
+##### Alteração de Entidades
+
+Para alterar uma fixture já carregada use este paddo
+``` feature
+ Given "the <campo>" of "<nome da fixtue>" is "<valor>"
+```
+
+Este passo altera uma entidade já criada. O valor é passado para a entidade como uma string com a excessão de "null" e "false"
 ### Passos Adicionais
 
 Além do passo de criação de entidades, essa biblioteca contém outros passos adicionais.
