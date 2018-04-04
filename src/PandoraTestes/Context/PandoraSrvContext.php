@@ -58,6 +58,32 @@ class PandoraSrvContext implements Context
     }
 
     /**
+     * Check if the JSON response does not match any of the fields provided
+     *
+     * @Then /^(?:the )?response should not contain json with any of (?:this|these) fields?:$/
+     */
+    public function theResponseShouldNotContainJsonWithAtLeastThisFields(PyStringNode $jsonString)
+    {
+        $etalon = json_decode($jsonString->getRaw(), true);
+        if (null === $etalon) {
+            throw new \RuntimeException("Can not convert etalon to json:\n".$jsonString->getRaw());
+        }
+
+        $fieldsPresent = $this->recursiveArrayIntersectKeys($etalon, $this->getJsonResponse());
+        $filteredArray = $this->recursiveArrayIntersectKeys($this->getJsonResponse(), $fieldsPresent);
+
+        if ($this->isAnEmptyArray($fieldsPresent)) {
+            return;
+        }
+
+        $matcher = (new PandoraFactory())->createMatcher();
+        Assertions::assertFalse(
+            $matcher->match($filteredArray, $fieldsPresent),
+            "The json contains parts of those fields"
+        );
+    }
+
+    /**
      * @return array
      */
     protected function getJsonResponse()
@@ -94,5 +120,25 @@ class PandoraSrvContext implements Context
     protected function getWebApi()
     {
         return $this->_webApi;
+    }
+
+    /**
+     * Determines if a array is made by a combination of empty arrays.
+     *
+     * @param      array    $array  The array
+     *
+     * @return     boolean  True if an empty array, False otherwise.
+     */
+    protected function isAnEmptyArray(array $array)
+    {
+        $empty = true;
+        foreach ($array as $value) {
+            if (is_array($value)) {
+                $empty = $empty && $this->isAnEmptyArray($value);
+                continue;
+            }
+            $empty = false;
+        }
+        return $empty;
     }
 }
