@@ -58,7 +58,7 @@ class FixtureBuilder
             $this->entities = array();
         }
         if (isset($this->entities[$entity])) {
-            return $this->entities[$entity];
+            return $this->_recuperaEntidade($entity);
         }
 
         $fixture = $this->_createFixture($entity);
@@ -71,18 +71,42 @@ class FixtureBuilder
             throw new \Exception($message, $e->getCode());
         }
 
-        return $this->entities[$entity] = $fixture->getCreatedEntity();
+        $createdEntity = $fixture->getCreatedEntity();
+        $this->registraEntidade($entity, $createdEntity);
+        return $createdEntity;
+    }
+
+    public function registraEntidade($fixtureName, $createdEntity)
+    {
+        $classMetadata = $this->em->getClassMetaData(get_class($createdEntity));
+        $id = $classMetadata->getIdentifierValues($createdEntity);
+        $this->entities[$fixtureName] = [
+            'class' => get_class($createdEntity),
+            'id' => $id
+        ];
+    }
+
+    protected function _recuperaEntidade($fixtureName)
+    {
+        return $this->em->find(
+            $this->entities[$fixtureName]['class'],
+            $this->entities[$fixtureName]['id']
+        );
     }
 
     /**
      * Register the new version of a fixture
      *
-     * @param      string  $entity  The name of the fixture
-     * @param      mixed   $object  The new entity
+     * @param      string   $entity           The name of the fixture
+     * @param      mixed    $object           The new entity
+     * @param      boolean  $deletePrevious  true se for para a remover a anterior
      */
-    public function update($entity, $object)
+    public function update($entity, $object, $deletePrevious = false)
     {
-        $this->entities[$entity] = $object;
+        if (!$deletePrevious) {
+            return;
+        }
+        $this->registraEntidade($entity, $object);
     }
 
     /**

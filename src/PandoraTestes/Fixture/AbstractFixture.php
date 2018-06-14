@@ -72,7 +72,7 @@ abstract class AbstractFixture implements FixtureInterface
     {
         if (!isset($this->traits[$trait]) && strpos($trait, ':') === false) {
             throw new \Exception("Trait '$trait' não existe");
-        } else if (strpos($trait, ':') !== false) {
+        } elseif (strpos($trait, ':') !== false) {
             $alteracao = explode(':', $trait);
             $this->_setParam($alteracao[0], $alteracao[1]);
         } else {
@@ -82,7 +82,6 @@ abstract class AbstractFixture implements FixtureInterface
                 $this->_setParam($param, $value);
             }
         }
-
     }
 
     /**
@@ -122,6 +121,9 @@ abstract class AbstractFixture implements FixtureInterface
                 $collection[] = $this->_loadAssociation($singleFixture);
             }
             $this->_applyParam($entity, $param, new ArrayCollection($collection), 'add');
+            foreach ($collection as $i => $child) {
+                $this->builder->update($fixture[$i], $child, true);
+            }
         } else {
             if ($fixture) {
                 $association = $this->_loadAssociation($fixture);
