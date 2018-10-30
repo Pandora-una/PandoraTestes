@@ -50,6 +50,7 @@ class PandoraSrvContext implements Context
         if (null === $etalon) {
             throw new \RuntimeException("Can not convert etalon to json:\n".$jsonString->getRaw());
         }
+        $etalon = $this->resolveDynamicDates($etalon);
 
         $filteredArray = $this->recursiveArrayIntersectKeys($this->getJsonResponse(), $etalon);
 
@@ -140,5 +141,29 @@ class PandoraSrvContext implements Context
             $empty = false;
         }
         return $empty;
+    }
+
+
+    protected function resolveDynamicDates(array $json)
+    {
+        foreach ($json as $key => $value) {
+            if (is_array($value)) {
+                $json[$key] = $this->resolveDynamicDates($value);
+                continue;
+            }
+            if (!is_string($value)) {
+                continue;
+            }
+            if (!preg_match('/^panToday:\'([^\']+)\'$/', $value, $matches)) {
+                continue;
+            }
+            $data = new \DateTime();
+            $data->modify($matches[1]);
+            $data = $data->format("Y-m-d");
+            $json[$key] = [
+                "date" => "@string@.startsWith('$data')",
+            ];
+        }
+        return $json;
     }
 }

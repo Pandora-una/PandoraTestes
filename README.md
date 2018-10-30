@@ -374,3 +374,25 @@ And the response should contain json with at least these fields:
 }
 """
 ```
+##### panToday
+
+Verifica se uma data tem um valor relativo a data de execução do teste. o formato é o mesmo do que o método
+`\DateTime::modify`
+
+**exemplo:**
+
+```feature
+And the response should contain json with at least these fields:
+"""
+{
+  "_embedded": {
+    "turma": [
+      {
+        "dataInicio": "panToday:'-3 days'"
+        "dataFim": "panToday:'+40 hours'"
+      }
+    ]
+  }
+}
+"""
+```
