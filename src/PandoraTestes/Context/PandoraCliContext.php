@@ -20,10 +20,12 @@ class PandoraCliContext implements Context, MinkAwareContext
     protected $_minkParameters;
 
     protected $_errorFolder;
+    protected $_timeout;
 
-    public function __construct($error_folder = null)
+    public function __construct($error_folder = null, $timeout = 5)
     {
         $this->_errorFolder = $error_folder;
+        $this->_timeout = $timeout;
         $this->_spinner = new Spin();
     }
 
@@ -207,8 +209,9 @@ class PandoraCliContext implements Context, MinkAwareContext
         return $this->_minkParameters;
     }
 
-    protected function _spin($value, $callback, $negative = false, $canFail = true, $wait = 60)
+    protected function _spin($value, $callback, $negative = false, $canFail = true, $wait = 10)
     {
+        $wait = $this->_timeout ?: $wait;
         return $this->_spinner->__invoke($value, $callback, $negative, $canFail, $wait);
     }
 }

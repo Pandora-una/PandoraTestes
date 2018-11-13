@@ -22,8 +22,14 @@ abstract class PandoraContext implements Context, MinkAwareContext
     protected $_minkParameters;
     protected $_webApi;
     protected $_spin;
+    protected $_timeout;
 
     abstract public static function initializeZendFramework();
+
+    public function __construct($timeout = 5)
+    {
+        $this->_timeout = $timeout;
+    }
 
     /**
      * Create entity from fixtures.
@@ -162,8 +168,9 @@ abstract class PandoraContext implements Context, MinkAwareContext
         return $this->_fixtureBuilder;
     }
 
-    public function spin($text, $negative = false, $canFail = true, $wait = 60)
+    public function spin($text, $negative = false, $canFail = true, $wait = null)
     {
+        $wait = $wait ?: $this->_timeout;
         if (!$this->_spin) {
             $this->_spin = new Spin();
         }
