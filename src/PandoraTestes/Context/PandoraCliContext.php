@@ -207,7 +207,7 @@ class PandoraCliContext implements Context, MinkAwareContext
         return $this->_minkParameters;
     }
 
-    protected function _spin($value, $callback, $negative = false, $canFail = true, $wait = 5)
+    protected function _spin($value, $callback, $negative = false, $canFail = true, $wait = 60)
     {
         return $this->_spinner->__invoke($value, $callback, $negative, $canFail, $wait);
     }
