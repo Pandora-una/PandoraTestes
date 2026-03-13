@@ -159,7 +159,7 @@ class FixtureBuilder
     public function getCleanEntityManager()
     {
         if (!$this->cleanEm) {
-            throw new \RuntimeException('O EntityManager de limpeza não foi configurado.');
+            throw new \RuntimeException($this->getMissingCleanConnectionMessage());
         }
 
         return $this->cleanEm;
@@ -271,5 +271,16 @@ class FixtureBuilder
     {
         $driver = $entityManager->getConnection()->getDriver();
         return $driver instanceof \Doctrine\DBAL\Driver\PDOPgSql\Driver;
+    }
+
+    /**
+     * @return string
+     */
+    protected function getMissingCleanConnectionMessage()
+    {
+        return
+            "A configuração 'pandora-testes.clean_connection' é obrigatória na v2.0.\n" .
+            "Defina essa chave em config/autoload/*.php com os parâmetros da conexão usada exclusivamente na limpeza do banco.\n" .
+            "Exemplo: 'pandora-testes' => array('clean_connection' => array('driver' => 'pdo_pgsql', 'host' => '127.0.0.1', ...))";
     }
 }
