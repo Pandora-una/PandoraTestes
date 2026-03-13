@@ -28,12 +28,16 @@ class FixtureBuilderFactory implements FactoryInterface
         $entitiesNamespace = isset($config['entities_namespace']) ? $config['entities_namespace'] : 'Application\Entity';
 
         $fixtureBuilder = new FixtureBuilder($fixtureMetaData, $fixtureNamespace, $entitiesNamespace);
-        if (isset($config['clean_connection']) && is_array($config['clean_connection'])) {
-            $defaultEntityManager = $services->get('Doctrine\ORM\EntityManager');
-            $fixtureBuilder->setCleanEntityManager(
-                $this->createCleanEntityManager($defaultEntityManager, $config['clean_connection'])
+        if (!isset($config['clean_connection']) || !is_array($config['clean_connection']) || empty($config['clean_connection'])) {
+            throw new ServiceNotCreatedException(
+                'A configuração pandora-testes.clean_connection é obrigatória.'
             );
         }
+
+        $defaultEntityManager = $services->get('Doctrine\ORM\EntityManager');
+        $fixtureBuilder->setCleanEntityManager(
+            $this->createCleanEntityManager($defaultEntityManager, $config['clean_connection'])
+        );
 
         return $fixtureBuilder;
     }

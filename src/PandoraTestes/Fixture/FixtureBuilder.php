@@ -158,11 +158,11 @@ class FixtureBuilder
      */
     public function getCleanEntityManager()
     {
-        if ($this->cleanEm) {
-            return $this->cleanEm;
+        if (!$this->cleanEm) {
+            throw new \RuntimeException('O EntityManager de limpeza não foi configurado.');
         }
 
-        return $this->getEntityManager();
+        return $this->cleanEm;
     }
 
     /**
