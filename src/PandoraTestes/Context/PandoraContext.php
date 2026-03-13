@@ -123,7 +123,7 @@ abstract class PandoraContext implements Context, MinkAwareContext
     public static function clean()
     {
         if (self::getCleanAfterSuite()) {
-            $this->getFixtureBuilder()->clean();
+            self::getStaticFixtureBuilder()->clean();
         }
     }
 
@@ -161,11 +161,23 @@ abstract class PandoraContext implements Context, MinkAwareContext
     protected function getFixtureBuilder()
     {
         if (!$this->_fixtureBuilder) {
-            $this->_fixtureBuilder = self::$zendApp->getServiceManager()->get('PandoraTestes\Fixture\FixtureBuilder');
-            $this->_fixtureBuilder->setEntityManager($this->_getEntityManager());
+            $this->_fixtureBuilder = self::getStaticFixtureBuilder();
         }
 
         return $this->_fixtureBuilder;
+    }
+
+    /**
+     * @return FixtureBuilder
+     */
+    protected static function getStaticFixtureBuilder()
+    {
+        $fixtureBuilder = self::$zendApp->getServiceManager()->get('PandoraTestes\Fixture\FixtureBuilder');
+        $fixtureBuilder->setEntityManager(
+            self::$zendApp->getServiceManager()->get('Doctrine\ORM\EntityManager')
+        );
+
+        return $fixtureBuilder;
     }
 
     public function spin($text, $negative = false, $canFail = true, $wait = null)

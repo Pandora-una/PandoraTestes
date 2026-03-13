@@ -46,6 +46,15 @@ Abaixo temos um exemplo de uma configuração mais completa:
     'fixtures_namespace' => 'Application\Fixture',
     'entities_namespace' => 'Application\Entity',
     'clean-after-suite' => false,
+    'clean_connection' => array(
+        'driver' => 'pdo_pgsql',
+        'host' => '127.0.0.1',
+        'port' => 5432,
+        'dbname' => 'app_test',
+        'user' => 'postgres',
+        'password' => 'secret',
+        'charset' => 'UTF8'
+    ),
     'fixtures' => array(
         'base' => array('usuarioWeb'),
         'Usuario' => array(
@@ -60,6 +69,7 @@ Os campos acima tem os seguintes efeitos:
 
 - **fixtures_namespace**: O namespace das fixtures, caso omitido o padrão é *Application\Fixture*.
 - **entities_namespace**: O namespace padrão das entidades, caso omitido o padrão é *Application\Entity*. É importante notar que é possível especificar um namespace para cada entidade dentro da opção *fixtures*.
+- **clean_connection**: Configuração opcional de conexão exclusiva para a limpeza do banco. Quando informada, somente o `clean()` usará essa conexão; criação e atualização de fixtures continuam usando o `EntityManager` principal do Doctrine. Os valores informados sobrescrevem os parâmetros da conexão padrão. Se omitida, a limpeza continua usando a conexão padrão do Doctrine.
 - **fixtures**
     - **Nome de uma entidade**:
         - **identifier**: Campo que identifica a entidade, caso omitido o padrão é *id*.

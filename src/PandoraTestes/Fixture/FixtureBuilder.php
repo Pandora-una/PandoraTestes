@@ -19,6 +19,8 @@ class FixtureBuilder
 
     protected $em;
 
+    protected $cleanEm;
+
     protected $entities;
 
     protected $mostrou = false;
@@ -114,20 +116,20 @@ class FixtureBuilder
      */
     public function clean()
     {
-        if ($this->_isPostgres()) {
-            $this->getEntityManager()->getConnection()->exec('SET session_replication_role = replica;');
+        if ($this->_isPostgres($this->getCleanEntityManager())) {
+            $this->getCleanEntityManager()->getConnection()->exec('SET session_replication_role = replica;');
         }
         $this->entities = array();
         try {
-            $this->_executeFixtures(array(), false);
+            $this->_executeFixtures(array(), false, $this->getCleanEntityManager());
         } catch (\Exception $e) {
-            if ($this->_isPostgres()) {
-                $this->getEntityManager()->getConnection()->exec('SET session_replication_role = DEFAULT;');
+            if ($this->_isPostgres($this->getCleanEntityManager())) {
+                $this->getCleanEntityManager()->getConnection()->exec('SET session_replication_role = DEFAULT;');
             }
             throw $e;
         }
-        if ($this->_isPostgres()) {
-            $this->getEntityManager()->getConnection()->exec('SET session_replication_role = DEFAULT;');
+        if ($this->_isPostgres($this->getCleanEntityManager())) {
+            $this->getCleanEntityManager()->getConnection()->exec('SET session_replication_role = DEFAULT;');
         }
     }
 
@@ -147,6 +149,30 @@ class FixtureBuilder
     public function setEntityManager(EntityManagerInterface $em)
     {
         $this->em = $em;
+
+        return $this;
+    }
+
+    /**
+     * @return \Doctrine\ORM\EntityManagerInterface
+     */
+    public function getCleanEntityManager()
+    {
+        if ($this->cleanEm) {
+            return $this->cleanEm;
+        }
+
+        return $this->getEntityManager();
+    }
+
+    /**
+     * @param EntityManagerInterface $em
+     *
+     * @return \PandoraTestes\Fixture\FixtureBuilder
+     */
+    public function setCleanEntityManager(EntityManagerInterface $em)
+    {
+        $this->cleanEm = $em;
 
         return $this;
     }
@@ -206,10 +232,11 @@ class FixtureBuilder
      * @param array $fixtures
      * @param bool  $append
      */
-    protected function _executeFixtures(array $fixtures, $append)
+    protected function _executeFixtures(array $fixtures, $append, EntityManagerInterface $entityManager = null)
     {
         $purger = new ORMPurger();
-        $executor = new ORMExecutor($this->getEntityManager(), $purger);
+        $entityManager = $entityManager ?: $this->getEntityManager();
+        $executor = new ORMExecutor($entityManager, $purger);
         $executor->execute($fixtures, $append);
     }
 
@@ -240,9 +267,9 @@ class FixtureBuilder
      *
      * @return     boolean  True if postgres, False otherwise.
      */
-    protected function _isPostgres()
+    protected function _isPostgres(EntityManagerInterface $entityManager)
     {
-        $driver = $this->getEntityManager()->getConnection()->getDriver();
+        $driver = $entityManager->getConnection()->getDriver();
         return $driver instanceof \Doctrine\DBAL\Driver\PDOPgSql\Driver;
     }
 }
