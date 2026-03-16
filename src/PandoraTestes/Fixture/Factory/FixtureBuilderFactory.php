@@ -28,10 +28,10 @@ class FixtureBuilderFactory implements FactoryInterface
         $entitiesNamespace = isset($config['entities_namespace']) ? $config['entities_namespace'] : 'Application\Entity';
 
         $fixtureBuilder = new FixtureBuilder($fixtureMetaData, $fixtureNamespace, $entitiesNamespace);
-        if (isset($config['clean_connection']) && is_array($config['clean_connection']) && !empty($config['clean_connection'])) {
+        if (isset($config['connection']) && is_array($config['connection']) && !empty($config['connection'])) {
             $defaultEntityManager = $services->get('Doctrine\ORM\EntityManager');
-            $fixtureBuilder->setCleanEntityManager(
-                $this->createCleanEntityManager($defaultEntityManager, $config['clean_connection'])
+            $fixtureBuilder->setEntityManager(
+                $this->createEntityManager($defaultEntityManager, $config['connection'])
             );
         }
 
@@ -40,17 +40,17 @@ class FixtureBuilderFactory implements FactoryInterface
 
     /**
      * @param EntityManagerInterface $defaultEntityManager
-     * @param array                  $cleanConnectionConfig
+     * @param array                  $connectionConfig
      *
      * @return EntityManagerInterface
      */
-    protected function createCleanEntityManager(
+    protected function createEntityManager(
         EntityManagerInterface $defaultEntityManager,
-        array $cleanConnectionConfig
+        array $connectionConfig
     ) {
         $connectionParams = array_merge(
             $defaultEntityManager->getConnection()->getParams(),
-            $cleanConnectionConfig
+            $connectionConfig
         );
 
         unset($connectionParams['pdo']);

@@ -19,8 +19,6 @@ class FixtureBuilder
 
     protected $em;
 
-    protected $cleanEm;
-
     protected $entities;
 
     protected $mostrou = false;
@@ -80,7 +78,7 @@ class FixtureBuilder
 
     public function registraEntidade($fixtureName, $createdEntity)
     {
-        $classMetadata = $this->em->getClassMetaData(get_class($createdEntity));
+        $classMetadata = $this->getEntityManager()->getClassMetaData(get_class($createdEntity));
         $id = $classMetadata->getIdentifierValues($createdEntity);
         $this->entities[$fixtureName] = [
             'class' => get_class($createdEntity),
@@ -90,7 +88,7 @@ class FixtureBuilder
 
     protected function _recuperaEntidade($fixtureName)
     {
-        return $this->em->find(
+        return $this->getEntityManager()->find(
             $this->entities[$fixtureName]['class'],
             $this->entities[$fixtureName]['id']
         );
@@ -116,20 +114,20 @@ class FixtureBuilder
      */
     public function clean()
     {
-        if ($this->_isPostgres($this->getCleanEntityManager())) {
-            $this->getCleanEntityManager()->getConnection()->exec('SET session_replication_role = replica;');
+        if ($this->_isPostgres($this->getEntityManager())) {
+            $this->getEntityManager()->getConnection()->exec('SET session_replication_role = replica;');
         }
         $this->entities = array();
         try {
-            $this->_executeFixtures(array(), false, $this->getCleanEntityManager());
+            $this->_executeFixtures(array(), false);
         } catch (\Exception $e) {
-            if ($this->_isPostgres($this->getCleanEntityManager())) {
-                $this->getCleanEntityManager()->getConnection()->exec('SET session_replication_role = DEFAULT;');
+            if ($this->_isPostgres($this->getEntityManager())) {
+                $this->getEntityManager()->getConnection()->exec('SET session_replication_role = DEFAULT;');
             }
             throw $e;
         }
-        if ($this->_isPostgres($this->getCleanEntityManager())) {
-            $this->getCleanEntityManager()->getConnection()->exec('SET session_replication_role = DEFAULT;');
+        if ($this->_isPostgres($this->getEntityManager())) {
+            $this->getEntityManager()->getConnection()->exec('SET session_replication_role = DEFAULT;');
         }
     }
 
@@ -138,6 +136,10 @@ class FixtureBuilder
      */
     public function getEntityManager()
     {
+        if (!$this->em) {
+            throw new \RuntimeException($this->getMissingConnectionMessage());
+        }
+
         return $this->em;
     }
 
@@ -149,30 +151,6 @@ class FixtureBuilder
     public function setEntityManager(EntityManagerInterface $em)
     {
         $this->em = $em;
-
-        return $this;
-    }
-
-    /**
-     * @return \Doctrine\ORM\EntityManagerInterface
-     */
-    public function getCleanEntityManager()
-    {
-        if (!$this->cleanEm) {
-            throw new \RuntimeException($this->getMissingCleanConnectionMessage());
-        }
-
-        return $this->cleanEm;
-    }
-
-    /**
-     * @param EntityManagerInterface $em
-     *
-     * @return \PandoraTestes\Fixture\FixtureBuilder
-     */
-    public function setCleanEntityManager(EntityManagerInterface $em)
-    {
-        $this->cleanEm = $em;
 
         return $this;
     }
@@ -232,11 +210,10 @@ class FixtureBuilder
      * @param array $fixtures
      * @param bool  $append
      */
-    protected function _executeFixtures(array $fixtures, $append, EntityManagerInterface $entityManager = null)
+    protected function _executeFixtures(array $fixtures, $append)
     {
         $purger = new ORMPurger();
-        $entityManager = $entityManager ?: $this->getEntityManager();
-        $executor = new ORMExecutor($entityManager, $purger);
+        $executor = new ORMExecutor($this->getEntityManager(), $purger);
         $executor->execute($fixtures, $append);
     }
 
@@ -276,11 +253,11 @@ class FixtureBuilder
     /**
      * @return string
      */
-    protected function getMissingCleanConnectionMessage()
+    protected function getMissingConnectionMessage()
     {
         return
-            "A configuração 'pandora-testes.clean_connection' é obrigatória na v2.0.\n" .
-            "Defina essa chave em config/autoload/*.php com os parâmetros da conexão usada exclusivamente na limpeza do banco.\n" .
-            "Exemplo: 'pandora-testes' => array('clean_connection' => array('driver' => 'pdo_pgsql', 'host' => '127.0.0.1', ...))";
+            "A configuração 'pandora-testes.connection' é obrigatória na v2.0.\n" .
+            "Defina essa chave em config/autoload/*.php com os parâmetros da conexão usada pela biblioteca para limpar e manipular as fixtures.\n" .
+            "Exemplo: 'pandora-testes' => array('connection' => array('driver' => 'pdo_pgsql', 'host' => '127.0.0.1', ...))";
     }
 }

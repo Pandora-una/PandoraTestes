@@ -46,7 +46,7 @@ Abaixo temos um exemplo de uma configuração mais completa:
     'fixtures_namespace' => 'Application\Fixture',
     'entities_namespace' => 'Application\Entity',
     'clean-after-suite' => false,
-    'clean_connection' => array(
+    'connection' => array(
         'driver' => 'pdo_pgsql',
         'host' => '127.0.0.1',
         'port' => 5432,
@@ -69,14 +69,14 @@ Os campos acima tem os seguintes efeitos:
 
 - **fixtures_namespace**: O namespace das fixtures, caso omitido o padrão é *Application\Fixture*.
 - **entities_namespace**: O namespace padrão das entidades, caso omitido o padrão é *Application\Entity*. É importante notar que é possível especificar um namespace para cada entidade dentro da opção *fixtures*.
-- **clean_connection**: Configuração obrigatória de conexão exclusiva para a limpeza do banco. Somente o `clean()` usará essa conexão; criação e atualização de fixtures continuam usando o `EntityManager` principal do Doctrine. Os valores informados sobrescrevem os parâmetros da conexão padrão. Defina essa chave no `config/autoload/*.php` do projeto consumidor.
+- **connection**: Configuração obrigatória de conexão usada pela biblioteca para limpar o banco, carregar fixtures, buscar associações e atualizar entidades criadas durante os testes. Os valores informados sobrescrevem os parâmetros da conexão padrão. Defina essa chave no `config/autoload/*.php` do projeto consumidor.
 - **fixtures**
     - **Nome de uma entidade**:
         - **identifier**: Campo que identifica a entidade, caso omitido o padrão é *id*.
         - **entity_name**: Nome completo da entidade, caso omitido o padrão é o namespace definido em *entities_namespace* junto com o nome simples da entidade.
     - **base**: Lista que contém as entidades que serão carregadas sempre que rodar os testes.
 
-> **Breaking change (v2.0):** na versão `v2.0`, `pandora-testes.clean_connection` passa a ser obrigatória. A biblioteca falhará quando a limpeza do banco for acionada sem essa chave configurada, para evitar que a limpeza rode acidentalmente na conexão padrão do Doctrine.
+> **Breaking change (v2.0):** na versão `v2.0`, `pandora-testes.connection` passa a ser obrigatória. A biblioteca deixa de usar o `EntityManager` padrão da aplicação para manipular fixtures e passa a usar apenas a conexão configurada nessa chave.
 
 ### Doctrine Fixtures
 

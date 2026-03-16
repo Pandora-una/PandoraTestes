@@ -38,7 +38,7 @@ abstract class PandoraContext implements Context, MinkAwareContext
      */
     public function givenExists($entity)
     {
-        $this->getFixtureBuilder()->load($entity, true, $this->_getEntityManager());
+        $this->getFixtureBuilder()->load($entity, true);
     }
 
     /**
@@ -48,17 +48,19 @@ abstract class PandoraContext implements Context, MinkAwareContext
      */
     public function theFieldOfFixtureIsValue($field, $fixture, $value)
     {
-        $entity = $this->getFixtureBuilder()->load($fixture, true, $this->_getEntityManager());
+        $fixtureBuilder = $this->getFixtureBuilder();
+        $entityManager = $fixtureBuilder->getEntityManager();
+        $entity = $fixtureBuilder->load($fixture, true);
         $method = 'set' . ucfirst($field);
         if (!method_exists($entity, $method)) {
             $class = get_class($entity);
             throw new \Exception("There is no method named $method in class $class", 1);
         }
-        $entity = $this->_getEntityManager()->merge($entity);
+        $entity = $entityManager->merge($entity);
         $value = $this->processValue($value);
         $entity->{$method}($value);
-        $this->_getEntityManager()->flush($entity);
-        $this->getFixtureBuilder()->update($fixture, $entity);
+        $entityManager->flush($entity);
+        $fixtureBuilder->update($fixture, $entity);
     }
 
     /**
@@ -148,14 +150,6 @@ abstract class PandoraContext implements Context, MinkAwareContext
     }
 
     /**
-     * @return Doctrine\ORM\EntityManager
-     */
-    protected function _getEntityManager()
-    {
-        return self::$zendApp->getServiceManager()->get('Doctrine\ORM\EntityManager');
-    }
-
-    /**
      * @return FixtureBuilder
      */
     protected function getFixtureBuilder()
@@ -172,12 +166,7 @@ abstract class PandoraContext implements Context, MinkAwareContext
      */
     protected static function getStaticFixtureBuilder()
     {
-        $fixtureBuilder = self::$zendApp->getServiceManager()->get('PandoraTestes\Fixture\FixtureBuilder');
-        $fixtureBuilder->setEntityManager(
-            self::$zendApp->getServiceManager()->get('Doctrine\ORM\EntityManager')
-        );
-
-        return $fixtureBuilder;
+        return self::$zendApp->getServiceManager()->get('PandoraTestes\Fixture\FixtureBuilder');
     }
 
     public function spin($text, $negative = false, $canFail = true, $wait = null)
