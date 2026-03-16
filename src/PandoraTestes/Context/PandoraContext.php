@@ -38,7 +38,7 @@ abstract class PandoraContext implements Context, MinkAwareContext
      */
     public function givenExists($entity)
     {
-        $this->getFixtureBuilder()->load($entity, true, $this->_getEntityManager());
+        $this->getFixtureBuilder()->load($entity, true);
     }
 
     /**
@@ -48,17 +48,19 @@ abstract class PandoraContext implements Context, MinkAwareContext
      */
     public function theFieldOfFixtureIsValue($field, $fixture, $value)
     {
-        $entity = $this->getFixtureBuilder()->load($fixture, true, $this->_getEntityManager());
+        $fixtureBuilder = $this->getFixtureBuilder();
+        $entityManager = $this->_getEntityManager();
+        $entity = $fixtureBuilder->load($fixture, true);
         $method = 'set' . ucfirst($field);
         if (!method_exists($entity, $method)) {
             $class = get_class($entity);
             throw new \Exception("There is no method named $method in class $class", 1);
         }
-        $entity = $this->_getEntityManager()->merge($entity);
+        $entity = $entityManager->merge($entity);
         $value = $this->processValue($value);
         $entity->{$method}($value);
-        $this->_getEntityManager()->flush($entity);
-        $this->getFixtureBuilder()->update($fixture, $entity);
+        $entityManager->flush($entity);
+        $fixtureBuilder->update($fixture, $entity);
     }
 
     /**
@@ -123,7 +125,7 @@ abstract class PandoraContext implements Context, MinkAwareContext
     public static function clean()
     {
         if (self::getCleanAfterSuite()) {
-            $this->getFixtureBuilder()->clean();
+            self::getStaticFixtureBuilder()->clean();
         }
     }
 
@@ -152,7 +154,7 @@ abstract class PandoraContext implements Context, MinkAwareContext
      */
     protected function _getEntityManager()
     {
-        return self::$zendApp->getServiceManager()->get('Doctrine\ORM\EntityManager');
+        return $this->getFixtureBuilder()->getEntityManager();
     }
 
     /**
@@ -161,11 +163,18 @@ abstract class PandoraContext implements Context, MinkAwareContext
     protected function getFixtureBuilder()
     {
         if (!$this->_fixtureBuilder) {
-            $this->_fixtureBuilder = self::$zendApp->getServiceManager()->get('PandoraTestes\Fixture\FixtureBuilder');
-            $this->_fixtureBuilder->setEntityManager($this->_getEntityManager());
+            $this->_fixtureBuilder = self::getStaticFixtureBuilder();
         }
 
         return $this->_fixtureBuilder;
+    }
+
+    /**
+     * @return FixtureBuilder
+     */
+    protected static function getStaticFixtureBuilder()
+    {
+        return self::$zendApp->getServiceManager()->get('PandoraTestes\Fixture\FixtureBuilder');
     }
 
     public function spin($text, $negative = false, $canFail = true, $wait = null)

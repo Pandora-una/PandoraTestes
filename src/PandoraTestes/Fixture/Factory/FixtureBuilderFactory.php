@@ -1,6 +1,8 @@
 <?php
 namespace PandoraTestes\Fixture\Factory;
 
+use Doctrine\ORM\EntityManager;
+use Doctrine\ORM\EntityManagerInterface;
 use Zend\ServiceManager\FactoryInterface;
 use Zend\ServiceManager\ServiceLocatorInterface;
 use Zend\ServiceManager\Exception\ServiceNotCreatedException;
@@ -24,6 +26,39 @@ class FixtureBuilderFactory implements FactoryInterface
         $fixtureNamespace = isset($config['fixtures_namespace']) ? $config['fixtures_namespace'] : 'Application\Fixture';
         $fixtureMetaData = isset($config['fixtures']) ? $config['fixtures'] : array();
         $entitiesNamespace = isset($config['entities_namespace']) ? $config['entities_namespace'] : 'Application\Entity';
-        return new FixtureBuilder($fixtureMetaData, $fixtureNamespace, $entitiesNamespace);
+
+        $fixtureBuilder = new FixtureBuilder($fixtureMetaData, $fixtureNamespace, $entitiesNamespace);
+        if (isset($config['connection']) && is_array($config['connection']) && !empty($config['connection'])) {
+            $defaultEntityManager = $services->get('Doctrine\ORM\EntityManager');
+            $fixtureBuilder->setEntityManager(
+                $this->createEntityManager($defaultEntityManager, $config['connection'])
+            );
+        }
+
+        return $fixtureBuilder;
+    }
+
+    /**
+     * @param EntityManagerInterface $defaultEntityManager
+     * @param array                  $connectionConfig
+     *
+     * @return EntityManagerInterface
+     */
+    protected function createEntityManager(
+        EntityManagerInterface $defaultEntityManager,
+        array $connectionConfig
+    ) {
+        $connectionParams = array_merge(
+            $defaultEntityManager->getConnection()->getParams(),
+            $connectionConfig
+        );
+
+        unset($connectionParams['pdo']);
+
+        return EntityManager::create(
+            $connectionParams,
+            $defaultEntityManager->getConfiguration(),
+            $defaultEntityManager->getEventManager()
+        );
     }
 }

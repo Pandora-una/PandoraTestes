@@ -78,7 +78,7 @@ class FixtureBuilder
 
     public function registraEntidade($fixtureName, $createdEntity)
     {
-        $classMetadata = $this->em->getClassMetaData(get_class($createdEntity));
+        $classMetadata = $this->getEntityManager()->getClassMetaData(get_class($createdEntity));
         $id = $classMetadata->getIdentifierValues($createdEntity);
         $this->entities[$fixtureName] = [
             'class' => get_class($createdEntity),
@@ -88,7 +88,7 @@ class FixtureBuilder
 
     protected function _recuperaEntidade($fixtureName)
     {
-        return $this->em->find(
+        return $this->getEntityManager()->find(
             $this->entities[$fixtureName]['class'],
             $this->entities[$fixtureName]['id']
         );
@@ -114,19 +114,19 @@ class FixtureBuilder
      */
     public function clean()
     {
-        if ($this->_isPostgres()) {
+        if ($this->_isPostgres($this->getEntityManager())) {
             $this->getEntityManager()->getConnection()->exec('SET session_replication_role = replica;');
         }
         $this->entities = array();
         try {
             $this->_executeFixtures(array(), false);
         } catch (\Exception $e) {
-            if ($this->_isPostgres()) {
+            if ($this->_isPostgres($this->getEntityManager())) {
                 $this->getEntityManager()->getConnection()->exec('SET session_replication_role = DEFAULT;');
             }
             throw $e;
         }
-        if ($this->_isPostgres()) {
+        if ($this->_isPostgres($this->getEntityManager())) {
             $this->getEntityManager()->getConnection()->exec('SET session_replication_role = DEFAULT;');
         }
     }
@@ -136,6 +136,10 @@ class FixtureBuilder
      */
     public function getEntityManager()
     {
+        if (!$this->em) {
+            throw new \RuntimeException($this->getMissingConnectionMessage());
+        }
+
         return $this->em;
     }
 
@@ -240,9 +244,20 @@ class FixtureBuilder
      *
      * @return     boolean  True if postgres, False otherwise.
      */
-    protected function _isPostgres()
+    protected function _isPostgres(EntityManagerInterface $entityManager)
     {
-        $driver = $this->getEntityManager()->getConnection()->getDriver();
+        $driver = $entityManager->getConnection()->getDriver();
         return $driver instanceof \Doctrine\DBAL\Driver\PDOPgSql\Driver;
+    }
+
+    /**
+     * @return string
+     */
+    protected function getMissingConnectionMessage()
+    {
+        return
+            "A configuração 'pandora-testes.connection' é obrigatória na v2.0.\n" .
+            "Defina essa chave em config/autoload/*.php com os parâmetros da conexão usada pela biblioteca para limpar e manipular as fixtures.\n" .
+            "Exemplo: 'pandora-testes' => array('connection' => array('driver' => 'pdo_pgsql', 'host' => '127.0.0.1', ...))";
     }
 }

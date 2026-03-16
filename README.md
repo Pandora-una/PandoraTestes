@@ -37,7 +37,7 @@ Caso os testes necessitem de Selenium2 rodando em background, o seguinte comando
 $ java -jar vendor/bin/selenium-server-standalone-2.53.0.jar
 ```
 
-### Configurações Opcionais
+### Configuração
 
 Abaixo temos um exemplo de uma configuração mais completa:
 
@@ -46,6 +46,15 @@ Abaixo temos um exemplo de uma configuração mais completa:
     'fixtures_namespace' => 'Application\Fixture',
     'entities_namespace' => 'Application\Entity',
     'clean-after-suite' => false,
+    'connection' => array(
+        'driver' => 'pdo_pgsql',
+        'host' => '127.0.0.1',
+        'port' => 5432,
+        'dbname' => 'app_test',
+        'user' => 'postgres',
+        'password' => 'secret',
+        'charset' => 'UTF8'
+    ),
     'fixtures' => array(
         'base' => array('usuarioWeb'),
         'Usuario' => array(
@@ -60,11 +69,14 @@ Os campos acima tem os seguintes efeitos:
 
 - **fixtures_namespace**: O namespace das fixtures, caso omitido o padrão é *Application\Fixture*.
 - **entities_namespace**: O namespace padrão das entidades, caso omitido o padrão é *Application\Entity*. É importante notar que é possível especificar um namespace para cada entidade dentro da opção *fixtures*.
+- **connection**: Configuração obrigatória de conexão usada pela biblioteca para limpar o banco, carregar fixtures, buscar associações e atualizar entidades criadas durante os testes.
 - **fixtures**
     - **Nome de uma entidade**:
         - **identifier**: Campo que identifica a entidade, caso omitido o padrão é *id*.
         - **entity_name**: Nome completo da entidade, caso omitido o padrão é o namespace definido em *entities_namespace* junto com o nome simples da entidade.
     - **base**: Lista que contém as entidades que serão carregadas sempre que rodar os testes.
+
+> **Breaking change (v2.0):** na versão `v2.0`, `pandora-testes.connection` passa a ser obrigatória. A biblioteca deixa de usar o `EntityManager` padrão da aplicação para manipular fixtures e passa a usar apenas a conexão configurada nessa chave.
 
 ### Doctrine Fixtures
 
