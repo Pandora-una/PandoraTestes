@@ -69,7 +69,7 @@ Os campos acima tem os seguintes efeitos:
 
 - **fixtures_namespace**: O namespace das fixtures, caso omitido o padrão é *Application\Fixture*.
 - **entities_namespace**: O namespace padrão das entidades, caso omitido o padrão é *Application\Entity*. É importante notar que é possível especificar um namespace para cada entidade dentro da opção *fixtures*.
-- **connection**: Configuração obrigatória de conexão usada pela biblioteca para limpar o banco, carregar fixtures, buscar associações e atualizar entidades criadas durante os testes. Os valores informados sobrescrevem os parâmetros da conexão padrão. Defina essa chave no `config/autoload/*.php` do projeto consumidor.
+- **connection**: Configuração obrigatória de conexão usada pela biblioteca para limpar o banco, carregar fixtures, buscar associações e atualizar entidades criadas durante os testes.
 - **fixtures**
     - **Nome de uma entidade**:
         - **identifier**: Campo que identifica a entidade, caso omitido o padrão é *id*.
