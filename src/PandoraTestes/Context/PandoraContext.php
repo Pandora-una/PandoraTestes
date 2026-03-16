@@ -49,7 +49,7 @@ abstract class PandoraContext implements Context, MinkAwareContext
     public function theFieldOfFixtureIsValue($field, $fixture, $value)
     {
         $fixtureBuilder = $this->getFixtureBuilder();
-        $entityManager = $fixtureBuilder->getEntityManager();
+        $entityManager = $this->_getEntityManager();
         $entity = $fixtureBuilder->load($fixture, true);
         $method = 'set' . ucfirst($field);
         if (!method_exists($entity, $method)) {
@@ -147,6 +147,14 @@ abstract class PandoraContext implements Context, MinkAwareContext
         if ($environment->getSuite()->getName() == 'srv') {
             $this->_webApi = $scope->getEnvironment()->getContext('Behat\WebApiExtension\Context\WebApiContext');
         }
+    }
+
+    /**
+     * @return Doctrine\ORM\EntityManager
+     */
+    protected function _getEntityManager()
+    {
+        return $this->getFixtureBuilder()->getEntityManager();
     }
 
     /**
