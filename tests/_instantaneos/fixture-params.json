@@ -1,0 +1,62 @@
+{
+    "autor": [
+        "PandoraTestesTeste\\Entity\\Autor",
+        1,
+        "Ana",
+        true
+    ],
+    "inativo autor": [
+        "PandoraTestesTeste\\Entity\\Autor",
+        2,
+        "Ana",
+        false
+    ],
+    "inativo nome:Caio autor": [
+        "PandoraTestesTeste\\Entity\\Autor",
+        5,
+        "Caio",
+        false
+    ],
+    "maiusculo autor": [
+        "PandoraTestesTeste\\Entity\\Autor",
+        4,
+        "CLARICE",
+        true
+    ],
+    "nome:Beto autor": [
+        "PandoraTestesTeste\\Entity\\Autor",
+        3,
+        "Beto",
+        true
+    ],
+    "tabelas": {
+        "autor": [
+            {
+                "ativo": "1",
+                "id": "1",
+                "nome": "Ana"
+            },
+            {
+                "ativo": "0",
+                "id": "2",
+                "nome": "Ana"
+            },
+            {
+                "ativo": "1",
+                "id": "3",
+                "nome": "Beto"
+            },
+            {
+                "ativo": "1",
+                "id": "4",
+                "nome": "CLARICE"
+            },
+            {
+                "ativo": "0",
+                "id": "5",
+                "nome": "Caio"
+            }
+        ],
+        "livro": []
+    }
+}

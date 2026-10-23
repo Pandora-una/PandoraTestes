@@ -1,0 +1,28 @@
+{
+    "headers": {
+        "X-Teste": "um"
+    },
+    "recebido": {
+        "cabecalhos": {
+            "CONTENT-LENGTH": "9",
+            "CONTENT-TYPE": "text/plain"
+        },
+        "corpo": "conteúdo",
+        "metodo": "POST",
+        "texto": "Resposta do ECO",
+        "uri": "/api/envio"
+    },
+    "requisicao": [
+        "POST",
+        "envio",
+        {
+            "Content-Type": [
+                "text/plain"
+            ],
+            "X-Teste": [
+                "um"
+            ]
+        }
+    ],
+    "status": 200
+}

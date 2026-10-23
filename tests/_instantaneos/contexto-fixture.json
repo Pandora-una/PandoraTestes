@@ -1,0 +1,34 @@
+{
+    "antes de limpar": [
+        {
+            "ativo": "1",
+            "id": "1",
+            "nome": "Base"
+        },
+        {
+            "ativo": "0",
+            "id": "2",
+            "nome": "Trocado"
+        },
+        {
+            "ativo": "0",
+            "id": "3",
+            "nome": "Ana"
+        }
+    ],
+    "campo sem setter": "erro",
+    "depois do loadBasicData": [
+        {
+            "ativo": "1",
+            "id": "1",
+            "nome": "Base"
+        }
+    ],
+    "processValue": [
+        null,
+        false,
+        "true",
+        "0",
+        ""
+    ]
+}

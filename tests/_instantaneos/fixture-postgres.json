@@ -1,0 +1,4 @@
+{
+    "pdo_pgsql": true,
+    "pdo_sqlite": false
+}

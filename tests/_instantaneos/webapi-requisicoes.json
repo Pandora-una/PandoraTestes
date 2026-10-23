@@ -1,0 +1,243 @@
+{
+    "404": {
+        "headers": {
+            "Accept": "application/json",
+            "Authorization": "Basic b3V0cm86eA==",
+            "X-Teste": [
+                "um",
+                "dois"
+            ]
+        },
+        "recebido": {
+            "cabecalhos": [],
+            "corpo": "",
+            "metodo": "DELETE",
+            "texto": "Resposta do ECO",
+            "uri": "/api/usuario/42?status=404"
+        },
+        "requisicao": [
+            "DELETE",
+            "usuario/42?status=404",
+            {
+                "Accept": [
+                    "application/json"
+                ],
+                "Authorization": [
+                    "Basic b3V0cm86eA=="
+                ],
+                "X-Teste": [
+                    "um",
+                    "dois"
+                ]
+            }
+        ],
+        "status": 404
+    },
+    "500": {
+        "headers": {
+            "Accept": "application/json",
+            "Authorization": "Basic b3V0cm86eA==",
+            "X-Teste": [
+                "um",
+                "dois"
+            ]
+        },
+        "recebido": {
+            "cabecalhos": [],
+            "corpo": "",
+            "metodo": "GET",
+            "texto": "Resposta do ECO",
+            "uri": "/api/erro?status=500"
+        },
+        "requisicao": [
+            "GET",
+            "erro?status=500",
+            {
+                "Accept": [
+                    "application/json"
+                ],
+                "Authorization": [
+                    "Basic b3V0cm86eA=="
+                ],
+                "X-Teste": [
+                    "um",
+                    "dois"
+                ]
+            }
+        ],
+        "status": 500
+    },
+    "GET com cabeçalho repetido e basic": {
+        "headers": {
+            "Accept": "application/json",
+            "Authorization": "Basic ZnVsYW5vQGVtYWlsLmNvbTpzZWdyZWRv",
+            "X-Teste": [
+                "um",
+                "dois"
+            ]
+        },
+        "recebido": {
+            "cabecalhos": [],
+            "corpo": "",
+            "metodo": "GET",
+            "texto": "Resposta do ECO",
+            "uri": "/api/usuario/1?filtro=a%20b"
+        },
+        "requisicao": [
+            "GET",
+            "usuario/1?filtro=a%20b",
+            {
+                "Accept": [
+                    "application/json"
+                ],
+                "Authorization": [
+                    "Basic ZnVsYW5vQGVtYWlsLmNvbTpzZWdyZWRv"
+                ],
+                "X-Teste": [
+                    "um",
+                    "dois"
+                ]
+            }
+        ],
+        "status": 200
+    },
+    "POST com corpo e placeholder": {
+        "headers": {
+            "Accept": "application/json",
+            "Authorization": "Basic b3V0cm86eA==",
+            "X-Teste": [
+                "um",
+                "dois"
+            ]
+        },
+        "recebido": {
+            "cabecalhos": {
+                "CONTENT-LENGTH": "27"
+            },
+            "corpo": "{\"id\": \"42\", \"nome\": \"Ana\"}",
+            "metodo": "POST",
+            "texto": "Resposta do ECO",
+            "uri": "/api/usuario/42"
+        },
+        "requisicao": [
+            "POST",
+            "usuario/42",
+            {
+                "Accept": [
+                    "application/json"
+                ],
+                "Authorization": [
+                    "Basic b3V0cm86eA=="
+                ],
+                "X-Teste": [
+                    "um",
+                    "dois"
+                ]
+            }
+        ],
+        "status": 200
+    },
+    "POST com form data": {
+        "headers": {
+            "Accept": "application/json",
+            "Authorization": "Basic b3V0cm86eA==",
+            "X-Teste": [
+                "um",
+                "dois"
+            ]
+        },
+        "recebido": {
+            "cabecalhos": {
+                "CONTENT-LENGTH": "25",
+                "CONTENT-TYPE": "application/x-www-form-urlencoded"
+            },
+            "corpo": "a=1&b%5B0%5D=x&b%5B1%5D=y",
+            "metodo": "POST",
+            "texto": "Resposta do ECO",
+            "uri": "/api/form"
+        },
+        "requisicao": [
+            "POST",
+            "form",
+            {
+                "Content-Type": [
+                    "application/x-www-form-urlencoded"
+                ]
+            }
+        ],
+        "status": 200
+    },
+    "PUT com valores": {
+        "headers": {
+            "Accept": "application/json",
+            "Authorization": "Basic b3V0cm86eA==",
+            "X-Teste": [
+                "um",
+                "dois"
+            ]
+        },
+        "recebido": {
+            "cabecalhos": {
+                "CONTENT-LENGTH": "31"
+            },
+            "corpo": "{\"nome\":\"Beto 42\",\"idade\":\"30\"}",
+            "metodo": "PUT",
+            "texto": "Resposta do ECO",
+            "uri": "/api/usuario/42"
+        },
+        "requisicao": [
+            "PUT",
+            "usuario/42",
+            {
+                "Accept": [
+                    "application/json"
+                ],
+                "Authorization": [
+                    "Basic b3V0cm86eA=="
+                ],
+                "X-Teste": [
+                    "um",
+                    "dois"
+                ]
+            }
+        ],
+        "status": 200
+    },
+    "URL absoluta": {
+        "headers": {
+            "Accept": "application/json",
+            "Authorization": "Basic b3V0cm86eA==",
+            "X-Teste": [
+                "um",
+                "dois"
+            ]
+        },
+        "recebido": {
+            "cabecalhos": [],
+            "corpo": "",
+            "metodo": "GET",
+            "texto": "Resposta do ECO",
+            "uri": "/fora-da-api"
+        },
+        "requisicao": [
+            "GET",
+            "http://servidor/fora-da-api",
+            {
+                "Accept": [
+                    "application/json"
+                ],
+                "Authorization": [
+                    "Basic b3V0cm86eA=="
+                ],
+                "Host": [
+                    "servidor"
+                ],
+                "X-Teste": [
+                    "um",
+                    "dois"
+                ]
+            }
+        ],
+        "status": 200
+    }
+}

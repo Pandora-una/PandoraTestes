@@ -1,0 +1,54 @@
+{
+    "deInativo livro": [
+        2,
+        false
+    ],
+    "estante": [
+        3,
+        "Estante"
+    ],
+    "livro": [
+        1,
+        "Ana"
+    ],
+    "semAutor livro": [
+        3,
+        null
+    ],
+    "tabelas": {
+        "autor": [
+            {
+                "ativo": "1",
+                "id": "1",
+                "nome": "Ana"
+            },
+            {
+                "ativo": "0",
+                "id": "2",
+                "nome": "Ana"
+            },
+            {
+                "ativo": "1",
+                "id": "3",
+                "nome": "Estante"
+            }
+        ],
+        "livro": [
+            {
+                "autor_id": "3",
+                "id": "1",
+                "titulo": "Perto do Coração Selvagem"
+            },
+            {
+                "autor_id": "2",
+                "id": "2",
+                "titulo": "Perto do Coração Selvagem"
+            },
+            {
+                "autor_id": "3",
+                "id": "3",
+                "titulo": "Perto do Coração Selvagem"
+            }
+        ]
+    }
+}

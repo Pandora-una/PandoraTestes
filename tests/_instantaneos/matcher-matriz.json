@@ -1,0 +1,2570 @@
+{
+    "\"\"": {
+        "\"\"": {
+            "at least": "passa",
+            "format": "falha",
+            "not contain": "falha"
+        },
+        "\"1\"": {
+            "at least": "falha",
+            "format": "falha",
+            "not contain": "passa"
+        },
+        "\"1.5\"": {
+            "at least": "falha",
+            "format": "falha",
+            "not contain": "passa"
+        },
+        "\"12\"": {
+            "at least": "falha",
+            "format": "falha",
+            "not contain": "passa"
+        },
+        "\"2026-01-02T10:00:00-03:00\"": {
+            "at least": "falha",
+            "format": "falha",
+            "not contain": "passa"
+        },
+        "\"Abc\"": {
+            "at least": "falha",
+            "format": "falha",
+            "not contain": "passa"
+        },
+        "\"abc\"": {
+            "at least": "falha",
+            "format": "falha",
+            "not contain": "passa"
+        },
+        "\"http://localhost:8000/x\"": {
+            "at least": "falha",
+            "format": "falha",
+            "not contain": "passa"
+        },
+        "\"nada local\"": {
+            "at least": "falha",
+            "format": "falha",
+            "not contain": "passa"
+        },
+        "-3": {
+            "at least": "falha",
+            "format": "falha",
+            "not contain": "passa"
+        },
+        "0": {
+            "at least": "falha",
+            "format": "falha",
+            "not contain": "passa"
+        },
+        "1": {
+            "at least": "falha",
+            "format": "falha",
+            "not contain": "passa"
+        },
+        "1.0": {
+            "at least": "falha",
+            "format": "falha",
+            "not contain": "passa"
+        },
+        "1.5": {
+            "at least": "falha",
+            "format": "falha",
+            "not contain": "passa"
+        },
+        "10000.0": {
+            "at least": "falha",
+            "format": "falha",
+            "not contain": "passa"
+        },
+        "[1]": {
+            "at least": "falha",
+            "format": "falha",
+            "not contain": "passa"
+        },
+        "[]": {
+            "at least": "falha",
+            "format": "falha",
+            "not contain": "passa"
+        },
+        "false": {
+            "at least": "falha",
+            "format": "falha",
+            "not contain": "passa"
+        },
+        "null": {
+            "at least": "falha",
+            "format": "falha",
+            "not contain": "passa"
+        },
+        "true": {
+            "at least": "falha",
+            "format": "falha",
+            "not contain": "passa"
+        },
+        "{\"a\":1}": {
+            "at least": "falha",
+            "format": "falha",
+            "not contain": "passa"
+        }
+    },
+    "\"1\"": {
+        "\"\"": {
+            "at least": "falha",
+            "format": "falha",
+            "not contain": "passa"
+        },
+        "\"1\"": {
+            "at least": "passa",
+            "format": "falha",
+            "not contain": "falha"
+        },
+        "\"1.5\"": {
+            "at least": "falha",
+            "format": "falha",
+            "not contain": "passa"
+        },
+        "\"12\"": {
+            "at least": "falha",
+            "format": "falha",
+            "not contain": "passa"
+        },
+        "\"2026-01-02T10:00:00-03:00\"": {
+            "at least": "falha",
+            "format": "falha",
+            "not contain": "passa"
+        },
+        "\"Abc\"": {
+            "at least": "falha",
+            "format": "falha",
+            "not contain": "passa"
+        },
+        "\"abc\"": {
+            "at least": "falha",
+            "format": "falha",
+            "not contain": "passa"
+        },
+        "\"http://localhost:8000/x\"": {
+            "at least": "falha",
+            "format": "falha",
+            "not contain": "passa"
+        },
+        "\"nada local\"": {
+            "at least": "falha",
+            "format": "falha",
+            "not contain": "passa"
+        },
+        "-3": {
+            "at least": "falha",
+            "format": "falha",
+            "not contain": "passa"
+        },
+        "0": {
+            "at least": "falha",
+            "format": "falha",
+            "not contain": "passa"
+        },
+        "1": {
+            "at least": "falha",
+            "format": "falha",
+            "not contain": "passa"
+        },
+        "1.0": {
+            "at least": "falha",
+            "format": "falha",
+            "not contain": "passa"
+        },
+        "1.5": {
+            "at least": "falha",
+            "format": "falha",
+            "not contain": "passa"
+        },
+        "10000.0": {
+            "at least": "falha",
+            "format": "falha",
+            "not contain": "passa"
+        },
+        "[1]": {
+            "at least": "falha",
+            "format": "falha",
+            "not contain": "passa"
+        },
+        "[]": {
+            "at least": "falha",
+            "format": "falha",
+            "not contain": "passa"
+        },
+        "false": {
+            "at least": "falha",
+            "format": "falha",
+            "not contain": "passa"
+        },
+        "null": {
+            "at least": "falha",
+            "format": "falha",
+            "not contain": "passa"
+        },
+        "true": {
+            "at least": "falha",
+            "format": "falha",
+            "not contain": "passa"
+        },
+        "{\"a\":1}": {
+            "at least": "falha",
+            "format": "falha",
+            "not contain": "passa"
+        }
+    },
+    "\"@*@\"": {
+        "\"\"": {
+            "at least": "passa",
+            "format": "falha",
+            "not contain": "falha"
+        },
+        "\"1\"": {
+            "at least": "passa",
+            "format": "falha",
+            "not contain": "falha"
+        },
+        "\"1.5\"": {
+            "at least": "passa",
+            "format": "falha",
+            "not contain": "falha"
+        },
+        "\"12\"": {
+            "at least": "passa",
+            "format": "falha",
+            "not contain": "falha"
+        },
+        "\"2026-01-02T10:00:00-03:00\"": {
+            "at least": "passa",
+            "format": "falha",
+            "not contain": "falha"
+        },
+        "\"Abc\"": {
+            "at least": "passa",
+            "format": "falha",
+            "not contain": "falha"
+        },
+        "\"abc\"": {
+            "at least": "passa",
+            "format": "falha",
+            "not contain": "falha"
+        },
+        "\"http://localhost:8000/x\"": {
+            "at least": "passa",
+            "format": "falha",
+            "not contain": "falha"
+        },
+        "\"nada local\"": {
+            "at least": "passa",
+            "format": "falha",
+            "not contain": "falha"
+        },
+        "-3": {
+            "at least": "passa",
+            "format": "falha",
+            "not contain": "falha"
+        },
+        "0": {
+            "at least": "passa",
+            "format": "falha",
+            "not contain": "falha"
+        },
+        "1": {
+            "at least": "passa",
+            "format": "falha",
+            "not contain": "falha"
+        },
+        "1.0": {
+            "at least": "passa",
+            "format": "falha",
+            "not contain": "falha"
+        },
+        "1.5": {
+            "at least": "passa",
+            "format": "falha",
+            "not contain": "falha"
+        },
+        "10000.0": {
+            "at least": "passa",
+            "format": "falha",
+            "not contain": "falha"
+        },
+        "[1]": {
+            "at least": "passa",
+            "format": "falha",
+            "not contain": "falha"
+        },
+        "[]": {
+            "at least": "passa",
+            "format": "falha",
+            "not contain": "falha"
+        },
+        "false": {
+            "at least": "passa",
+            "format": "falha",
+            "not contain": "falha"
+        },
+        "null": {
+            "at least": "passa",
+            "format": "falha",
+            "not contain": "falha"
+        },
+        "true": {
+            "at least": "passa",
+            "format": "falha",
+            "not contain": "falha"
+        },
+        "{\"a\":1}": {
+            "at least": "passa",
+            "format": "falha",
+            "not contain": "falha"
+        }
+    },
+    "\"@array@\"": {
+        "\"\"": {
+            "at least": "falha",
+            "format": "falha",
+            "not contain": "passa"
+        },
+        "\"1\"": {
+            "at least": "falha",
+            "format": "falha",
+            "not contain": "passa"
+        },
+        "\"1.5\"": {
+            "at least": "falha",
+            "format": "falha",
+            "not contain": "passa"
+        },
+        "\"12\"": {
+            "at least": "falha",
+            "format": "falha",
+            "not contain": "passa"
+        },
+        "\"2026-01-02T10:00:00-03:00\"": {
+            "at least": "falha",
+            "format": "falha",
+            "not contain": "passa"
+        },
+        "\"Abc\"": {
+            "at least": "falha",
+            "format": "falha",
+            "not contain": "passa"
+        },
+        "\"abc\"": {
+            "at least": "falha",
+            "format": "falha",
+            "not contain": "passa"
+        },
+        "\"http://localhost:8000/x\"": {
+            "at least": "falha",
+            "format": "falha",
+            "not contain": "passa"
+        },
+        "\"nada local\"": {
+            "at least": "falha",
+            "format": "falha",
+            "not contain": "passa"
+        },
+        "-3": {
+            "at least": "falha",
+            "format": "falha",
+            "not contain": "passa"
+        },
+        "0": {
+            "at least": "falha",
+            "format": "falha",
+            "not contain": "passa"
+        },
+        "1": {
+            "at least": "falha",
+            "format": "falha",
+            "not contain": "passa"
+        },
+        "1.0": {
+            "at least": "falha",
+            "format": "falha",
+            "not contain": "passa"
+        },
+        "1.5": {
+            "at least": "falha",
+            "format": "falha",
+            "not contain": "passa"
+        },
+        "10000.0": {
+            "at least": "falha",
+            "format": "falha",
+            "not contain": "passa"
+        },
+        "[1]": {
+            "at least": "passa",
+            "format": "falha",
+            "not contain": "falha"
+        },
+        "[]": {
+            "at least": "passa",
+            "format": "falha",
+            "not contain": "falha"
+        },
+        "false": {
+            "at least": "falha",
+            "format": "falha",
+            "not contain": "passa"
+        },
+        "null": {
+            "at least": "falha",
+            "format": "falha",
+            "not contain": "passa"
+        },
+        "true": {
+            "at least": "falha",
+            "format": "falha",
+            "not contain": "passa"
+        },
+        "{\"a\":1}": {
+            "at least": "passa",
+            "format": "falha",
+            "not contain": "falha"
+        }
+    },
+    "\"@array@.count(1)\"": {
+        "\"\"": {
+            "at least": "falha",
+            "format": "falha",
+            "not contain": "passa"
+        },
+        "\"1\"": {
+            "at least": "falha",
+            "format": "falha",
+            "not contain": "passa"
+        },
+        "\"1.5\"": {
+            "at least": "falha",
+            "format": "falha",
+            "not contain": "passa"
+        },
+        "\"12\"": {
+            "at least": "falha",
+            "format": "falha",
+            "not contain": "passa"
+        },
+        "\"2026-01-02T10:00:00-03:00\"": {
+            "at least": "falha",
+            "format": "falha",
+            "not contain": "passa"
+        },
+        "\"Abc\"": {
+            "at least": "falha",
+            "format": "falha",
+            "not contain": "passa"
+        },
+        "\"abc\"": {
+            "at least": "falha",
+            "format": "falha",
+            "not contain": "passa"
+        },
+        "\"http://localhost:8000/x\"": {
+            "at least": "falha",
+            "format": "falha",
+            "not contain": "passa"
+        },
+        "\"nada local\"": {
+            "at least": "falha",
+            "format": "falha",
+            "not contain": "passa"
+        },
+        "-3": {
+            "at least": "falha",
+            "format": "falha",
+            "not contain": "passa"
+        },
+        "0": {
+            "at least": "falha",
+            "format": "falha",
+            "not contain": "passa"
+        },
+        "1": {
+            "at least": "falha",
+            "format": "falha",
+            "not contain": "passa"
+        },
+        "1.0": {
+            "at least": "falha",
+            "format": "falha",
+            "not contain": "passa"
+        },
+        "1.5": {
+            "at least": "falha",
+            "format": "falha",
+            "not contain": "passa"
+        },
+        "10000.0": {
+            "at least": "falha",
+            "format": "falha",
+            "not contain": "passa"
+        },
+        "[1]": {
+            "at least": "passa",
+            "format": "falha",
+            "not contain": "falha"
+        },
+        "[]": {
+            "at least": "falha",
+            "format": "falha",
+            "not contain": "passa"
+        },
+        "false": {
+            "at least": "falha",
+            "format": "falha",
+            "not contain": "passa"
+        },
+        "null": {
+            "at least": "falha",
+            "format": "falha",
+            "not contain": "passa"
+        },
+        "true": {
+            "at least": "falha",
+            "format": "falha",
+            "not contain": "passa"
+        },
+        "{\"a\":1}": {
+            "at least": "passa",
+            "format": "falha",
+            "not contain": "falha"
+        }
+    },
+    "\"@boolean@\"": {
+        "\"\"": {
+            "at least": "falha",
+            "format": "falha",
+            "not contain": "passa"
+        },
+        "\"1\"": {
+            "at least": "falha",
+            "format": "falha",
+            "not contain": "passa"
+        },
+        "\"1.5\"": {
+            "at least": "falha",
+            "format": "falha",
+            "not contain": "passa"
+        },
+        "\"12\"": {
+            "at least": "falha",
+            "format": "falha",
+            "not contain": "passa"
+        },
+        "\"2026-01-02T10:00:00-03:00\"": {
+            "at least": "falha",
+            "format": "falha",
+            "not contain": "passa"
+        },
+        "\"Abc\"": {
+            "at least": "falha",
+            "format": "falha",
+            "not contain": "passa"
+        },
+        "\"abc\"": {
+            "at least": "falha",
+            "format": "falha",
+            "not contain": "passa"
+        },
+        "\"http://localhost:8000/x\"": {
+            "at least": "falha",
+            "format": "falha",
+            "not contain": "passa"
+        },
+        "\"nada local\"": {
+            "at least": "falha",
+            "format": "falha",
+            "not contain": "passa"
+        },
+        "-3": {
+            "at least": "falha",
+            "format": "falha",
+            "not contain": "passa"
+        },
+        "0": {
+            "at least": "falha",
+            "format": "falha",
+            "not contain": "passa"
+        },
+        "1": {
+            "at least": "falha",
+            "format": "falha",
+            "not contain": "passa"
+        },
+        "1.0": {
+            "at least": "falha",
+            "format": "falha",
+            "not contain": "passa"
+        },
+        "1.5": {
+            "at least": "falha",
+            "format": "falha",
+            "not contain": "passa"
+        },
+        "10000.0": {
+            "at least": "falha",
+            "format": "falha",
+            "not contain": "passa"
+        },
+        "[1]": {
+            "at least": "falha",
+            "format": "falha",
+            "not contain": "passa"
+        },
+        "[]": {
+            "at least": "falha",
+            "format": "falha",
+            "not contain": "passa"
+        },
+        "false": {
+            "at least": "passa",
+            "format": "falha",
+            "not contain": "falha"
+        },
+        "null": {
+            "at least": "falha",
+            "format": "falha",
+            "not contain": "passa"
+        },
+        "true": {
+            "at least": "passa",
+            "format": "falha",
+            "not contain": "falha"
+        },
+        "{\"a\":1}": {
+            "at least": "falha",
+            "format": "falha",
+            "not contain": "passa"
+        }
+    },
+    "\"@double@\"": {
+        "\"\"": {
+            "at least": "falha",
+            "format": "falha",
+            "not contain": "passa"
+        },
+        "\"1\"": {
+            "at least": "falha",
+            "format": "falha",
+            "not contain": "passa"
+        },
+        "\"1.5\"": {
+            "at least": "falha",
+            "format": "falha",
+            "not contain": "passa"
+        },
+        "\"12\"": {
+            "at least": "falha",
+            "format": "falha",
+            "not contain": "passa"
+        },
+        "\"2026-01-02T10:00:00-03:00\"": {
+            "at least": "falha",
+            "format": "falha",
+            "not contain": "passa"
+        },
+        "\"Abc\"": {
+            "at least": "falha",
+            "format": "falha",
+            "not contain": "passa"
+        },
+        "\"abc\"": {
+            "at least": "falha",
+            "format": "falha",
+            "not contain": "passa"
+        },
+        "\"http://localhost:8000/x\"": {
+            "at least": "falha",
+            "format": "falha",
+            "not contain": "passa"
+        },
+        "\"nada local\"": {
+            "at least": "falha",
+            "format": "falha",
+            "not contain": "passa"
+        },
+        "-3": {
+            "at least": "falha",
+            "format": "falha",
+            "not contain": "passa"
+        },
+        "0": {
+            "at least": "falha",
+            "format": "falha",
+            "not contain": "passa"
+        },
+        "1": {
+            "at least": "falha",
+            "format": "falha",
+            "not contain": "passa"
+        },
+        "1.0": {
+            "at least": "passa",
+            "format": "falha",
+            "not contain": "falha"
+        },
+        "1.5": {
+            "at least": "passa",
+            "format": "falha",
+            "not contain": "falha"
+        },
+        "10000.0": {
+            "at least": "passa",
+            "format": "falha",
+            "not contain": "falha"
+        },
+        "[1]": {
+            "at least": "falha",
+            "format": "falha",
+            "not contain": "passa"
+        },
+        "[]": {
+            "at least": "falha",
+            "format": "falha",
+            "not contain": "passa"
+        },
+        "false": {
+            "at least": "falha",
+            "format": "falha",
+            "not contain": "passa"
+        },
+        "null": {
+            "at least": "falha",
+            "format": "falha",
+            "not contain": "passa"
+        },
+        "true": {
+            "at least": "falha",
+            "format": "falha",
+            "not contain": "passa"
+        },
+        "{\"a\":1}": {
+            "at least": "falha",
+            "format": "falha",
+            "not contain": "passa"
+        }
+    },
+    "\"@double@.lowerThan(2).greaterThan(1)\"": {
+        "\"\"": {
+            "at least": "falha",
+            "format": "falha",
+            "not contain": "passa"
+        },
+        "\"1\"": {
+            "at least": "falha",
+            "format": "falha",
+            "not contain": "passa"
+        },
+        "\"1.5\"": {
+            "at least": "falha",
+            "format": "falha",
+            "not contain": "passa"
+        },
+        "\"12\"": {
+            "at least": "falha",
+            "format": "falha",
+            "not contain": "passa"
+        },
+        "\"2026-01-02T10:00:00-03:00\"": {
+            "at least": "falha",
+            "format": "falha",
+            "not contain": "passa"
+        },
+        "\"Abc\"": {
+            "at least": "falha",
+            "format": "falha",
+            "not contain": "passa"
+        },
+        "\"abc\"": {
+            "at least": "falha",
+            "format": "falha",
+            "not contain": "passa"
+        },
+        "\"http://localhost:8000/x\"": {
+            "at least": "falha",
+            "format": "falha",
+            "not contain": "passa"
+        },
+        "\"nada local\"": {
+            "at least": "falha",
+            "format": "falha",
+            "not contain": "passa"
+        },
+        "-3": {
+            "at least": "falha",
+            "format": "falha",
+            "not contain": "passa"
+        },
+        "0": {
+            "at least": "falha",
+            "format": "falha",
+            "not contain": "passa"
+        },
+        "1": {
+            "at least": "falha",
+            "format": "falha",
+            "not contain": "passa"
+        },
+        "1.0": {
+            "at least": "falha",
+            "format": "falha",
+            "not contain": "passa"
+        },
+        "1.5": {
+            "at least": "passa",
+            "format": "falha",
+            "not contain": "falha"
+        },
+        "10000.0": {
+            "at least": "falha",
+            "format": "falha",
+            "not contain": "passa"
+        },
+        "[1]": {
+            "at least": "falha",
+            "format": "falha",
+            "not contain": "passa"
+        },
+        "[]": {
+            "at least": "falha",
+            "format": "falha",
+            "not contain": "passa"
+        },
+        "false": {
+            "at least": "falha",
+            "format": "falha",
+            "not contain": "passa"
+        },
+        "null": {
+            "at least": "falha",
+            "format": "falha",
+            "not contain": "passa"
+        },
+        "true": {
+            "at least": "falha",
+            "format": "falha",
+            "not contain": "passa"
+        },
+        "{\"a\":1}": {
+            "at least": "falha",
+            "format": "falha",
+            "not contain": "passa"
+        }
+    },
+    "\"@integer@\"": {
+        "\"\"": {
+            "at least": "falha",
+            "format": "falha",
+            "not contain": "passa"
+        },
+        "\"1\"": {
+            "at least": "falha",
+            "format": "falha",
+            "not contain": "passa"
+        },
+        "\"1.5\"": {
+            "at least": "falha",
+            "format": "falha",
+            "not contain": "passa"
+        },
+        "\"12\"": {
+            "at least": "falha",
+            "format": "falha",
+            "not contain": "passa"
+        },
+        "\"2026-01-02T10:00:00-03:00\"": {
+            "at least": "falha",
+            "format": "falha",
+            "not contain": "passa"
+        },
+        "\"Abc\"": {
+            "at least": "falha",
+            "format": "falha",
+            "not contain": "passa"
+        },
+        "\"abc\"": {
+            "at least": "falha",
+            "format": "falha",
+            "not contain": "passa"
+        },
+        "\"http://localhost:8000/x\"": {
+            "at least": "falha",
+            "format": "falha",
+            "not contain": "passa"
+        },
+        "\"nada local\"": {
+            "at least": "falha",
+            "format": "falha",
+            "not contain": "passa"
+        },
+        "-3": {
+            "at least": "passa",
+            "format": "falha",
+            "not contain": "falha"
+        },
+        "0": {
+            "at least": "passa",
+            "format": "falha",
+            "not contain": "falha"
+        },
+        "1": {
+            "at least": "passa",
+            "format": "falha",
+            "not contain": "falha"
+        },
+        "1.0": {
+            "at least": "falha",
+            "format": "falha",
+            "not contain": "passa"
+        },
+        "1.5": {
+            "at least": "falha",
+            "format": "falha",
+            "not contain": "passa"
+        },
+        "10000.0": {
+            "at least": "falha",
+            "format": "falha",
+            "not contain": "passa"
+        },
+        "[1]": {
+            "at least": "falha",
+            "format": "falha",
+            "not contain": "passa"
+        },
+        "[]": {
+            "at least": "falha",
+            "format": "falha",
+            "not contain": "passa"
+        },
+        "false": {
+            "at least": "falha",
+            "format": "falha",
+            "not contain": "passa"
+        },
+        "null": {
+            "at least": "falha",
+            "format": "falha",
+            "not contain": "passa"
+        },
+        "true": {
+            "at least": "falha",
+            "format": "falha",
+            "not contain": "passa"
+        },
+        "{\"a\":1}": {
+            "at least": "falha",
+            "format": "falha",
+            "not contain": "passa"
+        }
+    },
+    "\"@integer@.greaterThan(0)\"": {
+        "\"\"": {
+            "at least": "falha",
+            "format": "falha",
+            "not contain": "passa"
+        },
+        "\"1\"": {
+            "at least": "falha",
+            "format": "falha",
+            "not contain": "passa"
+        },
+        "\"1.5\"": {
+            "at least": "falha",
+            "format": "falha",
+            "not contain": "passa"
+        },
+        "\"12\"": {
+            "at least": "falha",
+            "format": "falha",
+            "not contain": "passa"
+        },
+        "\"2026-01-02T10:00:00-03:00\"": {
+            "at least": "falha",
+            "format": "falha",
+            "not contain": "passa"
+        },
+        "\"Abc\"": {
+            "at least": "falha",
+            "format": "falha",
+            "not contain": "passa"
+        },
+        "\"abc\"": {
+            "at least": "falha",
+            "format": "falha",
+            "not contain": "passa"
+        },
+        "\"http://localhost:8000/x\"": {
+            "at least": "falha",
+            "format": "falha",
+            "not contain": "passa"
+        },
+        "\"nada local\"": {
+            "at least": "falha",
+            "format": "falha",
+            "not contain": "passa"
+        },
+        "-3": {
+            "at least": "falha",
+            "format": "falha",
+            "not contain": "passa"
+        },
+        "0": {
+            "at least": "falha",
+            "format": "falha",
+            "not contain": "passa"
+        },
+        "1": {
+            "at least": "passa",
+            "format": "falha",
+            "not contain": "falha"
+        },
+        "1.0": {
+            "at least": "falha",
+            "format": "falha",
+            "not contain": "passa"
+        },
+        "1.5": {
+            "at least": "falha",
+            "format": "falha",
+            "not contain": "passa"
+        },
+        "10000.0": {
+            "at least": "falha",
+            "format": "falha",
+            "not contain": "passa"
+        },
+        "[1]": {
+            "at least": "falha",
+            "format": "falha",
+            "not contain": "passa"
+        },
+        "[]": {
+            "at least": "falha",
+            "format": "falha",
+            "not contain": "passa"
+        },
+        "false": {
+            "at least": "falha",
+            "format": "falha",
+            "not contain": "passa"
+        },
+        "null": {
+            "at least": "falha",
+            "format": "falha",
+            "not contain": "passa"
+        },
+        "true": {
+            "at least": "falha",
+            "format": "falha",
+            "not contain": "passa"
+        },
+        "{\"a\":1}": {
+            "at least": "falha",
+            "format": "falha",
+            "not contain": "passa"
+        }
+    },
+    "\"@integer@.lowerThan(5)\"": {
+        "\"\"": {
+            "at least": "falha",
+            "format": "falha",
+            "not contain": "passa"
+        },
+        "\"1\"": {
+            "at least": "falha",
+            "format": "falha",
+            "not contain": "passa"
+        },
+        "\"1.5\"": {
+            "at least": "falha",
+            "format": "falha",
+            "not contain": "passa"
+        },
+        "\"12\"": {
+            "at least": "falha",
+            "format": "falha",
+            "not contain": "passa"
+        },
+        "\"2026-01-02T10:00:00-03:00\"": {
+            "at least": "falha",
+            "format": "falha",
+            "not contain": "passa"
+        },
+        "\"Abc\"": {
+            "at least": "falha",
+            "format": "falha",
+            "not contain": "passa"
+        },
+        "\"abc\"": {
+            "at least": "falha",
+            "format": "falha",
+            "not contain": "passa"
+        },
+        "\"http://localhost:8000/x\"": {
+            "at least": "falha",
+            "format": "falha",
+            "not contain": "passa"
+        },
+        "\"nada local\"": {
+            "at least": "falha",
+            "format": "falha",
+            "not contain": "passa"
+        },
+        "-3": {
+            "at least": "passa",
+            "format": "falha",
+            "not contain": "falha"
+        },
+        "0": {
+            "at least": "passa",
+            "format": "falha",
+            "not contain": "falha"
+        },
+        "1": {
+            "at least": "passa",
+            "format": "falha",
+            "not contain": "falha"
+        },
+        "1.0": {
+            "at least": "falha",
+            "format": "falha",
+            "not contain": "passa"
+        },
+        "1.5": {
+            "at least": "falha",
+            "format": "falha",
+            "not contain": "passa"
+        },
+        "10000.0": {
+            "at least": "falha",
+            "format": "falha",
+            "not contain": "passa"
+        },
+        "[1]": {
+            "at least": "falha",
+            "format": "falha",
+            "not contain": "passa"
+        },
+        "[]": {
+            "at least": "falha",
+            "format": "falha",
+            "not contain": "passa"
+        },
+        "false": {
+            "at least": "falha",
+            "format": "falha",
+            "not contain": "passa"
+        },
+        "null": {
+            "at least": "falha",
+            "format": "falha",
+            "not contain": "passa"
+        },
+        "true": {
+            "at least": "falha",
+            "format": "falha",
+            "not contain": "passa"
+        },
+        "{\"a\":1}": {
+            "at least": "falha",
+            "format": "falha",
+            "not contain": "passa"
+        }
+    },
+    "\"@null@\"": {
+        "\"\"": {
+            "at least": "falha",
+            "format": "falha",
+            "not contain": "passa"
+        },
+        "\"1\"": {
+            "at least": "falha",
+            "format": "falha",
+            "not contain": "passa"
+        },
+        "\"1.5\"": {
+            "at least": "falha",
+            "format": "falha",
+            "not contain": "passa"
+        },
+        "\"12\"": {
+            "at least": "falha",
+            "format": "falha",
+            "not contain": "passa"
+        },
+        "\"2026-01-02T10:00:00-03:00\"": {
+            "at least": "falha",
+            "format": "falha",
+            "not contain": "passa"
+        },
+        "\"Abc\"": {
+            "at least": "falha",
+            "format": "falha",
+            "not contain": "passa"
+        },
+        "\"abc\"": {
+            "at least": "falha",
+            "format": "falha",
+            "not contain": "passa"
+        },
+        "\"http://localhost:8000/x\"": {
+            "at least": "falha",
+            "format": "falha",
+            "not contain": "passa"
+        },
+        "\"nada local\"": {
+            "at least": "falha",
+            "format": "falha",
+            "not contain": "passa"
+        },
+        "-3": {
+            "at least": "falha",
+            "format": "falha",
+            "not contain": "passa"
+        },
+        "0": {
+            "at least": "falha",
+            "format": "falha",
+            "not contain": "passa"
+        },
+        "1": {
+            "at least": "falha",
+            "format": "falha",
+            "not contain": "passa"
+        },
+        "1.0": {
+            "at least": "falha",
+            "format": "falha",
+            "not contain": "passa"
+        },
+        "1.5": {
+            "at least": "falha",
+            "format": "falha",
+            "not contain": "passa"
+        },
+        "10000.0": {
+            "at least": "falha",
+            "format": "falha",
+            "not contain": "passa"
+        },
+        "[1]": {
+            "at least": "falha",
+            "format": "falha",
+            "not contain": "passa"
+        },
+        "[]": {
+            "at least": "falha",
+            "format": "falha",
+            "not contain": "passa"
+        },
+        "false": {
+            "at least": "falha",
+            "format": "falha",
+            "not contain": "passa"
+        },
+        "null": {
+            "at least": "passa",
+            "format": "falha",
+            "not contain": "falha"
+        },
+        "true": {
+            "at least": "falha",
+            "format": "falha",
+            "not contain": "passa"
+        },
+        "{\"a\":1}": {
+            "at least": "falha",
+            "format": "falha",
+            "not contain": "passa"
+        }
+    },
+    "\"@number@\"": {
+        "\"\"": {
+            "at least": "falha",
+            "format": "falha",
+            "not contain": "passa"
+        },
+        "\"1\"": {
+            "at least": "passa",
+            "format": "falha",
+            "not contain": "falha"
+        },
+        "\"1.5\"": {
+            "at least": "passa",
+            "format": "falha",
+            "not contain": "falha"
+        },
+        "\"12\"": {
+            "at least": "passa",
+            "format": "falha",
+            "not contain": "falha"
+        },
+        "\"2026-01-02T10:00:00-03:00\"": {
+            "at least": "falha",
+            "format": "falha",
+            "not contain": "passa"
+        },
+        "\"Abc\"": {
+            "at least": "falha",
+            "format": "falha",
+            "not contain": "passa"
+        },
+        "\"abc\"": {
+            "at least": "falha",
+            "format": "falha",
+            "not contain": "passa"
+        },
+        "\"http://localhost:8000/x\"": {
+            "at least": "falha",
+            "format": "falha",
+            "not contain": "passa"
+        },
+        "\"nada local\"": {
+            "at least": "falha",
+            "format": "falha",
+            "not contain": "passa"
+        },
+        "-3": {
+            "at least": "passa",
+            "format": "falha",
+            "not contain": "falha"
+        },
+        "0": {
+            "at least": "passa",
+            "format": "falha",
+            "not contain": "falha"
+        },
+        "1": {
+            "at least": "passa",
+            "format": "falha",
+            "not contain": "falha"
+        },
+        "1.0": {
+            "at least": "passa",
+            "format": "falha",
+            "not contain": "falha"
+        },
+        "1.5": {
+            "at least": "passa",
+            "format": "falha",
+            "not contain": "falha"
+        },
+        "10000.0": {
+            "at least": "passa",
+            "format": "falha",
+            "not contain": "falha"
+        },
+        "[1]": {
+            "at least": "falha",
+            "format": "falha",
+            "not contain": "passa"
+        },
+        "[]": {
+            "at least": "falha",
+            "format": "falha",
+            "not contain": "passa"
+        },
+        "false": {
+            "at least": "falha",
+            "format": "falha",
+            "not contain": "passa"
+        },
+        "null": {
+            "at least": "falha",
+            "format": "falha",
+            "not contain": "passa"
+        },
+        "true": {
+            "at least": "falha",
+            "format": "falha",
+            "not contain": "passa"
+        },
+        "{\"a\":1}": {
+            "at least": "falha",
+            "format": "falha",
+            "not contain": "passa"
+        }
+    },
+    "\"@string@\"": {
+        "\"\"": {
+            "at least": "passa",
+            "format": "falha",
+            "not contain": "falha"
+        },
+        "\"1\"": {
+            "at least": "passa",
+            "format": "falha",
+            "not contain": "falha"
+        },
+        "\"1.5\"": {
+            "at least": "passa",
+            "format": "falha",
+            "not contain": "falha"
+        },
+        "\"12\"": {
+            "at least": "passa",
+            "format": "falha",
+            "not contain": "falha"
+        },
+        "\"2026-01-02T10:00:00-03:00\"": {
+            "at least": "passa",
+            "format": "falha",
+            "not contain": "falha"
+        },
+        "\"Abc\"": {
+            "at least": "passa",
+            "format": "falha",
+            "not contain": "falha"
+        },
+        "\"abc\"": {
+            "at least": "passa",
+            "format": "falha",
+            "not contain": "falha"
+        },
+        "\"http://localhost:8000/x\"": {
+            "at least": "passa",
+            "format": "falha",
+            "not contain": "falha"
+        },
+        "\"nada local\"": {
+            "at least": "passa",
+            "format": "falha",
+            "not contain": "falha"
+        },
+        "-3": {
+            "at least": "falha",
+            "format": "falha",
+            "not contain": "passa"
+        },
+        "0": {
+            "at least": "falha",
+            "format": "falha",
+            "not contain": "passa"
+        },
+        "1": {
+            "at least": "falha",
+            "format": "falha",
+            "not contain": "passa"
+        },
+        "1.0": {
+            "at least": "falha",
+            "format": "falha",
+            "not contain": "passa"
+        },
+        "1.5": {
+            "at least": "falha",
+            "format": "falha",
+            "not contain": "passa"
+        },
+        "10000.0": {
+            "at least": "falha",
+            "format": "falha",
+            "not contain": "passa"
+        },
+        "[1]": {
+            "at least": "falha",
+            "format": "falha",
+            "not contain": "passa"
+        },
+        "[]": {
+            "at least": "falha",
+            "format": "falha",
+            "not contain": "passa"
+        },
+        "false": {
+            "at least": "falha",
+            "format": "falha",
+            "not contain": "passa"
+        },
+        "null": {
+            "at least": "falha",
+            "format": "falha",
+            "not contain": "passa"
+        },
+        "true": {
+            "at least": "falha",
+            "format": "falha",
+            "not contain": "passa"
+        },
+        "{\"a\":1}": {
+            "at least": "falha",
+            "format": "falha",
+            "not contain": "passa"
+        }
+    },
+    "\"@string@.contains('loc')\"": {
+        "\"\"": {
+            "at least": "falha",
+            "format": "falha",
+            "not contain": "passa"
+        },
+        "\"1\"": {
+            "at least": "falha",
+            "format": "falha",
+            "not contain": "passa"
+        },
+        "\"1.5\"": {
+            "at least": "falha",
+            "format": "falha",
+            "not contain": "passa"
+        },
+        "\"12\"": {
+            "at least": "falha",
+            "format": "falha",
+            "not contain": "passa"
+        },
+        "\"2026-01-02T10:00:00-03:00\"": {
+            "at least": "falha",
+            "format": "falha",
+            "not contain": "passa"
+        },
+        "\"Abc\"": {
+            "at least": "falha",
+            "format": "falha",
+            "not contain": "passa"
+        },
+        "\"abc\"": {
+            "at least": "falha",
+            "format": "falha",
+            "not contain": "passa"
+        },
+        "\"http://localhost:8000/x\"": {
+            "at least": "passa",
+            "format": "falha",
+            "not contain": "falha"
+        },
+        "\"nada local\"": {
+            "at least": "passa",
+            "format": "falha",
+            "not contain": "falha"
+        },
+        "-3": {
+            "at least": "falha",
+            "format": "falha",
+            "not contain": "passa"
+        },
+        "0": {
+            "at least": "falha",
+            "format": "falha",
+            "not contain": "passa"
+        },
+        "1": {
+            "at least": "falha",
+            "format": "falha",
+            "not contain": "passa"
+        },
+        "1.0": {
+            "at least": "falha",
+            "format": "falha",
+            "not contain": "passa"
+        },
+        "1.5": {
+            "at least": "falha",
+            "format": "falha",
+            "not contain": "passa"
+        },
+        "10000.0": {
+            "at least": "falha",
+            "format": "falha",
+            "not contain": "passa"
+        },
+        "[1]": {
+            "at least": "falha",
+            "format": "falha",
+            "not contain": "passa"
+        },
+        "[]": {
+            "at least": "falha",
+            "format": "falha",
+            "not contain": "passa"
+        },
+        "false": {
+            "at least": "falha",
+            "format": "falha",
+            "not contain": "passa"
+        },
+        "null": {
+            "at least": "falha",
+            "format": "falha",
+            "not contain": "passa"
+        },
+        "true": {
+            "at least": "falha",
+            "format": "falha",
+            "not contain": "passa"
+        },
+        "{\"a\":1}": {
+            "at least": "falha",
+            "format": "falha",
+            "not contain": "passa"
+        }
+    },
+    "\"@string@.matchRegex('/^\\\\d+$/')\"": {
+        "\"\"": {
+            "at least": "falha",
+            "format": "falha",
+            "not contain": "passa"
+        },
+        "\"1\"": {
+            "at least": "passa",
+            "format": "falha",
+            "not contain": "falha"
+        },
+        "\"1.5\"": {
+            "at least": "falha",
+            "format": "falha",
+            "not contain": "passa"
+        },
+        "\"12\"": {
+            "at least": "passa",
+            "format": "falha",
+            "not contain": "falha"
+        },
+        "\"2026-01-02T10:00:00-03:00\"": {
+            "at least": "falha",
+            "format": "falha",
+            "not contain": "passa"
+        },
+        "\"Abc\"": {
+            "at least": "falha",
+            "format": "falha",
+            "not contain": "passa"
+        },
+        "\"abc\"": {
+            "at least": "falha",
+            "format": "falha",
+            "not contain": "passa"
+        },
+        "\"http://localhost:8000/x\"": {
+            "at least": "falha",
+            "format": "falha",
+            "not contain": "passa"
+        },
+        "\"nada local\"": {
+            "at least": "falha",
+            "format": "falha",
+            "not contain": "passa"
+        },
+        "-3": {
+            "at least": "falha",
+            "format": "falha",
+            "not contain": "passa"
+        },
+        "0": {
+            "at least": "falha",
+            "format": "falha",
+            "not contain": "passa"
+        },
+        "1": {
+            "at least": "falha",
+            "format": "falha",
+            "not contain": "passa"
+        },
+        "1.0": {
+            "at least": "falha",
+            "format": "falha",
+            "not contain": "passa"
+        },
+        "1.5": {
+            "at least": "falha",
+            "format": "falha",
+            "not contain": "passa"
+        },
+        "10000.0": {
+            "at least": "falha",
+            "format": "falha",
+            "not contain": "passa"
+        },
+        "[1]": {
+            "at least": "falha",
+            "format": "falha",
+            "not contain": "passa"
+        },
+        "[]": {
+            "at least": "falha",
+            "format": "falha",
+            "not contain": "passa"
+        },
+        "false": {
+            "at least": "falha",
+            "format": "falha",
+            "not contain": "passa"
+        },
+        "null": {
+            "at least": "falha",
+            "format": "falha",
+            "not contain": "passa"
+        },
+        "true": {
+            "at least": "falha",
+            "format": "falha",
+            "not contain": "passa"
+        },
+        "{\"a\":1}": {
+            "at least": "falha",
+            "format": "falha",
+            "not contain": "passa"
+        }
+    },
+    "\"@string@.startsWith('')\"": {
+        "\"\"": {
+            "at least": "passa",
+            "format": "falha",
+            "not contain": "falha"
+        },
+        "\"1\"": {
+            "at least": "passa",
+            "format": "falha",
+            "not contain": "falha"
+        },
+        "\"1.5\"": {
+            "at least": "passa",
+            "format": "falha",
+            "not contain": "falha"
+        },
+        "\"12\"": {
+            "at least": "passa",
+            "format": "falha",
+            "not contain": "falha"
+        },
+        "\"2026-01-02T10:00:00-03:00\"": {
+            "at least": "passa",
+            "format": "falha",
+            "not contain": "falha"
+        },
+        "\"Abc\"": {
+            "at least": "passa",
+            "format": "falha",
+            "not contain": "falha"
+        },
+        "\"abc\"": {
+            "at least": "passa",
+            "format": "falha",
+            "not contain": "falha"
+        },
+        "\"http://localhost:8000/x\"": {
+            "at least": "passa",
+            "format": "falha",
+            "not contain": "falha"
+        },
+        "\"nada local\"": {
+            "at least": "passa",
+            "format": "falha",
+            "not contain": "falha"
+        },
+        "-3": {
+            "at least": "falha",
+            "format": "falha",
+            "not contain": "passa"
+        },
+        "0": {
+            "at least": "falha",
+            "format": "falha",
+            "not contain": "passa"
+        },
+        "1": {
+            "at least": "falha",
+            "format": "falha",
+            "not contain": "passa"
+        },
+        "1.0": {
+            "at least": "falha",
+            "format": "falha",
+            "not contain": "passa"
+        },
+        "1.5": {
+            "at least": "falha",
+            "format": "falha",
+            "not contain": "passa"
+        },
+        "10000.0": {
+            "at least": "falha",
+            "format": "falha",
+            "not contain": "passa"
+        },
+        "[1]": {
+            "at least": "falha",
+            "format": "falha",
+            "not contain": "passa"
+        },
+        "[]": {
+            "at least": "falha",
+            "format": "falha",
+            "not contain": "passa"
+        },
+        "false": {
+            "at least": "falha",
+            "format": "falha",
+            "not contain": "passa"
+        },
+        "null": {
+            "at least": "falha",
+            "format": "falha",
+            "not contain": "passa"
+        },
+        "true": {
+            "at least": "falha",
+            "format": "falha",
+            "not contain": "passa"
+        },
+        "{\"a\":1}": {
+            "at least": "falha",
+            "format": "falha",
+            "not contain": "passa"
+        }
+    },
+    "\"@string@.startsWith('20')\"": {
+        "\"\"": {
+            "at least": "falha",
+            "format": "falha",
+            "not contain": "passa"
+        },
+        "\"1\"": {
+            "at least": "falha",
+            "format": "falha",
+            "not contain": "passa"
+        },
+        "\"1.5\"": {
+            "at least": "falha",
+            "format": "falha",
+            "not contain": "passa"
+        },
+        "\"12\"": {
+            "at least": "falha",
+            "format": "falha",
+            "not contain": "passa"
+        },
+        "\"2026-01-02T10:00:00-03:00\"": {
+            "at least": "passa",
+            "format": "falha",
+            "not contain": "falha"
+        },
+        "\"Abc\"": {
+            "at least": "falha",
+            "format": "falha",
+            "not contain": "passa"
+        },
+        "\"abc\"": {
+            "at least": "falha",
+            "format": "falha",
+            "not contain": "passa"
+        },
+        "\"http://localhost:8000/x\"": {
+            "at least": "falha",
+            "format": "falha",
+            "not contain": "passa"
+        },
+        "\"nada local\"": {
+            "at least": "falha",
+            "format": "falha",
+            "not contain": "passa"
+        },
+        "-3": {
+            "at least": "falha",
+            "format": "falha",
+            "not contain": "passa"
+        },
+        "0": {
+            "at least": "falha",
+            "format": "falha",
+            "not contain": "passa"
+        },
+        "1": {
+            "at least": "falha",
+            "format": "falha",
+            "not contain": "passa"
+        },
+        "1.0": {
+            "at least": "falha",
+            "format": "falha",
+            "not contain": "passa"
+        },
+        "1.5": {
+            "at least": "falha",
+            "format": "falha",
+            "not contain": "passa"
+        },
+        "10000.0": {
+            "at least": "falha",
+            "format": "falha",
+            "not contain": "passa"
+        },
+        "[1]": {
+            "at least": "falha",
+            "format": "falha",
+            "not contain": "passa"
+        },
+        "[]": {
+            "at least": "falha",
+            "format": "falha",
+            "not contain": "passa"
+        },
+        "false": {
+            "at least": "falha",
+            "format": "falha",
+            "not contain": "passa"
+        },
+        "null": {
+            "at least": "falha",
+            "format": "falha",
+            "not contain": "passa"
+        },
+        "true": {
+            "at least": "falha",
+            "format": "falha",
+            "not contain": "passa"
+        },
+        "{\"a\":1}": {
+            "at least": "falha",
+            "format": "falha",
+            "not contain": "passa"
+        }
+    },
+    "\"abc\"": {
+        "\"\"": {
+            "at least": "falha",
+            "format": "falha",
+            "not contain": "passa"
+        },
+        "\"1\"": {
+            "at least": "falha",
+            "format": "falha",
+            "not contain": "passa"
+        },
+        "\"1.5\"": {
+            "at least": "falha",
+            "format": "falha",
+            "not contain": "passa"
+        },
+        "\"12\"": {
+            "at least": "falha",
+            "format": "falha",
+            "not contain": "passa"
+        },
+        "\"2026-01-02T10:00:00-03:00\"": {
+            "at least": "falha",
+            "format": "falha",
+            "not contain": "passa"
+        },
+        "\"Abc\"": {
+            "at least": "falha",
+            "format": "falha",
+            "not contain": "passa"
+        },
+        "\"abc\"": {
+            "at least": "passa",
+            "format": "falha",
+            "not contain": "falha"
+        },
+        "\"http://localhost:8000/x\"": {
+            "at least": "falha",
+            "format": "falha",
+            "not contain": "passa"
+        },
+        "\"nada local\"": {
+            "at least": "falha",
+            "format": "falha",
+            "not contain": "passa"
+        },
+        "-3": {
+            "at least": "falha",
+            "format": "falha",
+            "not contain": "passa"
+        },
+        "0": {
+            "at least": "falha",
+            "format": "falha",
+            "not contain": "passa"
+        },
+        "1": {
+            "at least": "falha",
+            "format": "falha",
+            "not contain": "passa"
+        },
+        "1.0": {
+            "at least": "falha",
+            "format": "falha",
+            "not contain": "passa"
+        },
+        "1.5": {
+            "at least": "falha",
+            "format": "falha",
+            "not contain": "passa"
+        },
+        "10000.0": {
+            "at least": "falha",
+            "format": "falha",
+            "not contain": "passa"
+        },
+        "[1]": {
+            "at least": "falha",
+            "format": "falha",
+            "not contain": "passa"
+        },
+        "[]": {
+            "at least": "falha",
+            "format": "falha",
+            "not contain": "passa"
+        },
+        "false": {
+            "at least": "falha",
+            "format": "falha",
+            "not contain": "passa"
+        },
+        "null": {
+            "at least": "falha",
+            "format": "falha",
+            "not contain": "passa"
+        },
+        "true": {
+            "at least": "falha",
+            "format": "falha",
+            "not contain": "passa"
+        },
+        "{\"a\":1}": {
+            "at least": "falha",
+            "format": "falha",
+            "not contain": "passa"
+        }
+    },
+    "1": {
+        "\"\"": {
+            "at least": "falha",
+            "format": "falha",
+            "not contain": "passa"
+        },
+        "\"1\"": {
+            "at least": "falha",
+            "format": "falha",
+            "not contain": "passa"
+        },
+        "\"1.5\"": {
+            "at least": "falha",
+            "format": "falha",
+            "not contain": "passa"
+        },
+        "\"12\"": {
+            "at least": "falha",
+            "format": "falha",
+            "not contain": "passa"
+        },
+        "\"2026-01-02T10:00:00-03:00\"": {
+            "at least": "falha",
+            "format": "falha",
+            "not contain": "passa"
+        },
+        "\"Abc\"": {
+            "at least": "falha",
+            "format": "falha",
+            "not contain": "passa"
+        },
+        "\"abc\"": {
+            "at least": "falha",
+            "format": "falha",
+            "not contain": "passa"
+        },
+        "\"http://localhost:8000/x\"": {
+            "at least": "falha",
+            "format": "falha",
+            "not contain": "passa"
+        },
+        "\"nada local\"": {
+            "at least": "falha",
+            "format": "falha",
+            "not contain": "passa"
+        },
+        "-3": {
+            "at least": "falha",
+            "format": "falha",
+            "not contain": "passa"
+        },
+        "0": {
+            "at least": "falha",
+            "format": "falha",
+            "not contain": "passa"
+        },
+        "1": {
+            "at least": "passa",
+            "format": "falha",
+            "not contain": "falha"
+        },
+        "1.0": {
+            "at least": "falha",
+            "format": "falha",
+            "not contain": "passa"
+        },
+        "1.5": {
+            "at least": "falha",
+            "format": "falha",
+            "not contain": "passa"
+        },
+        "10000.0": {
+            "at least": "falha",
+            "format": "falha",
+            "not contain": "passa"
+        },
+        "[1]": {
+            "at least": "falha",
+            "format": "falha",
+            "not contain": "passa"
+        },
+        "[]": {
+            "at least": "falha",
+            "format": "falha",
+            "not contain": "passa"
+        },
+        "false": {
+            "at least": "falha",
+            "format": "falha",
+            "not contain": "passa"
+        },
+        "null": {
+            "at least": "falha",
+            "format": "falha",
+            "not contain": "passa"
+        },
+        "true": {
+            "at least": "falha",
+            "format": "falha",
+            "not contain": "passa"
+        },
+        "{\"a\":1}": {
+            "at least": "falha",
+            "format": "falha",
+            "not contain": "passa"
+        }
+    },
+    "1.0": {
+        "\"\"": {
+            "at least": "falha",
+            "format": "falha",
+            "not contain": "passa"
+        },
+        "\"1\"": {
+            "at least": "falha",
+            "format": "falha",
+            "not contain": "passa"
+        },
+        "\"1.5\"": {
+            "at least": "falha",
+            "format": "falha",
+            "not contain": "passa"
+        },
+        "\"12\"": {
+            "at least": "falha",
+            "format": "falha",
+            "not contain": "passa"
+        },
+        "\"2026-01-02T10:00:00-03:00\"": {
+            "at least": "falha",
+            "format": "falha",
+            "not contain": "passa"
+        },
+        "\"Abc\"": {
+            "at least": "falha",
+            "format": "falha",
+            "not contain": "passa"
+        },
+        "\"abc\"": {
+            "at least": "falha",
+            "format": "falha",
+            "not contain": "passa"
+        },
+        "\"http://localhost:8000/x\"": {
+            "at least": "falha",
+            "format": "falha",
+            "not contain": "passa"
+        },
+        "\"nada local\"": {
+            "at least": "falha",
+            "format": "falha",
+            "not contain": "passa"
+        },
+        "-3": {
+            "at least": "falha",
+            "format": "falha",
+            "not contain": "passa"
+        },
+        "0": {
+            "at least": "falha",
+            "format": "falha",
+            "not contain": "passa"
+        },
+        "1": {
+            "at least": "falha",
+            "format": "falha",
+            "not contain": "passa"
+        },
+        "1.0": {
+            "at least": "passa",
+            "format": "falha",
+            "not contain": "falha"
+        },
+        "1.5": {
+            "at least": "falha",
+            "format": "falha",
+            "not contain": "passa"
+        },
+        "10000.0": {
+            "at least": "falha",
+            "format": "falha",
+            "not contain": "passa"
+        },
+        "[1]": {
+            "at least": "falha",
+            "format": "falha",
+            "not contain": "passa"
+        },
+        "[]": {
+            "at least": "falha",
+            "format": "falha",
+            "not contain": "passa"
+        },
+        "false": {
+            "at least": "falha",
+            "format": "falha",
+            "not contain": "passa"
+        },
+        "null": {
+            "at least": "falha",
+            "format": "falha",
+            "not contain": "passa"
+        },
+        "true": {
+            "at least": "falha",
+            "format": "falha",
+            "not contain": "passa"
+        },
+        "{\"a\":1}": {
+            "at least": "falha",
+            "format": "falha",
+            "not contain": "passa"
+        }
+    },
+    "1.5": {
+        "\"\"": {
+            "at least": "falha",
+            "format": "falha",
+            "not contain": "passa"
+        },
+        "\"1\"": {
+            "at least": "falha",
+            "format": "falha",
+            "not contain": "passa"
+        },
+        "\"1.5\"": {
+            "at least": "falha",
+            "format": "falha",
+            "not contain": "passa"
+        },
+        "\"12\"": {
+            "at least": "falha",
+            "format": "falha",
+            "not contain": "passa"
+        },
+        "\"2026-01-02T10:00:00-03:00\"": {
+            "at least": "falha",
+            "format": "falha",
+            "not contain": "passa"
+        },
+        "\"Abc\"": {
+            "at least": "falha",
+            "format": "falha",
+            "not contain": "passa"
+        },
+        "\"abc\"": {
+            "at least": "falha",
+            "format": "falha",
+            "not contain": "passa"
+        },
+        "\"http://localhost:8000/x\"": {
+            "at least": "falha",
+            "format": "falha",
+            "not contain": "passa"
+        },
+        "\"nada local\"": {
+            "at least": "falha",
+            "format": "falha",
+            "not contain": "passa"
+        },
+        "-3": {
+            "at least": "falha",
+            "format": "falha",
+            "not contain": "passa"
+        },
+        "0": {
+            "at least": "falha",
+            "format": "falha",
+            "not contain": "passa"
+        },
+        "1": {
+            "at least": "falha",
+            "format": "falha",
+            "not contain": "passa"
+        },
+        "1.0": {
+            "at least": "falha",
+            "format": "falha",
+            "not contain": "passa"
+        },
+        "1.5": {
+            "at least": "passa",
+            "format": "falha",
+            "not contain": "falha"
+        },
+        "10000.0": {
+            "at least": "falha",
+            "format": "falha",
+            "not contain": "passa"
+        },
+        "[1]": {
+            "at least": "falha",
+            "format": "falha",
+            "not contain": "passa"
+        },
+        "[]": {
+            "at least": "falha",
+            "format": "falha",
+            "not contain": "passa"
+        },
+        "false": {
+            "at least": "falha",
+            "format": "falha",
+            "not contain": "passa"
+        },
+        "null": {
+            "at least": "falha",
+            "format": "falha",
+            "not contain": "passa"
+        },
+        "true": {
+            "at least": "falha",
+            "format": "falha",
+            "not contain": "passa"
+        },
+        "{\"a\":1}": {
+            "at least": "falha",
+            "format": "falha",
+            "not contain": "passa"
+        }
+    },
+    "null": {
+        "\"\"": {
+            "at least": "falha",
+            "format": "falha",
+            "not contain": "passa"
+        },
+        "\"1\"": {
+            "at least": "falha",
+            "format": "falha",
+            "not contain": "passa"
+        },
+        "\"1.5\"": {
+            "at least": "falha",
+            "format": "falha",
+            "not contain": "passa"
+        },
+        "\"12\"": {
+            "at least": "falha",
+            "format": "falha",
+            "not contain": "passa"
+        },
+        "\"2026-01-02T10:00:00-03:00\"": {
+            "at least": "falha",
+            "format": "falha",
+            "not contain": "passa"
+        },
+        "\"Abc\"": {
+            "at least": "falha",
+            "format": "falha",
+            "not contain": "passa"
+        },
+        "\"abc\"": {
+            "at least": "falha",
+            "format": "falha",
+            "not contain": "passa"
+        },
+        "\"http://localhost:8000/x\"": {
+            "at least": "falha",
+            "format": "falha",
+            "not contain": "passa"
+        },
+        "\"nada local\"": {
+            "at least": "falha",
+            "format": "falha",
+            "not contain": "passa"
+        },
+        "-3": {
+            "at least": "falha",
+            "format": "falha",
+            "not contain": "passa"
+        },
+        "0": {
+            "at least": "falha",
+            "format": "falha",
+            "not contain": "passa"
+        },
+        "1": {
+            "at least": "falha",
+            "format": "falha",
+            "not contain": "passa"
+        },
+        "1.0": {
+            "at least": "falha",
+            "format": "falha",
+            "not contain": "passa"
+        },
+        "1.5": {
+            "at least": "falha",
+            "format": "falha",
+            "not contain": "passa"
+        },
+        "10000.0": {
+            "at least": "falha",
+            "format": "falha",
+            "not contain": "passa"
+        },
+        "[1]": {
+            "at least": "falha",
+            "format": "falha",
+            "not contain": "passa"
+        },
+        "[]": {
+            "at least": "falha",
+            "format": "falha",
+            "not contain": "passa"
+        },
+        "false": {
+            "at least": "falha",
+            "format": "falha",
+            "not contain": "passa"
+        },
+        "null": {
+            "at least": "passa",
+            "format": "falha",
+            "not contain": "falha"
+        },
+        "true": {
+            "at least": "falha",
+            "format": "falha",
+            "not contain": "passa"
+        },
+        "{\"a\":1}": {
+            "at least": "falha",
+            "format": "falha",
+            "not contain": "passa"
+        }
+    },
+    "true": {
+        "\"\"": {
+            "at least": "falha",
+            "format": "falha",
+            "not contain": "passa"
+        },
+        "\"1\"": {
+            "at least": "falha",
+            "format": "falha",
+            "not contain": "passa"
+        },
+        "\"1.5\"": {
+            "at least": "falha",
+            "format": "falha",
+            "not contain": "passa"
+        },
+        "\"12\"": {
+            "at least": "falha",
+            "format": "falha",
+            "not contain": "passa"
+        },
+        "\"2026-01-02T10:00:00-03:00\"": {
+            "at least": "falha",
+            "format": "falha",
+            "not contain": "passa"
+        },
+        "\"Abc\"": {
+            "at least": "falha",
+            "format": "falha",
+            "not contain": "passa"
+        },
+        "\"abc\"": {
+            "at least": "falha",
+            "format": "falha",
+            "not contain": "passa"
+        },
+        "\"http://localhost:8000/x\"": {
+            "at least": "falha",
+            "format": "falha",
+            "not contain": "passa"
+        },
+        "\"nada local\"": {
+            "at least": "falha",
+            "format": "falha",
+            "not contain": "passa"
+        },
+        "-3": {
+            "at least": "falha",
+            "format": "falha",
+            "not contain": "passa"
+        },
+        "0": {
+            "at least": "falha",
+            "format": "falha",
+            "not contain": "passa"
+        },
+        "1": {
+            "at least": "falha",
+            "format": "falha",
+            "not contain": "passa"
+        },
+        "1.0": {
+            "at least": "falha",
+            "format": "falha",
+            "not contain": "passa"
+        },
+        "1.5": {
+            "at least": "falha",
+            "format": "falha",
+            "not contain": "passa"
+        },
+        "10000.0": {
+            "at least": "falha",
+            "format": "falha",
+            "not contain": "passa"
+        },
+        "[1]": {
+            "at least": "falha",
+            "format": "falha",
+            "not contain": "passa"
+        },
+        "[]": {
+            "at least": "falha",
+            "format": "falha",
+            "not contain": "passa"
+        },
+        "false": {
+            "at least": "falha",
+            "format": "falha",
+            "not contain": "passa"
+        },
+        "null": {
+            "at least": "falha",
+            "format": "falha",
+            "not contain": "passa"
+        },
+        "true": {
+            "at least": "passa",
+            "format": "falha",
+            "not contain": "falha"
+        },
+        "{\"a\":1}": {
+            "at least": "falha",
+            "format": "falha",
+            "not contain": "passa"
+        }
+    }
+}

@@ -1,0 +1,107 @@
+{
+    "@*@ numa lista": {
+        "at least": "passa",
+        "format": "passa",
+        "not contain": "falha"
+    },
+    "aninhado com padrão": {
+        "at least": "passa",
+        "format": "passa",
+        "not contain": "falha"
+    },
+    "aninhado: objeto no lugar de valor": {
+        "at least": "falha",
+        "format": "falha",
+        "not contain": "passa"
+    },
+    "aninhado: valor no lugar de objeto": {
+        "at least": "falha",
+        "format": "falha",
+        "not contain": "passa"
+    },
+    "chave a mais na resposta": {
+        "at least": "passa",
+        "format": "falha",
+        "not contain": "falha"
+    },
+    "chave a menos na resposta": {
+        "at least": "falha",
+        "format": "falha",
+        "not contain": "falha"
+    },
+    "esperado não é json": {
+        "at least": "erro",
+        "format": "erro",
+        "not contain": "erro"
+    },
+    "expansor desconhecido": {
+        "at least": "erro",
+        "format": "erro",
+        "not contain": "erro"
+    },
+    "lista de objetos com campo a mais": {
+        "at least": "passa",
+        "format": "falha",
+        "not contain": "falha"
+    },
+    "lista de objetos com padrão": {
+        "at least": "falha",
+        "format": "falha",
+        "not contain": "passa"
+    },
+    "lista em outra ordem": {
+        "at least": "falha",
+        "format": "falha",
+        "not contain": "passa"
+    },
+    "lista maior que o esperado": {
+        "at least": "passa",
+        "format": "falha",
+        "not contain": "falha"
+    },
+    "lista menor que o esperado": {
+        "at least": "falha",
+        "format": "falha",
+        "not contain": "falha"
+    },
+    "lista vazia contra objeto": {
+        "at least": "falha",
+        "format": "falha",
+        "not contain": "passa"
+    },
+    "número 1.0 contra inteiro": {
+        "at least": "falha",
+        "format": "falha",
+        "not contain": "passa"
+    },
+    "número inteiro contra 1.0": {
+        "at least": "falha",
+        "format": "falha",
+        "not contain": "passa"
+    },
+    "objeto vazio": {
+        "at least": "passa",
+        "format": "passa",
+        "not contain": "passa"
+    },
+    "padrão desconhecido": {
+        "at least": "falha",
+        "format": "falha",
+        "not contain": "passa"
+    },
+    "raiz lista": {
+        "at least": "passa",
+        "format": "falha",
+        "not contain": "falha"
+    },
+    "resposta não é json": {
+        "at least": "erro",
+        "format": "erro",
+        "not contain": "erro"
+    },
+    "texto contra número": {
+        "at least": "falha",
+        "format": "falha",
+        "not contain": "passa"
+    }
+}

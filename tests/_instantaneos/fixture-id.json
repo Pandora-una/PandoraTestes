@@ -1,0 +1,47 @@
+{
+    "comId autor": [
+        50,
+        {
+            "autor": [
+                {
+                    "ativo": "1",
+                    "id": "50",
+                    "nome": "Ana"
+                }
+            ],
+            "livro": []
+        }
+    ],
+    "id:3 livro": [
+        "3",
+        {
+            "autor": [
+                {
+                    "ativo": "1",
+                    "id": "1",
+                    "nome": "Ana"
+                }
+            ],
+            "livro": [
+                {
+                    "autor_id": "1",
+                    "id": "3",
+                    "titulo": "Perto do Coração Selvagem"
+                }
+            ]
+        }
+    ],
+    "id:7 autor": [
+        "7",
+        {
+            "autor": [
+                {
+                    "ativo": "1",
+                    "id": "7",
+                    "nome": "Ana"
+                }
+            ],
+            "livro": []
+        }
+    ]
+}

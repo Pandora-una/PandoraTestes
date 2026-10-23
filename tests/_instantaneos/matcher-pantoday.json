@@ -1,0 +1,7 @@
+{
+    "aninhado em lista": "passa",
+    "campo a mais no objeto": "passa",
+    "mesma data": "passa",
+    "outra data": "falha",
+    "texto no lugar do objeto": "falha"
+}

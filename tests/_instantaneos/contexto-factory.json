@@ -1,0 +1,26 @@
+{
+    "com conexão": {
+        "em": {
+            "mesma configuração": true,
+            "outra conexão": true,
+            "parâmetros": {
+                "driver": "pdo_sqlite",
+                "memory": true
+            },
+            "é outro EntityManager": true
+        },
+        "entitiesNamespace": "X\\Entity",
+        "fixtureMetaData": {
+            "base": [
+                "a"
+            ]
+        },
+        "fixtureNamespace": "X\\Fixture"
+    },
+    "sem config": {
+        "em": null,
+        "entitiesNamespace": "Application\\Entity",
+        "fixtureMetaData": [],
+        "fixtureNamespace": "Application\\Fixture"
+    }
+}

@@ -1,0 +1,15 @@
+{
+    "contém (sem maiúsculas)": "passa",
+    "contém o que não tem": "falha",
+    "contém texto com barra": "erro",
+    "código 200": "falha",
+    "código 201": "passa",
+    "json inválido": "erro",
+    "json: chave ausente": "falha",
+    "json: igualdade solta": "passa",
+    "json: subconjunto": "passa",
+    "json: valor diferente": "falha",
+    "não contém (com maiúsculas)": "passa",
+    "não contém o que tem": "falha",
+    "print response": "GET x?status=201 => 201:\n{\"metodo\":\"GET\",\"uri\":\"/api/x?status=201\",\"cabecalhos\":[],\"corpo\":\"\",\"texto\":\"Resposta do ECO\"}"
+}

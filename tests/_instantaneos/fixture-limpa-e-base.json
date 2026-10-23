@@ -1,0 +1,21 @@
+{
+    "base": {
+        "autor": [
+            {
+                "ativo": "1",
+                "id": "1",
+                "nome": "Ana"
+            },
+            {
+                "ativo": "1",
+                "id": "2",
+                "nome": "Base"
+            }
+        ],
+        "livro": []
+    },
+    "limpo": {
+        "autor": [],
+        "livro": []
+    }
+}

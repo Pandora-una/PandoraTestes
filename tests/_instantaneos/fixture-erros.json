@@ -1,0 +1,26 @@
+{
+    "callbackInvalido autor": [
+        "Exception",
+        500,
+        "Erro ao gerar a fixture 'callbackInvalido autor' devido a"
+    ],
+    "inexistente": [
+        "ReflectionException",
+        -1,
+        "Class PandoraTestesTeste\\Fixture\\Inexistente does not exist"
+    ],
+    "nome:x livro": [
+        "Exception",
+        0,
+        "Erro ao gerar a fixture 'nome:x livro' devido a"
+    ],
+    "sem conexão": [
+        "RuntimeException",
+        "A configuração 'pandora-testes.connection' é obrigatória na v2.0.\nDefina essa chave em config/autoload/*.php com os parâmetros da conexão usada pela biblioteca para limpar e manipular as fixtures.\nExemplo: 'pandora-testes' => array('connection' => array('driver' => 'pdo_pgsql', 'host' => '127.0.0.1', ...))"
+    ],
+    "traitInexistente autor": [
+        "Exception",
+        0,
+        "Trait 'traitInexistente' não existe"
+    ]
+}
