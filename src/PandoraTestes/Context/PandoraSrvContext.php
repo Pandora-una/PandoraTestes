@@ -18,6 +18,11 @@ class PandoraSrvContext implements Context
      */
     protected $_webApi;
 
+    public function __construct()
+    {
+        \PandoraTestes\PhpUnit\Configuracao::garante();
+    }
+
     /**
      * @BeforeScenario
      */

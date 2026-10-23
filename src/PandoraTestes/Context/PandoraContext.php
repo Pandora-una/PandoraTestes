@@ -28,6 +28,7 @@ abstract class PandoraContext implements Context, MinkAwareContext
 
     public function __construct($timeout = 5)
     {
+        \PandoraTestes\PhpUnit\Configuracao::garante();
         $this->_timeout = $timeout;
     }
 

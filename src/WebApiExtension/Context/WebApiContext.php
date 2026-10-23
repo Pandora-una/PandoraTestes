@@ -57,6 +57,12 @@ class WebApiContext implements ApiClientAwareContext
 
     private $placeHolders = array();
 
+    public function __construct()
+    {
+        // PHPUnit 12 fora do PHPUnit (pandora-testes 3)
+        \PandoraTestes\PhpUnit\Configuracao::garante();
+    }
+
     /**
      * {@inheritdoc}
      */
