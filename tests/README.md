@@ -36,7 +36,7 @@ make test
 
 # 2.x: vendor e imagem do area-restrita (PHPUnit 5.7 de lá), num checkout com o código 2.x
 # (o commit da caracterização)
-git worktree add /tmp/ptestes-2x <commit da caracterização>
+git worktree add /tmp/ptestes-2x 2868af4
 /tmp/ptestes-2x/ci/teste-2x.sh ~/sistemas/area-restrita/srv
 
 # regravar os instantâneos (só na 2.x, e só de propósito)
