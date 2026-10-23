@@ -18,7 +18,7 @@ class FixtureBuilderTest extends TestCase
     private function builder(array $metadados = [])
     {
         $this->em = Pilha::entityManager([__DIR__ . '/src/Entity']);
-        (new \Doctrine\ORM\Tools\SchemaTool($this->em))->createSchema($this->em->getMetadataFactory()->getAllMetadata());
+        Pilha::criaTabelas($this->em);
         $metadados += ['Estante' => ['entity_name' => 'PandoraTestesTeste\Entity\Autor']];
         $builder = new FixtureBuilder($metadados, 'PandoraTestesTeste\Fixture', 'PandoraTestesTeste\Entity');
         $builder->setEntityManager($this->em);

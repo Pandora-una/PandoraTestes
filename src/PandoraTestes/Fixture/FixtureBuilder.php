@@ -4,6 +4,7 @@ namespace PandoraTestes\Fixture;
 
 use Doctrine\Common\DataFixtures\Purger\ORMPurger;
 use Doctrine\Common\DataFixtures\Executor\ORMExecutor;
+use Doctrine\DBAL\Platforms\PostgreSQLPlatform;
 use Doctrine\ORM\EntityManagerInterface;
 
 /**
@@ -115,19 +116,19 @@ class FixtureBuilder
     public function clean()
     {
         if ($this->_isPostgres($this->getEntityManager())) {
-            $this->getEntityManager()->getConnection()->exec('SET session_replication_role = replica;');
+            $this->getEntityManager()->getConnection()->executeStatement('SET session_replication_role = replica;');
         }
         $this->entities = array();
         try {
             $this->_executeFixtures(array(), false);
         } catch (\Exception $e) {
             if ($this->_isPostgres($this->getEntityManager())) {
-                $this->getEntityManager()->getConnection()->exec('SET session_replication_role = DEFAULT;');
+                $this->getEntityManager()->getConnection()->executeStatement('SET session_replication_role = DEFAULT;');
             }
             throw $e;
         }
         if ($this->_isPostgres($this->getEntityManager())) {
-            $this->getEntityManager()->getConnection()->exec('SET session_replication_role = DEFAULT;');
+            $this->getEntityManager()->getConnection()->executeStatement('SET session_replication_role = DEFAULT;');
         }
     }
 
@@ -246,8 +247,9 @@ class FixtureBuilder
      */
     protected function _isPostgres(EntityManagerInterface $entityManager)
     {
-        $driver = $entityManager->getConnection()->getDriver();
-        return $driver instanceof \Doctrine\DBAL\Driver\PDOPgSql\Driver;
+        // pela plataforma: no DBAL 3 a classe do driver mudou de nome (PDO\PgSQL\Driver), e com
+        // o nome antigo o teste falharia em silêncio e o purge esbarraria nas FKs
+        return $entityManager->getConnection()->getDatabasePlatform() instanceof PostgreSQLPlatform;
     }
 
     /**

@@ -49,6 +49,19 @@ class Pilha
         }
     }
 
+    /**
+     * Tabelas de autor e livro com o mesmo DDL nas duas pilhas: o SchemaTool do DBAL 3 cria a chave
+     * do SQLite com AUTOINCREMENT, que não reinicia depois do purge (o do DBAL 2.6 reiniciava). Nos
+     * sistemas (PostgreSQL) o purge nunca reiniciou sequence.
+     */
+    public static function criaTabelas($em)
+    {
+        $conexao = $em->getConnection();
+        $executa = method_exists($conexao, 'executeStatement') ? 'executeStatement' : 'exec';
+        $conexao->$executa('CREATE TABLE autor (id INTEGER NOT NULL, nome VARCHAR(255) NOT NULL, ativo BOOLEAN NOT NULL, PRIMARY KEY(id))');
+        $conexao->$executa('CREATE TABLE livro (id INTEGER NOT NULL, autor_id INTEGER DEFAULT NULL, titulo VARCHAR(255) NOT NULL, PRIMARY KEY(id), CONSTRAINT FK_LIVRO_AUTOR FOREIGN KEY (autor_id) REFERENCES autor (id))');
+    }
+
     public static function entityManager(array $caminhos)
     {
         $config = new \Doctrine\ORM\Configuration();

@@ -6,13 +6,18 @@ use Behat\Behat\Context\Context;
 use Behat\Behat\Hook\Scope\BeforeScenarioScope;
 use Behat\Gherkin\Node\PyStringNode;
 use PandoraTestes\Matcher\Factory\PandoraFactory;
-use PHPUnit_Framework_Assert as Assertions;
+use PHPUnit\Framework\Assert as Assertions;
 
 /**
  * Passos para testes no servidor.
  */
 class PandoraSrvContext implements Context
 {
+    /**
+     * @var \Behat\WebApiExtension\Context\WebApiContext
+     */
+    protected $_webApi;
+
     /**
      * @BeforeScenario
      */
@@ -36,7 +41,8 @@ class PandoraSrvContext implements Context
             throw new \RuntimeException("Can not convert etalon to json:\n".$jsonString->getRaw());
         }
         $matcher = (new PandoraFactory())->createMatcher();
-        Assertions::assertTrue($matcher->match($this->getJsonResponse(), $etalon), $matcher->getError());
+        // a mensagem é null quando casa, e o PHPUnit 12 exige string
+        Assertions::assertTrue($matcher->match($this->getJsonResponse(), $etalon), (string) $matcher->getError());
     }
 
     /**
@@ -55,7 +61,8 @@ class PandoraSrvContext implements Context
         $filteredArray = $this->recursiveArrayIntersectKeys($this->getJsonResponse(), $etalon);
 
         $matcher = (new PandoraFactory())->createMatcher();
-        Assertions::assertTrue($matcher->match($filteredArray, $etalon), $matcher->getError());
+        // a mensagem é null quando casa, e o PHPUnit 12 exige string
+        Assertions::assertTrue($matcher->match($filteredArray, $etalon), (string) $matcher->getError());
     }
 
     /**

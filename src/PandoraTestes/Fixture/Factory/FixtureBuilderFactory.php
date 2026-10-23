@@ -1,20 +1,17 @@
 <?php
 namespace PandoraTestes\Fixture\Factory;
 
+use Doctrine\DBAL\DriverManager;
 use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\EntityManagerInterface;
-use Zend\ServiceManager\FactoryInterface;
-use Zend\ServiceManager\ServiceLocatorInterface;
-use Zend\ServiceManager\Exception\ServiceNotCreatedException;
+use Laminas\ServiceManager\Exception\ServiceNotCreatedException;
 use PandoraTestes\Fixture\FixtureBuilder;
+use Psr\Container\ContainerInterface;
 
-class FixtureBuilderFactory implements FactoryInterface
+class FixtureBuilderFactory
 {
 
-    /* (non-PHPdoc)
-     * @see \Zend\ServiceManager\FactoryInterface::createService()
-     */
-    public function createService(ServiceLocatorInterface $services)
+    public function __invoke(ContainerInterface $services, $requestedName, ?array $options = null)
     {
         if (! $services->has('config')) {
             throw new ServiceNotCreatedException('Config não existe');
@@ -55,10 +52,14 @@ class FixtureBuilderFactory implements FactoryInterface
 
         unset($connectionParams['pdo']);
 
-        return EntityManager::create(
-            $connectionParams,
-            $defaultEntityManager->getConfiguration(),
-            $defaultEntityManager->getEventManager()
+        // o EntityManager::create() está depreciado no ORM 2.20: a mesma montagem, à mão
+        $configuration = $defaultEntityManager->getConfiguration();
+        $eventManager = $defaultEntityManager->getEventManager();
+
+        return new EntityManager(
+            DriverManager::getConnection($connectionParams, $configuration, $eventManager),
+            $configuration,
+            $eventManager
         );
     }
 }

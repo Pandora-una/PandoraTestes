@@ -1,0 +1,8 @@
+services:
+  pandora-testes:
+    build: .
+    user: "${UID:-1000}:${GID:-1000}"
+    environment:
+      - COMPOSER_HOME=/tmp/composer
+    volumes:
+      - .:/app

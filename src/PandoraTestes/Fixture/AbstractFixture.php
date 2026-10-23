@@ -4,7 +4,7 @@ namespace PandoraTestes\Fixture;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\DataFixtures\FixtureInterface;
-use Doctrine\Common\Persistence\ObjectManager;
+use Doctrine\Persistence\ObjectManager;
 use Doctrine\ORM\EntityManagerInterface;
 
 /**
@@ -46,7 +46,7 @@ abstract class AbstractFixture implements FixtureInterface
      * (non-PHPdoc)
      * @see \Doctrine\Common\DataFixtures\FixtureInterface::load()
      */
-    public function load(ObjectManager $manager)
+    public function load(ObjectManager $manager): void
     {
         $entity = $this->_newEntity();
 

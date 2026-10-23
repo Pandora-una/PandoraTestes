@@ -4,7 +4,7 @@
   "type": "library",
   "keywords": [
     "framework",
-    "zf2",
+    "laminas",
     "pandora",
     "pandoratestes"
   ],
@@ -16,27 +16,36 @@
       "homepage": "http://www.pandora.com.br/"
     }
   ],
+  "license": "proprietary",
   "require": {
-    "php": ">=5.3.3",
-    "zendframework/zendframework": ">=2.1.5",
-    "doctrine/doctrine-module": ">=0.9.0",
-    "doctrine/doctrine-orm-module": ">=0.9.0",
-    "doctrine/data-fixtures": "1.*",
-    "behat/web-api-extension": "dev-master",
-    "behat/mink-extension": "^2.0@dev",
-    "behat/mink-selenium2-driver": "~1.3.1",
-    "coduo/php-matcher": "2.0.1",
-    "behat/mink": "1.7.0"
+    "php": "~8.4.0",
+    "behat/behat": "^3.16",
+    "behat/mink": "^1.11",
+    "behat/mink-selenium2-driver": "^1.7",
+    "coduo/php-matcher": "^6.0",
+    "doctrine/data-fixtures": "^2.0",
+    "doctrine/doctrine-orm-module": "^6.3",
+    "doctrine/orm": "^2.20",
+    "friends-of-behat/mink-extension": "^2.7",
+    "guzzlehttp/guzzle": "^7.9",
+    "laminas/laminas-modulemanager": "^2.17",
+    "laminas/laminas-servicemanager": "^3.22",
+    "phpunit/phpunit": "^12.0"
   },
-  "repositories": [
-    {
-      "type": "vcs",
-      "url": "https://github.com/Pandora-una/Logger"
+  "replace": {
+    "behat/web-api-extension": "*"
+  },
+  "config": {
+    "platform": {
+      "php": "8.4.0"
     }
-  ],
+  },
   "autoload": {
     "psr-0": {
       "PandoraTestes": "src/"
+    },
+    "psr-4": {
+      "Behat\\WebApiExtension\\": "src/WebApiExtension/"
     },
     "classmap": [
       "./Module.php"

@@ -21,6 +21,7 @@ class PandoraCliContext implements Context, MinkAwareContext
 
     protected $_errorFolder;
     protected $_timeout;
+    protected $_spinner;
 
     public function __construct($error_folder = null, $timeout = 5)
     {
@@ -131,7 +132,7 @@ class PandoraCliContext implements Context, MinkAwareContext
             ->getPage()
             ->findField($select);
         if (null === $selectField) {
-            throw new ElementNotFoundException($this->_mink->getSession(), 'select field', 'id|name|label|value', $select);
+            throw new ElementNotFoundException($this->_mink->getSession()->getDriver(), 'select field', 'id|name|label|value', $select);
         }
 
         $optionField = $selectField->find('named', array(
@@ -140,11 +141,11 @@ class PandoraCliContext implements Context, MinkAwareContext
         ));
 
         if (null === $optionField) {
-            throw new ElementNotFoundException($this->_mink->getSession(), 'select option field', 'id|name|label|value', $option);
+            throw new ElementNotFoundException($this->_mink->getSession()->getDriver(), 'select option field', 'id|name|label|value', $option);
         }
 
         if (!$optionField->isSelected()) {
-            throw new ExpectationException('Select option field with value|text "'.$option.'" is not selected in the select "'.$select.'"', $this->_mink->getSession());
+            throw new ExpectationException('Select option field with value|text "'.$option.'" is not selected in the select "'.$select.'"', $this->_mink->getSession()->getDriver());
         }
     }
 
@@ -159,7 +160,7 @@ class PandoraCliContext implements Context, MinkAwareContext
         if ($element && $element->isVisible()) {
             return;
         } else {
-            throw new \Behat\Mink\Exception\ElementNotFoundException($this->_mink->getSession(), 'element', 'css', $css);
+            throw new \Behat\Mink\Exception\ElementNotFoundException($this->_mink->getSession()->getDriver(), 'element', 'css', $css);
         }
     }
 

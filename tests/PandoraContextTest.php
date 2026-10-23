@@ -19,7 +19,7 @@ class PandoraContextTest extends TestCase
     private function aplicacao(array $config = [])
     {
         $this->em = Pilha::entityManager([__DIR__ . '/src/Entity']);
-        (new \Doctrine\ORM\Tools\SchemaTool($this->em))->createSchema($this->em->getMetadataFactory()->getAllMetadata());
+        Pilha::criaTabelas($this->em);
         $builder = new FixtureBuilder(['base' => ['nome:Base autor']], 'PandoraTestesTeste\Fixture', 'PandoraTestesTeste\Entity');
         $builder->setEntityManager($this->em);
         $container = new \Laminas\ServiceManager\ServiceManager();

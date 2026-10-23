@@ -9,6 +9,30 @@ Este repositório contém ferramentas para facilitar a criação de testes de ac
 *   Script _shell_ para alterar o enviroment do _Apache2_ para _test_ durante a execução do teste
 *   Binário com _Selenium2_
 
+### Versão 3: Laminas e PHP 8.4
+
+A 3.x é a versão para Laminas MVC e PHP 8.4 (migração AND-4055), com Behat 3.34, Guzzle 7,
+PHPUnit 12, coduo/php-matcher 6, data-fixtures 2 e Mink 1.13 (`friends-of-behat/mink-extension`).
+Quem ainda está em Zend Framework 2 continua na 2.x. O comportamento é o da v2.0, fixado pelos
+testes (`tests/README.md`). O que muda para o sistema:
+
+- **web-api-extension dentro da lib.** O `behat/web-api-extension` nunca teve release e não roda
+  com Guzzle 7 nem PHPUnit 12. A 3.x traz um porte dele, com o mesmo namespace
+  (`Behat\WebApiExtension\...`), as mesmas frases de passo e as mesmas propriedades internas
+  (`headers`, `request`, `response`, `sendRequest`), e faz `replace` do pacote: o `behat.yml` e os
+  contextos do sistema não mudam. Tire o `behat/web-api-extension` do `composer.json` do sistema.
+- **Matcher com a semântica da 2.0.1.** O `PandoraFactory` devolve um `PandoraTestes\Matcher\Matcher`
+  (mesma API: `match()` e `getError()`) montado com a cadeia da php-matcher 2.0.1. O `PHPMatcher`
+  da 6 é mais permissivo (`@integer@` aceitaria `"1"`) e esconderia número virando texto na API.
+  O expansor `count()` é o da 6 (o `PandoraTestes\Matcher\Expander\Count` saiu).
+- **Fixtures:** a `AbstractFixture::load()` é `load(Doctrine\Persistence\ObjectManager $manager): void`.
+  Fixture do sistema que sobrescreve `load()` precisa da mesma assinatura (no area-restrita, a
+  `Pagamento`).
+- **Asserções:** `PHPUnit_Framework_Assert` vira `PHPUnit\Framework\Assert` nos contextos do sistema.
+- O `FixtureBuilderFactory` só tem o `__invoke` (ServiceManager 3).
+
+Testes: `make test` (PHP 8.4).
+
 ### Instalação
 
 A forma recomendada de instalação é por [composer](https://getcomposer.org/):

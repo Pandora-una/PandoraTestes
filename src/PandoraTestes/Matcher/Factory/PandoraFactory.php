@@ -2,20 +2,20 @@
 
 namespace PandoraTestes\Matcher\Factory;
 
-use Coduo\PHPMatcher\Factory\SimpleFactory;
-use Coduo\PHPMatcher\Lexer;
-use Coduo\PHPMatcher\Parser;
-use Coduo\PHPMatcher\Parser\ExpanderInitializer;
+use PandoraTestes\Matcher\Matcher;
 
-class PandoraFactory extends SimpleFactory
+/**
+ * Mesma API da 2.x: createMatcher() devolve um matcher com match() e getError(), agora o
+ * PandoraTestes\Matcher\Matcher (a cadeia da php-matcher 2.0.1 sobre as classes da 6). O expansor
+ * count(), que era da casa, a 6 já tem com a mesma semântica.
+ */
+class PandoraFactory
 {
     /**
-     * @return Parser
+     * @return Matcher
      */
-    protected function buildParser()
+    public function createMatcher()
     {
-        $expander = new Parser\ExpanderInitializer();
-        $expander->setExpanderDefinition('count', 'PandoraTestes\Matcher\Expander\Count');
-        return new Parser(new Lexer(), $expander);
+        return new Matcher();
     }
 }
